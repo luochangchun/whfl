@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <!--#include file="head.html"-->
+  <body>
+	<!--#include file="header.html"-->
+	<div class="banner bg-cover m-b-md" style="background-image:url(${themeurl!}/imgs/banner2.jpg)"></div>
+	<div class="main m-b-lg">
+		<div class="container">
+			<div class=" bg-white">
+				<div class="list m-b-md">
+					<!-- {article:list table=(article) cid=(95) status=(1) limit=(4) order=(time desc)}  -->
+					<div class="box pos-rlt wrapper-lg bg-white clear">
+						<!--{if:${article_index == 0}}-->
+						<div class="text-center m-b-lg">
+							<div>
+								<span class="inline text-xxl padder b-b b-2x">寻找最美巾帼农庄</span>
+							</div>
+							<div>
+								<a class="text-muted h-main tras-01" href="/listXVIII.html">更多</a>
+							</div> 
+						</div>
+						<!--{/if}-->
+						<div class="img-box w pull-left">
+							<img class="img-responsive center-block" alt="" src="${article.icon}">
+						</div>
+						<div class="text-box">
+							<div class="font-bold text-md text-ellipsis m-b-sm"><a class="h-main tras-01" href="${article.url}">${article.title}</a></div>
+							<div class="text-muted text-xs m-b-sm">
+								<span class="inline m-r">信息来源：<a class="h-main tras-01" href="#">${article.author}</a></span>
+								<span class="inline m-r">发布时间：<span>${article.time?string("yyyy-MM-dd")}</span></span>
+							</div>
+							<div class="text-xs text-ellipsis-3">
+								${article.description}
+							</div>
+						</div>
+					</div>
+					<!--{/list}-->
+					<!-- {article:list table=(article) cid=(94) status=(1) limit=(4) order=(time desc)}  -->
+					<div class="box pos-rlt wrapper-lg bg-white clear">
+						<!--{if:${article_index == 0}}-->
+						<div class="text-center m-b-lg">
+							<div>
+								<span class="inline text-xxl padder b-b b-2x">女性创业大赛</span>
+							</div>
+							<div>
+								<a class="text-muted h-main tras-01" href="/listXVII.html">更多</a>
+							</div> 
+						</div>
+						<!--{/if}-->
+						<div class="img-box w pull-left">
+							<img class="img-responsive center-block" alt="" src="${article.icon}">
+						</div>
+						<div class="text-box">
+							<div class="font-bold text-md text-ellipsis m-b-sm"><a class="h-main tras-01" href="${article.url}">${article.title}</a></div>
+							<div class="text-muted text-xs m-b-sm">
+								<span class="inline m-r">信息来源：<a class="h-main tras-01" href="#">${article.author}</a></span>
+								<span class="inline m-r">发布时间：<span>${article.time?string("yyyy-MM-dd")}</span></span>
+							</div>
+							<div class="text-xs text-ellipsis-3">
+								${article.description}
+							</div>
+						</div>
+					</div>
+					<!--{/list}-->
+					<div class="box pos-rlt wrapper-lg bg-white clear">
+						<div class="text-center m-b-lg">
+							<div>
+								<span class="inline text-xxl padder b-b b-2x">巧娘脱贫计划</span>
+							</div>
+							<div>
+								<a class="text-muted h-main tras-01" href="/listXV.html">更多</a>
+							</div> 
+						</div>
+						<div class="row">
+							<div class="col-lg-6 col-md-7">
+								<video class="center-block img-responsive" 
+									   poster="${themeurl!}video/jgxjmq.jpg" 
+									   src="video/jgxjmq.mp4"
+									   controls 
+									   preload="none"
+									   style="border:5px solid #3F3F3F">
+									您的浏览器不支持 HTML5 video 标签。
+								</video>
+							</div>
+							<div class="col-lg-6 col-md-5">
+								<div class="sm-list">
+									<div class="padder-md">
+										<ul class="list-unstyled" style="max-width:200px;margin:0 auto;">
+											<!-- {article:list table=(article) cid=(75) status=(1) limit=(6) order=(time desc)}  -->
+											<li class="pos-rlt"><a class="text-ellipsis h-main tras-01" href="${article.url}">${article.title}</a></li>
+											<!--{/list}-->
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--#include file="footer.html"-->
+	<!--#include file="sidebar.html"-->
+
+	<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/about.js"></script>
+	
+  </body>
+</html>

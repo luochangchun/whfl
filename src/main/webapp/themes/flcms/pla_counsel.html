@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <!--#include file="head.html"-->
+  <body>
+	<!--#include file="header_social.html"-->
+	<div class="banner bg-cover m-b-md" style="background-image:url(${themeurl!}/imgs/banner3.jpg)"></div>
+	<div class="main m-b-lg">
+		<div class="container">
+			<div class="leftbar m-b-lg b">
+				<div class="bg-white wrapper-lg">
+					<div class="text-2x text-center m-b">法律咨询留言板</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="input-group pull-left m-b">
+								<input class="form-control" type="text" placeholder="请输入关键字">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button">搜索</button>
+								</span>
+							</div>
+						</div>
+						<!-- <div class="col-sm-6">
+							<div class="text-right text-lg text-danger m-b">
+								<img class="inline" src="imgs/call.png">
+								咨询热线：<span>12345</span>
+							</div>
+						</div> -->
+					</div>
+					<hr class="hr-dashed">
+					<@page model="guestbook" cid="${current.cid}" size="10" status="3" order="time desc">
+					<#list page.data as guestbook>
+					<div class="q-and-a">
+						<div class="divst-group-item">
+							<span class="pull-left thumb-md m-r">
+								<img src="imgs/Qs.png">
+							</span>
+							<div class="clear">
+								<div class="clear text-lg" style="line-height:30px;">
+									<span class="text-danger font-bold text-ellipsis pull-left" style="width:calc(100% - 120px)">${guestbook.title}</span>
+									<div class="pull-right text-xs text-default">${guestbook.time format=(yyyy-MM-dd hh:mm)}</div>
+								</div>
+								<small class="text-muted block m-b">${guestbook.content}</small>
+							</div>
+						</div>
+						<div class="divst-group-item">
+							<span class="pull-left text-right thumb-md m-r">
+								<img class="inline" src="imgs/An.png">
+							</span>
+							<div class="clear">
+								<div class="text-danger">回复内容：</div>
+								<small class="text-muted">${guestbook.reply}</small>
+							</div>
+						</div>
+					</div>
+					<hr class="hr-dashed">
+					</#list>
+					</@page>
+					<!--#include file="common/page.html"-->
+					<@paginate currentPage=page.currentPageNo totalPage=page.totalPages actionUrl=""  />
+				</div>
+				<form id="replyForm" action="/plugin/guestbook/add">
+					<input name="status" type="hidden" value="1" />
+					<input name="cid" type="hidden" value="${current.cid}" />
+					<div class="bg-light wrapper-lg">
+						<div class="text-lg text-danger"><img class="inline" src="imgs/message.png"> 我要咨询</div>
+						<div class="divst-group-item m-b">
+							<span class="pull-left thumb-lg m-r text-lg text-right text-danger m-t-xxs">
+								话题：
+							</span>
+							<div class="clear">
+								<input class="form-control" name="title" placeholder="请输入话题">
+							</div>
+						</div>
+						<div class="divst-group-item m-b">
+							<span class="pull-left thumb-lg m-r text-lg text-right text-danger m-t-xxs">
+								内容：
+							</span>
+							<div class="clear">
+								<textarea class="form-control get_content" name="content" placeholder="请输入详细内容" rows="6"></textarea>
+							</div>
+						</div>
+						<div class="divst-group-item m-b">
+							<span class="pull-left thumb-lg m-r text-lg text-right text-danger m-t-xxs">
+								验证码：
+							</span>
+                            <div>
+								<img id="code" onClick="$('#code').attr('src','../SecurityCode?r='+Math.random())" src="../SecurityCode?r=Math.random()"/>
+								<input class="form-control thumb-xl" name="randCode" maxlength="4" onkeyup="verification();" placeholder="请输入验证码"/>
+                                <i class="fa fa-times-circle text-danger" style="display:none;"></i>
+                                <i class="fa fa-check-circle text_green" style="display:none;"></i>
+                            </div>
+						</div>
+						<div class="text-right">
+							<a class="btn btn-danger" id="get_button" onclick="add();" >提交</a>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="rightbar">
+				<div class="row">
+					<div class="sm-list m-b-md col-lg-12 col-md-4">
+						<div class="box bg-white padder-md">
+							<div class="title b-b text-md flex-center padder-v m-b">
+								<div class="w-full">社会组织法律知识解读<small class="pull-right"><a class="text-muted h-main" href="/pla_counsel_list.html">更多</a></small></div>
+							</div>
+							<ul class="list-unstyled m-b-md">
+								<!-- {article:list table=(article) cid=(260) status=(1) limit=(10) order=(time desc)} -->
+								<li class="pos-rlt" data-time="${article.time format=(yyyy-MM-dd)}" title="${article.title}">
+									<a class="text-ellipsis h-main tras-01" href="${article.url}">${article.title}</a>
+								</li>
+								<!-- {/list} -->
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--#include file="footer.html"-->
+	<!--#include file="sidebar.html"-->
+
+	<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/about.js"></script>
+	<script type="text/javascript" >
+        function add()
+        {
+            var randCode = $("input[name='randCode']").val();
+			var get_title = $("input[name='title']").val();
+            /*获取验证码的值*/
+			var ma_code = $("input[name='ma_code']").val();
+			var get_content = $(".get_content").val();
+			if(!get_title){
+				alert('请输入话题');
+				return;
+			}
+			if(!get_content){
+				alert('请输入详细内容');
+				return;
+			}
+			if(!randCode)
+			{
+			    alert("请输入验证码！");
+			    return;
+			}
+
+			if(!verification())
+			{
+			    return;
+			}
+            if(window.confirm("确定要提交留言吗？"))
+            {
+                $.ajax
+				({
+                    type : "POST",
+                    url: '/plugin/guestbook/add',
+                    data: $("#replyForm").serialize(),
+					dataType: 'json',
+                    success: function(data)
+					{
+						if(data.status === true)
+						{
+							$("#replyForm")[0].reset();
+						}
+                        alert(data.message);
+                        $(".fa-check-circle").hide();
+                        $(".fa-times-circle").hide();
+						$('#code').attr('src','../SecurityCode?r='+Math.random());
+                    },
+                    error: function(){
+                        alert("提交留言失败！")
+                    }
+                });
+            }
+        }
+
+        function verification()
+		{
+		    var rand = false;
+            var randCode = $("input[name='randCode']").val();
+            var action  = "front/user/verification.do";
+            var data = {randcode : randCode};
+			if(randCode.length === 4)
+			{
+                $.ajax({
+                    url: action,
+                    type:"GET",
+                    data: data,
+					async :false,
+                    success: function(b)
+					{
+                        if(b.status){
+                            $(".fa-times-circle").hide();
+                            $(".fa-check-circle").show();
+                        }else{
+                            $(".fa-check-circle").hide();
+                            $(".fa-times-circle").show();
+                        }
+                        rand = b.status;
+                    },
+                    error:function(){
+                        $(".fa-check-circle").hide();
+                        $(".fa-times-circle").show();
+                        alert('something error')
+                    }
+                });
+			}
+			return rand;
+        }
+
+        $(function(){
+            /*初始化验证码*/
+            $('#code').attr('src','../SecurityCode?r='+Math.random());
+
+        });
+	</script>
+  </body>
+
+</html>

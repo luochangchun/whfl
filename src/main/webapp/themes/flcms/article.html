@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!--#include file="head.html"-->
+<body>
+<!--{if:${article.cid == 142 || article.cid == 139 || article.cid == 175 ||  article.cid == 140 || article.cid == 141 || article.cid == 227 || article.cid == 237 || article.cid == 238 || article.cid == 239}}-->
+<div class="header">
+    <div class="navbar-brand-social block padder-v-xs">
+        <div class="container h-full">
+            <div class="pull-right">
+                <#if !(Session.user)?? || Session.user == "" >
+                    <a href="/new_social_login.html">登录</a> | <a href="/new_social_registered.html">注册</a>
+                    <#else>
+                        ${Session.user.name!} | <a onclick="logout();">注销</a>
+                </#if>
+            </div>
+        </div>
+    </div>
+    <div class="navbar-brand block">
+        <div class="container h-full">
+            <div class="pull-right text-gray visible-xs padder" data-toggle-class="hidden-xs" data-target=".main-nav">
+                <i class="glyphicon glyphicon-align-justify"></i>
+            </div>
+            <a href="/index.html"><img class="h-xxxs padder-v-xxs" alt="LOGO" src="imgs/logo.png"></a>
+            <ul class="main-nav list-inline m-n text-base hidden-xs pull-right">
+                <li class=""><a href="/new_social.html" class="tras-01-e">网站首页</a></li>
+                <li class=""><a href="/listYI.html" class="tras-01-e">园区动态</a></li>
+                <li class=""><a href="/social_style.html" class="tras-01-e">组织风采</a></li>
+                <li class=""><a href="/schedule_list.html" class="tras-01-e">服务平台</a></li>
+                <li class=""><a href="http://xskc.hansap.cn/" class="tras-01-e">线上课程</a></li>
+                <li class=""><a href="/listM.html" class="tras-01-e">家·公益</a></li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!--{else}-->
+<div class="header">
+    <div class="navbar-brand block">
+        <div class="container h-full">
+            <div class="pull-right text-gray visible-xs padder" data-toggle-class="hidden-xs" data-target=".main-nav">
+                <i class="glyphicon glyphicon-align-justify"></i>
+            </div>
+            <a href="/index.html"><img class="h-xxxs padder-v-xxs" alt="LOGO" src="imgs/logo.png"></a>
+            <ul class="main-nav list-inline m-n text-base hidden-xs pull-right">
+                <li class=""><a href="/index.html" class="tras-01-e">网站首页</a></li>
+                <li class=""><a href="/data_center.html" class="tras-01-e">走进妇联</a></li>
+                <li class=""><a href="/map.html" class="tras-01-e">妇女之家</a></li>
+                <li class=""><a href="/dxzs.html" class="tras-01-e">巾帼风采</a></li>
+                <li class=""><a href="/familyCivilized.html" class="tras-01-e">家·文明</a></li>
+                <li class=""><a href="http://whwomen.org.cn/nvchuang/html/index.html" class="tras-01-e">家·发展</a></li>
+                <li class=""><a href="/family.html" class="tras-01-e">家·服务</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--{/if}-->
+
+<!--{if:${article.cid == 79 || article.cid == 80 || article.cid == 81 || article.cid == 83 || article.cid == 84 || article.cid == 85 || article.cid == 86 || article.cid == 87 || article.cid == 88 || article.cid == 89 || article.cid == 90 || article.cid == 91 || article.cid == 99}}-->
+	<!--#include file="familyWomenTem.html"-->
+<!--{else}-->
+
+<!--{if:${article.cid != 227}}-->
+
+<div class="banner bg-cover m-b-md" style="background-image:url(${themeurl!}/imgs/banner1.jpg)">
+</div>
+<div class="main m-b-lg">
+	<div class="container">
+		<div class="leftbar m-b-lg">
+			<div class="main-text bg-white wrapper-lg">
+				<div class="font-bold text-xl m-b text-danger">${article.title!}</div>
+				<div class="text-xs text-muted b-b m-b-lg">
+					<span class="inline">信息来源：<a class="inline h-main tras-01">${article.author}</a></span>
+					<span class="inline">发布时间：<span>${article.time}</span></span>
+				</div>
+				<div class="text-indent">
+					${article.content!}
+				</div>
+                <!--{if:${article.cid == 121}}-->
+                <!--#include file="together_joinButton.html"-->
+                <!--{/if}-->
+			</div>
+		</div>
+
+        <!--{if:${article.cid == 237 || article.cid == 238 || article.cid == 239}}-->
+        <!--#include file="sidebar_info_M.html"-->
+        <!--{/if}-->
+
+        <!--{if:${article.cid == 142 || article.cid == 139 || article.cid == 140 || article.cid == 141 || article.cid == 175 ||article.cid == 221}}-->
+        <!--#include file="sidebar_info_Y.html"-->
+        <!--{/if}-->
+
+        <!--{if:${article.cid == 247}}-->
+        <!--#include file="dxzs_right.html"-->
+        <!--{/if}-->
+
+        <!--{if:${article.cid != 142 && article.cid != 139 && article.cid != 140 && article.cid != 141 && article.cid != 175 && article.cid != 221 && article.cid != 237 && article.cid != 238 && article.cid != 239 && article.cid != 247}}-->
+		<!--#include file="sidebar_info.html"-->
+        <!--{/if}-->
+
+	</div>
+</div>
+<!--{/if}-->
+<!--{/if}-->
+
+<!-- {if:${article.cid == 227}} -->
+<!--#include file="listZ.html"-->
+<!--{/if}-->
+
+<!--#include file="footer.html"-->
+<!--{if:${article.cid == 142 || article.cid == 139 || article.cid == 175 ||  article.cid == 140 || article.cid == 141 || article.cid == 227 || article.cid == 237 || article.cid == 238 || article.cid == 239}}-->
+<!--#include file="sidebar_social.html"-->
+<!--{else}-->
+<!--#include file="sidebar.html"-->
+<!--{/if}-->
+
+<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+<script src="js/jquery.form.js" charset="UTF-8"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/about.js"></script>
+</body>
+</html>

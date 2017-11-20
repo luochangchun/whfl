@@ -1,0 +1,199 @@
+<div class="content">
+    <div class="tab_bar">
+        <ul>
+            <li class="tab_index" onclick="setTabContent(this);">家风博物馆</li>
+        </ul>
+    </div>
+    <div class="table_content">
+        <div class="tab_item tab_show">
+            <table class="table_for_list">
+                <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th width="120">联系方式</th>
+                    <th>联系地址</th>
+                    <th>简介</th>
+                    <th width="80">捐赠方式</th>
+                    <th width="140">时间</th>
+                    <th width="40">操作</th>
+                </tr>
+                </thead>
+                <tbody id="list-container">
+
+                </tbody>
+            </table>
+            <div style="overflow: hidden; ">
+                <div style="float:left;margin-left:5px;">
+                    <button class="btn_tabbar" onclick="exportExcel('admin/donation/exportExcel.do');">导出
+                    </button>
+                </div>
+                <div style="float: right;">
+                    每页: <select id="pageSize" style="height: 27px; width: 50px;">
+                    <option value="10">10</option>
+                    <option value="20" selected>20</option>
+                    <option value="40">40</option>
+                    <option value="60">60</option>
+                    <option value="80">80</option>
+                    <option value="100">100</option>
+                </select> 条
+
+                    <button onclick="prevPage()" title="上一页"><i class="fa fa-step-backward"></i></button>
+                    <button onclick="nextPage()" title="下一页"><i class="fa fa-step-forward"></i></button>
+                    &nbsp;
+                    <input id="currentPageNo" style="height: 25px; width: 50px;text-align: center;" value="1"/> / <span
+                        id="totalPages">12</span>
+                    &nbsp;
+                    <button onclick="goPage();" title="GO"><i class="fa fa-arrow-circle-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    var template;
+    $(function () {
+        queryList();
+        $("#pageSize").change(function () {
+            queryList();
+        });
+
+        // 加载模板
+        var source = $("#donation-template").html();
+        template = Handlebars.compile(source);
+
+        Date.prototype.format = function (format) {
+            var o = {
+                "M+": this.getMonth() + 1, //month
+                "d+": this.getDate(), //day
+                "h+": this.getHours(), //hour
+                "m+": this.getMinutes(), //minute
+                "s+": this.getSeconds(), //second
+                "q+": Math.floor((this.getMonth() + 3) / 3), //quarter
+                "S": this.getMilliseconds() //millisecond
+            };
+
+            if (/(y+)/.test(format)) {
+                format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            }
+
+            for (var k in o) {
+                if (new RegExp("(" + k + ")").test(format)) {
+                    format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+                }
+            }
+            return format;
+        };
+        // 注册插件
+        Handlebars.registerHelper('dateformat', function () {
+            return new Date(this.time).format("yyyy-MM-dd hh:mm:ss");
+        });
+
+        Handlebars.registerHelper("compare", function (x1, x2, options) {
+            if (x1 == x2) {//满足添加继续执行
+                return options.fn(this);
+            } else {
+                //不满足条件执行{{else}}部分
+                return options.inverse(this);
+            }
+
+        });
+    });
+
+
+    // 查询文章列表
+    function queryList() {
+        var currentPageNo = $("#currentPageNo").val();
+        var pageSize = $("#pageSize").val();
+        var data = {
+            currentPageNo: currentPageNo,
+            pageSize: pageSize
+
+        };
+        $.ajax({
+            url: "donation/list.do",
+            data: data,
+            type: "get",
+            dataType: "json",
+            success: function (json) {
+                $("#totalPages").text(json.totalPages);
+                $("#currentPageNo").val(json.currentPageNo);
+                $("#totalPages").text(json.totalPages);
+
+                var html = template({"data": json.data});
+                $('#list-container').html(html);
+            }
+
+        });
+    }
+
+    // 上一页
+    function prevPage() {
+        var inputPageNo = $("#currentPageNo");
+        var newPageNo = parseInt(inputPageNo.val()) - 1;
+        if (newPageNo <= 0) {
+            zoom.showMessageDialog("已经到第一页了！", "消息提示", 500);
+        } else {
+            inputPageNo.val(newPageNo);
+            queryList();
+        }
+    }
+
+    // 下一页
+    function nextPage() {
+        var inputPageNo = $("#currentPageNo");
+        var newPageNo = parseInt(inputPageNo.val()) + 1;
+        var pageSize = parseInt($("#totalPages").text());
+        if (newPageNo > pageSize) {
+            zoom.showMessageDialog("已经到最后一页了！", "消息提示", 500);
+        } else {
+            inputPageNo.val(newPageNo);
+            queryList();
+        }
+    }
+
+    // go页码
+    function goPage() {
+        var newPageNo = parseInt($("#currentPageNo").val());
+        var pageSize = parseInt($("#totalPages").text());
+
+        if (newPageNo <= 0) {
+            zoom.showMessageDialog("页码应该大于1哦！", "消息提示", 500);
+        } else if (newPageNo > pageSize) {
+            zoom.showMessageDialog("页码超过最大页数咯！", "消息提示", 500);
+        } else if (isNaN(newPageNo)) {
+            zoom.showMessageDialog("页码格式不正确哈！", "消息提示", 500);
+        } else {
+            queryList();
+        }
+    }
+
+</script>
+
+
+<script id="donation-template" type="text/x-handlebars-template">
+
+    {{#each data}}
+
+    <tr>
+        <td>{{name}}</td>
+        <td>{{phone}}</td>
+        <td>{{address}}</td>
+        <td>{{description}}</td>
+        <td style="text-align:center">
+            {{#compare method 1}}自愿捐赠{{/compare}}
+            {{#compare method 2}}借展{{/compare}}
+            {{#compare method 3}}代管{{/compare}}
+            {{#compare method 4}}复制{{/compare}}
+        </td>
+        <td style="text-align:center">{{dateformat time}}</td>
+        <td style="text-align:center">
+            <a href="#" action="donation/detail.do?id={{id}}" param="" onclick="refreshContentByElement(this);">
+                <i class="fa fa-eye"></i>
+            </a>
+        </td>
+
+    </tr>
+    {{/each}}
+</script>
+

@@ -1,0 +1,72 @@
+<#macro paginate currentPage totalPage actionUrl>
+<#if (totalPage <= 0) || (currentPage > totalPage)><#return></#if>
+	<#local startPage = currentPage - 4>
+	<#if (startPage < 1)><#local startPage = 1></#if>
+	<#local endPage = currentPage + 4>
+	<#if (endPage > totalPage)><#local endPage = totalPage></#if>
+	<#if (totalPage > 1)>
+ <div class="text-center">
+	<!-- <div style="float:left; line-height: 30px; margin-left: 30px;">
+	共${page.totalRows}条，共${page.totalPages}页记录
+	</div> -->
+	<div>
+		<ul class="pagination">
+			<#if (currentPage <= 8)>
+				<#local startPage = 1>
+			</#if>
+			<#if ((totalPage - currentPage) < 8)>
+				<#local endPage = totalPage>
+			</#if>
+			
+			<#if (currentPage == 1)>
+				<li class="disabled"><a href="#">&laquo;</a></li>
+			<#else>
+				<#if currentPage == 2>
+					<#local prevPageUrl = "/cms?p=" + p>
+					<li><a href="${url}${encoder(prevPageUrl)}">&laquo;</a></li>
+				<#else>
+					<#local prevPageUrl = "/cms?p=" + p + "&page=" + (currentPage - 1) >
+					<li><a href="${url}${encoder(prevPageUrl)}">&laquo;</a></li>
+				</#if>
+			</#if>
+			
+			<#if (currentPage > 8)>
+				<li><a href="#">#{1}</a></li>
+				<li><a href="#">#{2}</a></li>
+				<li><a><span>…</span></a></li>
+				
+			</#if>
+			
+			<#list startPage..endPage as i>
+				<#if currentPage == i>
+					<li class="active"><a href="#">#{i}</a></li>
+				<#else>
+					<#if i == 1>
+						<#local prevPageUrl = "/cms?p=" + p>
+						<li><a href="${url}${encoder(prevPageUrl)}">1</a></li>
+					<#else> 
+						<#local currentPageUrl = "/cms?p=" + p + "&page=" + i >
+						<li><a href="${url}${encoder(currentPageUrl)}">#{i}</a></li>
+					</#if>
+				</#if>
+			</#list>
+			
+			<#if ((totalPage - currentPage) >= 8)>
+				<li><a><span>…</span></a></li>
+				<li><a href="#">#{totalPage - 1}</a></li>
+				<li><a href="#">#{totalPage}</a></li>
+			</#if>
+			
+			<#if (currentPage == totalPage)>
+				<li class="disabled"><a href="#">&raquo;</a></li>
+			<#else>
+				<#local nextPageUrl = "/cms?p=" + p + "&page=" + (currentPage + 1) >
+				<li><a href="${url}${encoder(nextPageUrl)}">&raquo;</a></li>
+			</#if>
+		</ul>
+	</div>
+</div>
+</#if>
+</#macro>
+
+

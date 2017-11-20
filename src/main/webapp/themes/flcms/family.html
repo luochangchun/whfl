@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>家·服务-家政服务</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="css/app.css" rel="stylesheet" type="text/css">
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<link type="image/x-icon" href="imgs/logos.png" rel="shortcut icon">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  </head>
+  <body>
+	<!--#include file="header.html"-->
+	<div class="banner bg-cover m-b-md" style="background-image:url(${themeurl!}/imgs/banner1.jpg)"></div>
+	<div class="main">
+		<div class="container m-b-md">
+			<div class="main-text bg-white wrapper-lg">
+				<div class="text-center m-b-lg">
+					<div><span class="inline text-xxl padder b-b b-2x">家政联盟形象展示</span></div>
+					<div><a class="text-muted h-main tras-01" href="/listd.html">更多</a></div>
+				</div>
+				<div class="row">
+					<!-- {article:list table=(article) cid=(98) status=(1) order=(time desc) limit=(20)} -->
+					<div class="col-md-3 col-sm-6">
+						<a href="${article.url}" title="${article.title}">
+							<div class="h-shadow tras-03 m-b-lg">
+								<div class="bg-cover img h-sm" style="background-image:url(${article.icon})"></div>
+								<div class="text-box bg-light wrapper">
+									<div><span class="text-ellipsis">${article.title}</span></div>
+								</div>
+							</div>
+						</a>
+					</div>
+					<!-- {/list} -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--#include file="footer.html"-->
+	<!--#include file="sidebar.html"-->
+
+	<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/about.js"></script>
+  </body>
+</html>

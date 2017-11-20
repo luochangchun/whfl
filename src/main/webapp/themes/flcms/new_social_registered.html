@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!--#include file="head.html"-->
+<body>
+
+<!--#include file="header_social.html"-->
+<div class="container">
+    <div class="main m-b-lg m-t-lg main-text" style="background-color:#fff;">
+        <div class="social-head">
+            <div class="social-head-title">
+                <p>用户注册</p>
+            </div>
+        </div>
+        <div class="social-login social-registered" style="">
+            <div class="social-cont col-lg-12">
+                <form id="userForm" class="form-horizontal">
+                    <input type="hidden" name="kingdom" id="kingdom"/>
+                    <input type="hidden" name="demand" id="demand"/>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="name" class="col-sm-3 control-label">组织名称：</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="name" class="form-control" id="name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="account" class="col-sm-3 control-label">账号：</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="account" class="form-control" id="account">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-sm-3 control-label">密码：</label>
+                            <div class="col-sm-8">
+                                <input type="password" name="password" class="form-control" id="password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password2" class="col-sm-3 control-label">确认密码：</label>
+                            <div class="col-sm-8">
+                                <input type="password" name="password2" class="form-control" id="password2">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">拟入驻类型：</label>
+                            <div class="col-sm-8">
+                                <label class="radio-inline">
+                                    <input type="radio" name="settled" checked="checked" value="1">
+                                    线上社会组织
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="settled" value="2"> 线下社会组织
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="author1" class="col-sm-3 control-label">联系人1：</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="author1" class="form-control" id="author1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone1" class="col-sm-3 control-label">联系电话1：</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="phone1" class="form-control" id="phone1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="qq1" class="col-sm-3 control-label">QQ1：</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="qq1" class="form-control" id="qq1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="author2" class="col-sm-3 control-label">联系人2：</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="author2" class="form-control" id="author2">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone2" class="col-sm-3 control-label">联系电话2：</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="phone2" class="form-control" id="phone2">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="qq2" class="col-sm-3 control-label">QQ2：</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="qq2" class="form-control" id="qq2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">组织类型：</label>
+                            <div class="col-sm-9" id="org_style">
+                                <label class="radio-inline">
+                                    <input type="radio" checked="checked" name="type" value="1"> 未注册
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="type" value="2"> 社区备案
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="type" value="3"> 已在民政注册的社会组织
+                                </label>
+                            </div>
+                        </div>
+                        <div class="my_hide" style="display:none;">
+                            <div class="form-group">
+                                <label for="regPlace" class="col-sm-3 control-label">组织注册地：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="regPlace" class="form-control" id="regPlace">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="foundingDate" class="col-sm-3 control-label">成立时间：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="foundingDate" class="input form-control" id="foundingDate"
+                                           style=" display:inline-block;" placeholder="点击选择年月日"
+                                           onClick="WdatePicker()"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="registerNum" class="col-sm-3 control-label">注册号：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="registerNum" class="form-control" id="registerNum">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="issAuthority" class="col-sm-3 control-label">发证机关：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="issAuthority" class="form-control" id="issAuthority">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="address" class="col-sm-3 control-label">组织地址：</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="address" class="form-control" id="address">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">服务领域：</label>
+                            <div class="col-sm-9">
+                                <div class="radio inline m-r">
+                                    <label class="i-checks">
+                                        <input name="kingdoms" value="1" type="checkbox"/>
+                                        <i></i>
+                                        发展创业
+                                    </label>
+                                </div>
+                                <div class="radio inline m-r">
+                                    <label class="i-checks">
+                                        <input name="kingdoms" value="2" type="checkbox"/>
+                                        <i></i>
+                                        维权帮扶
+                                    </label>
+                                </div>
+                                <div class="radio inline m-r">
+                                    <label class="i-checks">
+                                        <input name="kingdoms" value="3" type="checkbox"/>
+                                        <i></i>
+                                        家庭教育
+                                    </label>
+                                </div>
+                                <div class="radio inline m-r">
+                                    <label class="i-checks">
+                                        <input name="kingdoms" value="4" type="checkbox"/>
+                                        <i></i>
+                                        社区服务
+                                    </label>
+                                </div>
+                                <div class="radio inline m-r">
+                                    <label class="i-checks">
+                                        <input name="kingdoms" value="5" type="checkbox"/>
+                                        <i></i>
+                                        志愿服务
+                                    </label>
+                                </div>
+                                <div class="radio inline m-r">
+                                    <label class="i-checks">
+                                        <input name="kingdoms" value="6" type="checkbox"/>
+                                        <i></i>
+                                        环境保护
+                                    </label>
+                                </div>
+                                <div class="radio inline m-r">
+                                    <label class="i-checks">
+                                        <input name="kingdoms" value="7" type="checkbox"/>
+                                        <i></i>
+                                        心理辅导
+                                    </label>
+                                </div>
+                                <div class="radio inline m-r">
+                                    <label class="i-checks">
+                                        <input name="kingdoms" value="8" type="checkbox"/>
+                                        <i></i>
+                                        文体活动
+                                    </label>
+                                </div>
+                                <div class="radio inline m-r">
+                                    <label class="i-checks">
+                                        <input name="kingdoms" value="9" type="checkbox"/>
+                                        <i></i>
+                                        其他
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">入驻需求：</label>
+                            <div class="col-sm-9">
+                                <div class="radio inline m-r">
+                                    <label class="i-checks">
+                                        <input name="demands" value="1" type="checkbox"/>
+                                        <i></i>
+                                        使用办公室场地
+                                    </label>
+                                </div>
+                                <div class="radio inline m-r">
+                                    <label class="i-checks">
+                                        <input name="demands" value="2" type="checkbox"/>
+                                        <i></i>
+                                        使用活动场地
+                                    </label>
+                                </div>
+                                <div class="radio inline m-r">
+                                    <label class="i-checks">
+                                        <input name="demands" value="3" type="checkbox"/>
+                                        <i></i>
+                                        协助注册
+                                    </label>
+                                </div>
+                                <div class="radio inline m-r">
+                                    <label class="i-checks">
+                                        <input name="demands" value="4" type="checkbox"/>
+                                        <i></i>
+                                        孵化服务
+                                    </label>
+                                </div>
+                                <div class="radio inline m-r">
+                                    <label class="i-checks">
+                                        <input name="demands" value="5" type="checkbox"/>
+                                        <i></i>
+                                        项目合作
+                                    </label>
+                                </div>
+                                <div class="radio inline m-r">
+                                    <label class="i-checks">
+                                        <input name="demands" value="6" type="checkbox"/>
+                                        <i></i>
+                                        社区推介
+                                    </label>
+                                </div>
+                                <div class="radio inline m-r">
+                                    <label class="i-checks">
+                                        <input name="demand" value="7" type="checkbox"/>
+                                        <i></i>
+                                        资源整合
+                                    </label>
+                                </div>
+                                <div class="radio inline m-r">
+                                    <label class="i-checks">
+                                        <input name="demands" value="8" type="checkbox"/>
+                                        <i></i>
+                                        组织能力建设
+                                    </label>
+                                </div>
+                                <div class="radio inline m-r">
+                                    <label class="i-checks">
+                                        <input name="demands" value="9" type="checkbox"/>
+                                        <i></i>
+                                        其他
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="plan" class="col-sm-3 control-label">拟定合作发展计划：</label>
+                            <div class="col-sm-8">
+                                <textarea name="plan" id="plan" rows="4" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">备注：</label>
+                            <div class="col-sm-8">
+                                <label class="control-label">*填表即表示确保填写信息真实、准确，承担相应责任。</label>
+                                <label class="control-label">*填表后三个工作日内，园区工作人员会与负责人联系。</label>
+                                <label class="control-label">*如有不明确事项，请咨询运营团队工作人员。</label>
+                                <label class="control-label">*运营团队办公电话：027-83236282。</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-4">
+                                <div id="save" class="btn btn-danger btn-block">立即注册</div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="social-haveNumber" style="display:none;">已有账号，请 <a href="/new_social_login.html"
+                                                                           class="btn btn-danger btn-inline">登录</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--#include file="footer.html"-->
+<!--#include file="sidebar_social.html"-->
+
+<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+<script src="js/jquery.form.js" charset="UTF-8"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/about.js"></script>
+
+<script src="js/echarts.min.js"></script>
+<script src="js/mychart.js" charset="UTF-8"></script>
+<script src="js/My97DatePicker/WdatePicker.js"></script>
+
+
+</body>
+<script>
+    $("#org_style").on("click", function () {
+        if ($("input[name='type']:checked").val() === "3") {
+            $(".my_hide").show();
+        } else {
+            $(".my_hide").hide();
+        }
+    });
+
+    function save() {
+
+        var name = $("input[name='name']").val();
+        var account = $("input[name='account']").val();
+        var password = $("input[name='password']").val();
+        var password2 = $("input[name='password2']").val();
+        var author1 = $("input[name='author1']").val();
+        var phone1 = $("input[name='phone1']").val();
+        var qq1 = $("input[name='qq1']").val();
+        var author2 = $("input[name='author2']").val();
+        var phone2 = $("input[name='phone2']").val();
+        var qq2 = $("input[name='qq2']").val();
+
+        var settled = $("input[name='settled']:checked").val();
+
+        var regPlace = $("input[name='regPlace']").val();
+        var foundingDate = $("input[name='foundingDate']").val();
+        var registerNum = $("input[name='registerNum']").val();
+        var issAuthority = $("input[name='issAuthority']").val();
+        var address = $("input[name='address']").val();
+
+        var kingdom = $("input[name='kingdom']");
+        var demand = $("input[name='demand']");
+        var plan = $("textarea[name='plan']").val();
+
+        var description = $("textarea[name='description']").val();
+
+        var reg = /^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/;
+
+        if (!name) {
+            alert("请输入组织名称！");
+            return;
+        }
+        if (!account) {
+            alert("请输入账号名！");
+            return;
+        }
+        if (!password) {
+            alert("请输入密码！");
+            return;
+        }
+        if (!password2) {
+            alert("请再次输入密码！");
+            return;
+        }
+        if (!(password === password2)) {
+            alert("两次输入的密码不一致！");
+            return;
+        }
+        if (!author1) {
+            alert("请输入联系人1！");
+            return;
+        }
+        if (!reg.test(phone1)) {
+            alert("请输入正确电话号码！");
+            return;
+        }
+        /*
+         if (!qq1) {
+         alert("请输入联系人1QQ号码！");
+         return;
+         }
+
+         if (!author2) {
+         alert("请输入联系人2！");
+         return;
+         }
+         if(!reg.test(phone2)){
+         alert("请输入联系人2电话！");
+         return;
+         }
+
+         if (!qq2) {
+         alert("请输入联系人2QQ号码！");
+         return;
+         }
+         */
+        if ($(".my_hide").is(":visible")) {
+            if (!regPlace) {
+                alert("请输入组织注册地！");
+                return;
+            }
+            if (!foundingDate) {
+                alert("请输入成立时间！");
+                return;
+            }
+            if (!registerNum) {
+                alert("请输入注册号！");
+                return;
+            }
+            if (!issAuthority) {
+                alert("请输入发证机关名称！");
+                return;
+            }
+            if (!address) {
+                alert("请输入组织地址！");
+                return;
+            }
+        }
+
+        var list = "";
+        var temp = "";
+        $("input[name='kingdoms']:checked").each(function () {
+            temp = $(this).attr("value");
+            list += temp + ",";
+        });
+
+        if (list !== "") {
+            list = list.substr(0, list.length - 1);
+            kingdom.val(list);
+        }
+        if (!kingdom.val()) {
+            alert("请选择服务领域！");
+            return;
+        }
+        list = "";
+        temp = "";
+        $("input[name='demands']:checked").each(function () {
+            temp = $(this).attr("value");
+            list += temp + ",";
+        });
+        if (list !== "") {
+            list = list.substr(0, list.length - 1);
+            demand.val(list);
+        }
+        if (!demand) {
+            alert("请选择入驻申请！");
+            return;
+        }
+
+
+        if (!plan) {
+            alert("请输入合作发展计划！");
+            return;
+        }
+
+
+        var options = {
+            type: "POST",
+            url: "front/user/register.do",
+            dataType: 'json',
+            success: function (data) {
+                if (data.status) {
+                    alert(data.message);
+                    $("#userForm")[0].reset();
+                }
+            },
+            error: function () {
+                alert("提交失败!");
+            }
+        };
+        $('#userForm').ajaxSubmit(options);
+    }
+    $("#save").on("click", function () {
+        setTimeout(function () {
+            save();
+        }, 200);
+    })
+</script>
+<script>
+    $("#orgUid").change(function () {
+        console.log($(this).val());
+        if ($(this).val() === 0) {
+            console.log(123);
+            $(".social_group_add").show(200);
+            return;
+        }
+        $(".social_group_add").hide(200);
+    });
+</script>
+</html>

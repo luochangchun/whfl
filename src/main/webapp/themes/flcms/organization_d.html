@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>${current.name!} - ${config.title}</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/app.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link type="image/x-icon" href="imgs/logos.png" rel="shortcut icon">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+    <script src="js/jquery.form.js" charset="UTF-8"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/about.js"></script>
+
+</head>
+<body>
+<div class="list bg-white wrapper-md b">
+  <div class="title-list bg-white text-md flex-center">
+      <div class="w-full">${current.name}</div>
+  </div>
+    <@page model="article" size="2" cid="${cid2}" status="1" order="time desc">
+      <#list page.data as article>
+          <div class="b-b b-b-dashed pt-30 position-r">
+              <p>${article.title!}</p>
+              <img src="${article.icon!}" alt="" style="width:100%;">
+              <p class="text-right m-t-md m-r-lg l-h-1x">
+                  <span class="m-r-lg">发布时间：${article.time format=(yyyy-MM-dd hh:mm:ss)}</span>
+                  <#list articleList as articles>
+                      <#if article.id?c == articles.id?c && articles.points == 0>
+                          <a style="cursor:pointer;" class="click_up" onclick="addPoints(${article.id?c},${orgUid})" data-toggle="tooltip" data-placement="top" title="点击点赞">
+                              <i class="social_up m-r-xs" ></i>点个赞
+                          </a>
+                          <!--<div class="tooltip fade top in tooltip_success" role="tooltip" id="tooltip1" style=""><div class="tooltip-arrow" style="left: 50%;"></div><div class="tooltip-inner">已经点赞!</div></div>-->
+                      </#if>
+                      <#if article.id?c == articles.id?c && articles.points gt 0>
+                          <a style="cursor:pointer;" data-toggle="tooltip" data-placement="top" title="每人只能点赞一次">
+                              <i class="social_up m-r-xs" ></i>已点赞
+                          </a>
+                          <!--<div class="tooltip fade top in tooltip_success" role="tooltip" id="tooltip1" style=""><div class="tooltip-arrow" style="left: 50%;"></div><div class="tooltip-inner">每人只能赞一次!</div></div>-->
+                      </#if>
+                  </#list>
+              </p>
+          </div>
+      </#list>
+    </@page>
+  <!--#include file="common/page.html"-->
+  <@paginate currentPage=page.currentPageNo totalPage=page.totalPages actionUrl="/"  />
+</div>
+<script type="text/javascript">
+    function addPoints(aid,orgUid)
+    {
+        $.ajax
+        ({
+            type : "POST",
+            url: "/front/organization/points/add.do",
+            data: { id: aid,uuid : orgUid},
+            dataType: 'json',
+            success: function(data)
+            {
+                if(data.status)
+                {
+                    console.log("cilck success");
+                    test();
+                }
+            },
+            error: function(){
+                alert("点赞失败！")
+            }
+        });
+    }
+
+
+</script>
+
+<script>
+
+    function test(){
+        var sss = parent.getLocation();
+        console.log(sss);
+    }
+    function getClickUp(){
+        return $(".click_up");
+    }
+
+</script>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+</script>
+</body>
+</html>

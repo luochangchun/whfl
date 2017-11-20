@@ -1,0 +1,150 @@
+<div class="text-right">
+	<button type="button" class="btn btn-success btn-danger" data-toggle="modal" data-target="#myModal">我要参加</button>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header text-center">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">请填写以下信息</h4>
+			</div>
+			<div class="modal-body" style="max-height:500px;overflow:auto;">
+				<form id="activityForm" method="post" onsubmit="return false;" class="form-horizontal" role="form">
+					<input type="hidden" name="articleId" value="${article.id?c}"/>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">姓名：</label>
+						<div class="col-sm-7">
+							<input type="text" name="name" class="form-control" placeholder="请输入姓名">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">联系方式：</label>
+						<div class="col-sm-7">
+							<input type="text" name="phone" class="form-control" placeholder="请输入手机号或固话(xxx-xxxxxxxx)">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">身份证号：</label>
+						<div class="col-sm-7">
+							<input type="text" name="idCard" class="form-control" placeholder="请输入身份证号">
+						</div>
+					</div>
+				</form>
+				<div id="preview"></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" onclick="save();" class="btn btn-danger btn-block">提交申请</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+    function save() {
+        var name = $("input[name='name']").val();
+        var phone = $("input[name='phone']").val();
+        var idCard = $("input[name='idCard']").val();
+        var reg = /^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/;
+        if (!name) {
+            alert("请输入姓名！");
+            return;
+        }
+        if (!reg.test(phone)) {
+            alert("请输入正确电话号码！");
+            return;
+        }
+        if (!checkID(idCard)) {
+            return;
+        }
+
+        var options = {
+            type: "POST",
+            url: "/front/activity/save.do",
+            dataType: 'json',
+            success: function (data) {
+                if (data.status) {
+                    alert(data.message);
+                    $("#activityForm")[0].reset();
+                }
+                $('#myModal').modal('hide');
+            },
+            error: function () {
+                alert("提交失败!");
+            }
+        };
+        $('#activityForm').ajaxSubmit(options);
+    }
+    function checkID(ID) {
+        if (typeof ID !== 'string') {
+            alert("不是正确的身份证号，请重新输入身份证号");
+            return false;
+        }
+        var city = {
+            11: "北京",
+            12: "天津",
+            13: "河北",
+            14: "山西",
+            15: "内蒙古",
+            21: "辽宁",
+            22: "吉林",
+            23: "黑龙江 ",
+            31: "上海",
+            32: "江苏",
+            33: "浙江",
+            34: "安徽",
+            35: "福建",
+            36: "江西",
+            37: "山东",
+            41: "河南",
+            42: "湖北 ",
+            43: "湖南",
+            44: "广东",
+            45: "广西",
+            46: "海南",
+            50: "重庆",
+            51: "四川",
+            52: "贵州",
+            53: "云南",
+            54: "西藏 ",
+            61: "陕西",
+            62: "甘肃",
+            63: "青海",
+            64: "宁夏",
+            65: "新疆",
+            71: "台湾",
+            81: "香港",
+            82: "澳门",
+            91: "国外"
+        };
+        var birthday = ID.substr(6, 4) + '/' + Number(ID.substr(10, 2)) + '/' + Number(ID.substr(12, 2));
+        var d = new Date(birthday);
+        var newBirthday = d.getFullYear() + '/' + Number(d.getMonth() + 1) + '/' + Number(d.getDate());
+        var currentTime = new Date().getTime();
+        var time = d.getTime();
+        var arrInt = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
+        var arrCh = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'];
+        var sum = 0, i, residue;
+
+        if (!/^\d{17}(\d|x)$/i.test(ID)) {
+            alert("非法身份证,请重新输入身份证号");
+            return false;
+        }
+        if (city[ID.substr(0, 2)] === undefined) {
+            alert("身份证上的地区非法，请重新输入身份证号");
+            return false;
+        }
+        if (time >= currentTime || birthday !== newBirthday) {
+            alert("身份证上生日非法，请重新输入身份证号");
+            return false;
+        }
+        for (i = 0; i < 17; i++) {
+            sum += ID.substr(i, 1) * arrInt[i];
+        }
+        residue = arrCh[sum % 11];
+        if (residue !== ID.substr(17, 1)) {
+            alert("身份证号出错，请重新输入身份证号");
+            return false;
+        }
+        console.log(city[ID.substr(0, 2)] + "," + birthday + "," + (ID.substr(16, 1) % 2 ? " 男" : "女"));
+        return true;
+    }
+</script>

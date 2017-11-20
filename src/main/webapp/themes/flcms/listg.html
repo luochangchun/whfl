@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <!--#include file="head.html"-->
+  <body>
+	<!--#include file="header.html"-->
+	<div class="banner bg-cover m-b-md" style="background-image:url(${themeurl!}/imgs/banner3.jpg)"></div>
+	<div class="main m-b-lg">
+		<div class="container">
+			<div class="leftbar m-b-lg">
+				<div class="list bg-white wrapper-md b">
+					<div class="title-list bg-white text-md flex-center">
+						<div class="w-full">${current.name}</div>
+					</div>
+					<@page model="article" size="4" cid="${cid}" status="1" order="time desc">
+						<#list page.data as article>
+						<div class="b-b b-b-dashed pos-rlt wrapper-lg bg-white clear">
+							<div class="img-box w pull-left">
+								<img class="img-responsive center-block" alt="" src="/${article.icon}">
+							</div>
+							<div class="text-box">
+								<div class="font-bold text-md text-ellipsis m-b-sm"><a class="h-main tras-01" href="${article.url}">${article.title}</a></div>
+								<div class="text-muted text-xs m-b-sm">
+									<span class="inline m-r">信息来源：<a class="h-main tras-01" href="#">${article.author}</a></span>
+									<span class="inline m-r">发布时间：<span>${article.time?string("yyyy-MM-dd")}</span></span>
+								</div>
+								<div class="text-xs text-ellipsis-3">
+									${article.description}
+								</div>
+							</div>
+						</div>
+						</#list>
+					</@page>
+					<!--#include file="whome_page.html"-->
+					<@paginate currentPage=page.currentPageNo totalPage=page.totalPages actionUrl="" cid=cid/>
+				</div>
+			</div>
+			<!--#include file="sidebar_info.html"-->
+		</div>
+	</div>
+	<!--#include file="footer.html"-->
+	<!--#include file="sidebar.html"-->
+
+	<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/about.js"></script>
+
+  </body>
+</html>

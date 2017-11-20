@@ -1,0 +1,75 @@
+<div class="sidebar">
+	<button class="btn btn-sm btn-icon btn-info code"><i class="glyphicon glyphicon-qrcode"></i></button>
+	<a href="funvzhijialogo.zip">
+		<button class="btn btn-sm btn-icon btn-success number m-t-lg"><i class="glyphicon glyphicon-download-alt"></i></button>
+	</a>
+	<a>
+		<button class="btn btn-sm btn-icon btn-warning mt-60 click">
+			<i class="glyphicon glyphicon-comment"></i>
+			<div class="closeable active">
+				<span class="close glyphicon glyphicon-remove" data-toggle-class="active" data-target=".closeable"></span>
+			</div>
+		</button>
+	</a>
+	<div class="ad clear ad1 w-sm bg-white box-shadow-xxl">
+		<!-- {article:list table=(article) cid=(109) status=(1) limit=(1) order=(top desc,time desc)} -->
+		<div class="close pos-abt w-xxxs h-xxxs text-dark text-center" data-toggle-class="active" data-target=".ad" style="right: 0;">x</div>
+		<a href="${article.url}">
+			<div class="h-sm">${chip.activity!}</div>
+		</a>
+		<!-- {/list} -->
+	</div>
+	<div class="ad clear ad2 w-sm bg-white box-shadow-xxl">
+		<a href="/workc.html?isopen">
+			<div class="h-sm">${chip.bwgimg!}</div>
+		</a>
+	</div>
+
+</div>
+<style>
+	.sidebar div.closeable.active {
+		display: block;
+		content: '';
+		width: 150px;
+		height: 150px;
+		background: url(/themes/flcms/imgs/qqclick.jpg) center center no-repeat;
+		background-size: cover;
+		position: absolute;
+		right: 40px;
+		top: 0;
+		border-radius: 4px;
+		border: 1px solid #D0D0D0;
+		-webkit-filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.5));
+	}
+
+	.sidebar div.closeable {
+		right: -200px;
+	}
+
+	.sidebar div.closeable.active span {
+		content: '';
+		width: 10px;
+		height: 10px;
+		position: absolute;
+		right: 15px;
+		top: 5px;
+	}
+
+	.sidebar div.closeable span {
+		right: -200px;
+	}
+</style>
+
+<script>
+	$('.sidebar button.click span').click(function (event) {
+		event.preventDefault();
+		event.stopPropagation();
+		return false;
+	});
+	$('.sidebar button.click').click(function (event) {
+		window.open("http://wpa.qq.com/msgrd?v=3&uin=3088298075&site=qq&menu=yes", "_blank");
+		event.preventDefault();
+		event.stopPropagation();
+		return false;
+	});
+</script>

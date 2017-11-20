@@ -1,0 +1,256 @@
+<div class="content">
+	<div class="tab_bar">
+		<ul>
+			<li class="tab_index" onclick="setTabContent(this);"><h3>用户组赋权</h3></li>
+			<li class="" onclick="setTabContent(this);"><h3>用户组赋权</h3></li>
+		</ul>
+		<button class="btn_tabbar" onclick="submitActionForm(this);" return="group/list.do">保 存</button>
+	</div>
+	<form id="myForm"  action="group/granting.do" method="post">
+ 	<div class="tab_content">
+		<div class="tab_item tab_show"> 
+		    <input name="gid" value="${gid?c}" type="hidden" />
+			<table class="table_for_list">
+				<thead>
+				<tr>
+					<th width="30" class="quanxuan" onclick="allCheck();">全选</th> 
+			        <th>菜单名称</th>
+			        <th>URL地址</th>
+			        <th>排序</th>
+			        <th>描述</th>
+			      </tr>
+				</thead>
+			    <tbody>
+				  <@menuTree id = 0 node = -1/>
+				</tbody>
+			</table>
+		</div>
+	</div>
+ 	<div class="tab_content">
+		<div class="tab_item"> 
+		    <div class="zTreeDemoBackground">
+				<ul id="treeDemo" class="ztree"></ul>
+			</div>
+		</div>
+	</div>
+	</form>
+</div>
+<script type="text/javascript">
+var auths = '<#list permissions as per>${per.mid},</#list>';// 逗号隔开
+var arrays = new Array();
+arrays = auths.split(",");
+for(var i=0; i < arrays.length; i++){
+	$("input[name='mid'][value="+trim(arrays[i])+"]").attr("checked","true");
+}
+
+var auths2 = '<#list objectButton as btn>${btn.oid},</#list>';// 逗号隔开
+var arrays2 = new Array();
+arrays2 = auths2.split(",");
+for(var i=0; i < arrays2.length; i++){
+	$("input[name='btn'][value="+trim(arrays2[i])+"]").attr("checked","true");
+}
+
+var auths3 = '<#list objectCategory as cat>${cat.oid},</#list>';// 逗号隔开
+var arrays3 = new Array();
+arrays3 = auths3.split(",");
+for(var i=0; i < arrays3.length; i++){
+	$("input[name='cat'][value="+trim(arrays3[i])+"]").attr("checked","true");
+}
+
+
+//check关联
+var bascCid;
+var bntr;
+var bnextid;
+var minid;
+var bindex;
+$("input[type='checkbox']").change(function(){
+	var tr = $(this).parents("tr");
+	var status;
+	bntr = tr.next();
+	bnextid = parseInt(bntr.attr("cid"));
+	bascCid = parseInt(tr.attr("cid"));
+	bindex = tr.index();
+	minid = bascCid;
+	if($(this).attr("checked") == 'checked'){
+		status = true;
+	}else{
+		status = false;
+	}
+	checkedParentMenu(tr, status);
+});
+function checkedParentMenu(tr, status){
+	var cid = parseInt(tr.attr("cid")); // 当前tr的ID
+	var ttr = tr.prev();
+	var previd = parseInt(ttr.attr("cid"));
+	var ntr = tr.next();
+    if(cid != 0){ // 如果没有到根节点
+    	if(status){
+			if( cid == previd + 1 && previd < minid){// 找到了父菜单
+				minid = minid > previd? previd : minid;
+				$(ttr.find("input[type='checkbox']")[0]).attr("checked",status);
+			}
+		    checkedParentMenu(ttr, status);
+    	}
+    }
+	if( bnextid - bascCid == 1 && bindex == tr.index()){//有子菜单，全选
+		checkedNext(ntr, status);
+	}
+}
+function checkedNext(tr, status){
+	$(tr.find("input[type='checkbox']")[0]).attr("checked",status);
+	var ntr = tr.next();
+	var nextid = parseInt(ntr.attr("cid"));
+	if( bascCid < nextid){//同级相同项目
+		checkedNext(ntr, status, bascCid);
+	}
+}
+
+$(".table_for_list tbody tr").each(function(){
+	var tr = $(this);
+	var tem1 = '<i class="fa fa-caret-down" onClick="hide(this)" style="width: 10px;"></i>';
+	var tem2 = '<i class="fa"></i>';
+	var cid = parseInt(tr.attr("cid"));
+	var nextid = parseInt(tr.next().attr("cid"));
+	if( nextid - cid == 1 ){//有子菜单，
+		tr.find("td:nth-child(2)>span").after(tem1);
+	}else{
+		tr.find("td:nth-child(2)>span").after(tem2);
+	}
+});
+function hide(i){
+	var tr = $(i).parents("tr");
+	var cid = parseInt(tr.attr("cid"));
+	var ntr = tr.next();
+	var nextid = parseInt(ntr.attr("cid"));
+	var state = ntr.css("display");
+	if(state == 'table-row'){
+		state = 'none';
+	}else if(state == 'none'){
+		state = 'table-row';
+	}
+	$(i).toggleClass("fa-caret-right fa-caret-down");
+	if( nextid - cid == 1 ){//有子菜单，全选
+		while (cid < nextid){
+			tr = tr.next();
+			tr.css({"display": state});
+			var $i = tr.find("i[class*='fa-caret']");
+			$i.removeClass("fa-caret-right fa-caret-down");
+			if(state == 'none'){
+				$i.addClass("fa-caret-right");
+			}else{
+				$i.addClass("fa-caret-down");
+			}
+			nextid = parseInt(tr.next().attr("cid"));
+		}
+	}
+}
+
+/* **********************
+* 删除一条或者多条数据(通用方法)
+* 例子:  <button onClick="deleteCheck(this);" id="staff_delete.action" id="stafffind.action">删除</button>
+* id  -deleteAction地址
+* callback  -删除成功回调页面地址
+* ********************* */
+function submitForm(obj){ 
+	submitActionForm(obj); 
+}
+
+//去空格函数
+function trim(str){   
+    return str.replace(/(^\s*)|(\s*$)/g, '');   
+}
+
+</script>
+<!#-- 独立的菜单树生成 --#>
+<#macro menuTree id node>
+	<#local temp = node + 1 />
+	<#list menus as menu>
+		<#if menu.id != 0>
+		  	<#if id = menu.pid>
+				<tr cid="${temp?c}" name1="mid">
+					<td class="checkbox"><input name="mid" type="checkbox" value="${menu.id?c}" /></td> 
+			        <td>
+				        <span>
+				        <#if temp gt 0 >
+				        	<#list 1..temp as x><span style="width:10px;display:inline-block"></span></#list>
+				        </#if>
+				        </span>
+				        <i class="fa ${menu.icon!}"></i> ${menu.name!}
+			        </td>
+			        <td>${menu.url!}</td>
+			        <td class="tac">${menu.sort?c} </td>
+			        <td>${menu.description!} </td> 
+			    </tr>
+			    <#list button as b>
+				    <#if menu.id == b.mid>
+				    	<#local temp2 = temp + 1 />
+					    <tr cid="${temp2?c}" name1="btn">
+							<td class="checkbox"><input name="btn" type="checkbox" value="${b.id}" /></td>
+					        <td>
+					        	<span>
+					        	<#if temp gt 0 >
+					        	<#list 1..temp2 as x><span style="width:10px;display:inline-block"></span></#list>
+					        	</#if>
+					        	</span>
+								<i class="fa fa-pencil-square-o"></i> ${b.name}
+					        </td>
+					        <td></td>
+					        <td class="tac"></td>
+					        <td>${b.description!} </td> 
+					    </tr>
+					</#if>
+				</#list>
+			    <#if menu.id == 169>
+	      			<@cate pid = 0 index = 1 />
+		      	</#if>
+		      	<@menuTree id = menu.id node=temp/>
+	      	</#if>
+        </#if>
+	</#list> 
+</#macro>
+
+<#macro cate pid index>
+	<#local temp = index + 1 />
+	<#list category as c>
+		<#if c.pid == pid>
+		<tr cid="${temp?c}" name1="cat">
+			<td class="checkbox"><input name="cat" type="checkbox" value="${c.id}" /></td>
+	        <td>
+	        	<span>
+	        	<#if temp gt 0 >
+	        	<#list 1..temp as x><span style="width:10px;display:inline-block"></span></#list>
+	        	</#if>
+	        	</span>
+	        	<i class="fa fa-file"></i> ${c.name}
+	        </td>
+	        <td></td>
+	        <td class="tac"></td>
+	        <td>${c.description!} </td> 
+	    </tr>
+	    <@cate pid = c.id index = temp/>
+	    </#if>
+	</#list>
+</#macro>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

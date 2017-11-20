@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!--#include file="head.html"-->
+<body>
+<!--#include file="header_social.html"-->
+<div class="banner bg-cover m-b-md" style="background-image:url(${themeurl!}/imgs/banner3.jpg)"></div>
+<div class="main m-b-lg">
+    <div class="container">
+        <div class="mb-20">
+            <div class="btn btn-danger btn-xs text-base social-full-right settled mr-20" data-toggle="modal" data-target="#myModal2">申请入驻</div>
+        </div>
+        <div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" id="month-nav" role="tablist">
+                <li role="presentation"><a href="#last" aria-controls="home" role="tab" data-num="2017-5-31" data-toggle="tab">2017年5月</a></li>
+                <li role="presentation" class="active"><a href="#month" aria-controls="profile" role="tab" data-num="2017-6-30" data-toggle="tab">六月</a></li>
+                <li role="presentation"><a href="#next" aria-controls="messages" role="tab" data-num="2017-7-31" data-toggle="tab">七月</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content" id="month-content">
+                <div role="tabpanel" class="tab-pane" id="last">
+                    <div class="pt-10" id="last-table">
+                        <table class="table table-bordered text-center">
+                            <thead>
+                            <tr class="active">
+                                <td>日期</td>
+                                <td>项目路演厅</td>
+                                <td>儿童活动室</td>
+                                <td>舞蹈活动室</td>
+                                <td>心理咨询室</td>
+                                <td>多功能培训室</td>
+                            </tr>
+                            </thead>
+                            <tbody class="tbody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane active" id="month">
+                    <div class="pt-10" id="month-table">
+                        <table class="table table-bordered text-center">
+                            <thead>
+                            <tr class="active">
+                                <td>日期</td>
+                                <td>项目路演厅</td>
+                                <td>儿童活动室</td>
+                                <td>舞蹈活动室</td>
+                                <td>心理咨询室</td>
+                                <td>多功能培训室</td>
+                            </tr>
+                            </thead>
+                            <tbody class="tbody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="next">
+                    <div class="pt-10" id="next-table">
+                        <table class="table table-bordered text-center">
+                            <thead>
+                            <tr class="active">
+                                <td>日期</td>
+                                <td>项目路演厅</td>
+                                <td>儿童活动室</td>
+                                <td>舞蹈活动室</td>
+                                <td>心理咨询室</td>
+                                <td>多功能培训室</td>
+                            </tr>
+                            </thead>
+                            <tbody class="tbody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--#include file="schedule_list_button.html"-->
+<!--#include file="footer.html"-->
+<!--#include file="sidebar_social.html"-->
+
+<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/about.js"></script>
+<script src="js/My97DatePicker/WdatePicker.js"></script>
+
+<script>
+    /*几种基本状态
+     * 状态0：已预约
+     * 状态1：可预约
+     * 状态2：审核中
+     *
+     */
+    $(function(){
+        var data = [{
+            'year':'2017',
+            'month':'5',
+            'day_num':'31',
+            'days':[
+                {
+                    'day':'1',
+                    'cont':{
+                        'morning':[
+                            {
+                                'id':'1',
+                                'value':'项目路演厅',
+                                'status_num':'0'
+                            },{
+                                'id':'2',
+                                'value':'儿童活动室',
+                                'status_num':'1'
+                            },{
+                                'id':'3',
+                                'value':'舞蹈活动室',
+                                'status_num':'2'
+                            },{
+                                'id':'4',
+                                'value':'心理咨询室',
+                                'status_num':'1'
+                            },{
+                                'id':'5',
+                                'value':'多功能培训室',
+                                'status_num':'0'
+                            }
+                        ],
+                        'afternoon':[
+                            {
+                                'id':'1',
+                                'value':'项目路演厅',
+                                'status_num':'0'
+                            },{
+                                'id':'2',
+                                'value':'儿童活动室',
+                                'status_num':'1'
+                            },{
+                                'id':'3',
+                                'value':'舞蹈活动室',
+                                'status_num':'2'
+                            },{
+                                'id':'4',
+                                'value':'心理咨询室',
+                                'status_num':'1'
+                            },{
+                                'id':'5',
+                                'value':'多功能培训室',
+                                'status_num':'0'
+                            }
+                        ],
+                        'evening':[
+                            {
+                                'id':'1',
+                                'value':'项目路演厅',
+                                'status_num':'0'
+                            },{
+                                'id':'2',
+                                'value':'儿童活动室',
+                                'status_num':'1'
+                            },{
+                                'id':'3',
+                                'value':'舞蹈活动室',
+                                'status_num':'2'
+                            },{
+                                'id':'4',
+                                'value':'心理咨询室',
+                                'status_num':'1'
+                            },{
+                                'id':'5',
+                                'value':'多功能培训室',
+                                'status_num':'0'
+                            }
+                        ]
+                    }
+                },
+                {
+                    'day':'2',
+                    'cont':{
+                        'morning':[
+                            {
+                                'id':'1',
+                                'value':'项目路演厅',
+                                'status_num':'0'
+                            },{
+                                'id':'2',
+                                'value':'儿童活动室',
+                                'status_num':'1'
+                            },{
+                                'id':'3',
+                                'value':'舞蹈活动室',
+                                'status_num':'2'
+                            },{
+                                'id':'4',
+                                'value':'心理咨询室',
+                                'status_num':'1'
+                            },{
+                                'id':'5',
+                                'value':'多功能培训室',
+                                'status_num':'0'
+                            }
+                        ],
+                        'afternoon':[
+                            {
+                                'id':'1',
+                                'value':'项目路演厅',
+                                'status_num':'0'
+                            },{
+                                'id':'2',
+                                'value':'儿童活动室',
+                                'status_num':'1'
+                            },{
+                                'id':'3',
+                                'value':'舞蹈活动室',
+                                'status_num':'2'
+                            },{
+                                'id':'4',
+                                'value':'心理咨询室',
+                                'status_num':'1'
+                            },{
+                                'id':'5',
+                                'value':'多功能培训室',
+                                'status_num':'0'
+                            }
+                        ],
+                        'evening':[
+                            {
+                                'id':'1',
+                                'value':'项目路演厅',
+                                'status_num':'0'
+                            },{
+                                'id':'2',
+                                'value':'儿童活动室',
+                                'status_num':'1'
+                            },{
+                                'id':'3',
+                                'value':'舞蹈活动室',
+                                'status_num':'2'
+                            },{
+                                'id':'4',
+                                'value':'心理咨询室',
+                                'status_num':'1'
+                            },{
+                                'id':'5',
+                                'value':'多功能培训室',
+                                'status_num':'0'
+                            }
+                        ]
+                    }
+                }
+            ]
+
+        },{
+            'year':'2017',
+            'month':'6',
+            'day_num':'30',
+            'days':[
+                {
+                    'day':'1',
+                    'cont':{
+                        'morning':[
+                            {
+                                'id':'1',
+                                'value':'项目路演厅',
+                                'status_num':'0'
+                            },{
+                                'id':'2',
+                                'value':'儿童活动室',
+                                'status_num':'1'
+                            },{
+                                'id':'3',
+                                'value':'舞蹈活动室',
+                                'status_num':'2'
+                            },{
+                                'id':'4',
+                                'value':'心理咨询室',
+                                'status_num':'1'
+                            },{
+                                'id':'5',
+                                'value':'多功能培训室',
+                                'status_num':'0'
+                            }
+                        ],
+                        'afternoon':[
+                            {
+                                'id':'1',
+                                'value':'项目路演厅',
+                                'status_num':'0'
+                            },{
+                                'id':'2',
+                                'value':'儿童活动室',
+                                'status_num':'1'
+                            },{
+                                'id':'3',
+                                'value':'舞蹈活动室',
+                                'status_num':'2'
+                            },{
+                                'id':'4',
+                                'value':'心理咨询室',
+                                'status_num':'1'
+                            },{
+                                'id':'5',
+                                'value':'多功能培训室',
+                                'status_num':'0'
+                            }
+                        ],
+                        'evening':[
+                            {
+                                'id':'1',
+                                'value':'项目路演厅',
+                                'status_num':'0'
+                            },{
+                                'id':'2',
+                                'value':'儿童活动室',
+                                'status_num':'1'
+                            },{
+                                'id':'3',
+                                'value':'舞蹈活动室',
+                                'status_num':'2'
+                            },{
+                                'id':'4',
+                                'value':'心理咨询室',
+                                'status_num':'1'
+                            },{
+                                'id':'5',
+                                'value':'多功能培训室',
+                                'status_num':'0'
+                            }
+                        ]
+                    }
+                },
+                {
+                    'day':'2',
+                    'cont':{
+                        'morning':[
+                            {
+                                'id':'1',
+                                'value':'项目路演厅',
+                                'status_num':'0'
+                            },{
+                                'id':'2',
+                                'value':'儿童活动室',
+                                'status_num':'1'
+                            },{
+                                'id':'3',
+                                'value':'舞蹈活动室',
+                                'status_num':'2'
+                            },{
+                                'id':'4',
+                                'value':'心理咨询室',
+                                'status_num':'1'
+                            },{
+                                'id':'5',
+                                'value':'多功能培训室',
+                                'status_num':'0'
+                            }
+                        ],
+                        'afternoon':[
+                            {
+                                'id':'1',
+                                'value':'项目路演厅',
+                                'status_num':'0'
+                            },{
+                                'id':'2',
+                                'value':'儿童活动室',
+                                'status_num':'1'
+                            },{
+                                'id':'3',
+                                'value':'舞蹈活动室',
+                                'status_num':'2'
+                            },{
+                                'id':'4',
+                                'value':'心理咨询室',
+                                'status_num':'1'
+                            },{
+                                'id':'5',
+                                'value':'多功能培训室',
+                                'status_num':'0'
+                            }
+                        ],
+                        'evening':[
+                            {
+                                'id':'1',
+                                'value':'项目路演厅',
+                                'status_num':'0'
+                            },{
+                                'id':'2',
+                                'value':'儿童活动室',
+                                'status_num':'1'
+                            },{
+                                'id':'3',
+                                'value':'舞蹈活动室',
+                                'status_num':'2'
+                            },{
+                                'id':'4',
+                                'value':'心理咨询室',
+                                'status_num':'1'
+                            },{
+                                'id':'5',
+                                'value':'多功能培训室',
+                                'status_num':'0'
+                            }
+                        ]
+                    }
+                },
+                {
+                    'day':'3',
+                    'cont':{
+                        'morning':[
+                            {
+                                'id':'1',
+                                'value':'项目路演厅',
+                                'status_num':'0'
+                            },{
+                                'id':'2',
+                                'value':'儿童活动室',
+                                'status_num':'1'
+                            },{
+                                'id':'3',
+                                'value':'舞蹈活动室',
+                                'status_num':'2'
+                            },{
+                                'id':'4',
+                                'value':'心理咨询室',
+                                'status_num':'1'
+                            },{
+                                'id':'5',
+                                'value':'多功能培训室',
+                                'status_num':'0'
+                            }
+                        ],
+                        'afternoon':[
+                            {
+                                'id':'1',
+                                'value':'项目路演厅',
+                                'status_num':'0'
+                            },{
+                                'id':'2',
+                                'value':'儿童活动室',
+                                'status_num':'1'
+                            },{
+                                'id':'3',
+                                'value':'舞蹈活动室',
+                                'status_num':'2'
+                            },{
+                                'id':'4',
+                                'value':'心理咨询室',
+                                'status_num':'1'
+                            },{
+                                'id':'5',
+                                'value':'多功能培训室',
+                                'status_num':'0'
+                            }
+                        ],
+                        'evening':[
+                            {
+                                'id':'1',
+                                'value':'项目路演厅',
+                                'status_num':'0'
+                            },{
+                                'id':'2',
+                                'value':'儿童活动室',
+                                'status_num':'1'
+                            },{
+                                'id':'3',
+                                'value':'舞蹈活动室',
+                                'status_num':'2'
+                            },{
+                                'id':'4',
+                                'value':'心理咨询室',
+                                'status_num':'1'
+                            },{
+                                'id':'5',
+                                'value':'多功能培训室',
+                                'status_num':'0'
+                            }
+                        ]
+                    }
+                },
+                {
+                    'day':'7',
+                    'cont':{
+                        'morning':[
+                            {
+                                'id':'1',
+                                'value':'项目路演厅',
+                                'status_num':'0'
+                            },{
+                                'id':'2',
+                                'value':'儿童活动室',
+                                'status_num':'1'
+                            },{
+                                'id':'3',
+                                'value':'舞蹈活动室',
+                                'status_num':'2'
+                            },{
+                                'id':'4',
+                                'value':'心理咨询室',
+                                'status_num':'1'
+                            },{
+                                'id':'5',
+                                'value':'多功能培训室',
+                                'status_num':'0'
+                            }
+                        ],
+                        'afternoon':[
+                            {
+                                'id':'1',
+                                'value':'项目路演厅',
+                                'status_num':'0'
+                            },{
+                                'id':'2',
+                                'value':'儿童活动室',
+                                'status_num':'1'
+                            },{
+                                'id':'3',
+                                'value':'舞蹈活动室',
+                                'status_num':'2'
+                            },{
+                                'id':'4',
+                                'value':'心理咨询室',
+                                'status_num':'1'
+                            },{
+                                'id':'5',
+                                'value':'多功能培训室',
+                                'status_num':'0'
+                            }
+                        ],
+                        'evening':[
+                            {
+                                'id':'1',
+                                'value':'项目路演厅',
+                                'status_num':'0'
+                            },{
+                                'id':'2',
+                                'value':'儿童活动室',
+                                'status_num':'1'
+                            },{
+                                'id':'3',
+                                'value':'舞蹈活动室',
+                                'status_num':'2'
+                            },{
+                                'id':'4',
+                                'value':'心理咨询室',
+                                'status_num':'1'
+                            },{
+                                'id':'5',
+                                'value':'多功能培训室',
+                                'status_num':'0'
+                            }
+                        ]
+                    }
+                }
+            ]
+        },{
+            'year':'2017',
+            'month':'7',
+            'day_num':'31',
+            'days':[]
+        }];
+        var month = [];
+        var month_html = [];
+        var status_obj = {
+            'num':'<td rowspan="3" class="active table-h-middle"></td>',
+            'morning':{
+                '0':'<td class="table_color1" title="已预约">上午（已预约）</td>',
+                '1':'<td class="table_color2" title="可预约"><a class="table_color2" data-month  data-site data-moment="morning" data-toggle="modal" data-target=".myModal">上午（可预约）</a></td>',
+                '2':'<td class="table_color3" title="审核中">上午（审核中）</td>'
+            },
+            'afternoon':{
+                '0':'<td class="table_color1" title="已预约">中午（已预约）</td>',
+                '1':'<td class="table_color2" title="可预约"><a class="table_color2" data-toggle="modal" data-month data-site data-moment="afternoon" data-target=".myModal">中午（可预约）</a></td>',
+                '2':'<td class="table_color3" title="审核中">中午（审核中）</td>'
+            },
+            'evening':{
+                '0':'<td class="table_color1" title="已预约">晚上（已预约）</td>',
+                '1':'<td class="table_color2" title="可预约"><a class="table_color2" data-toggle="modal" data-month data-site data-moment="evening" data-target=".myModal">晚上（可预约）</a></td>',
+                '2':'<td class="table_color3" title="审核中">晚上（审核中）</td>'
+            }
+        };
+        $.each(data,function(name,value){
+            /*获取当前的月份*/
+            var present_month = value.year + '-' + value.month;
+            /*获取当前月的天数*/
+            var present_day_num = value.day_num;
+            var days = value.days;
+            month.push(present_month);
+            var html = '';
+            /*判断days中的数据是否存在*/
+            if(days.length){
+                $.each(days,function(name,value){
+                    console.log(days.length);
+                    console.log(present_day_num);
+                    var day = value.day;
+                    console.log(day);
+
+                    $.each(value.cont,function(name,value){
+                        var moment = name;
+                        var html_init = '';
+                        if(moment == 'morning'){
+                            html_init = '<td rowspan="3" class="active table-h-middle">'+ day +'</td>';
+                        }
+                        $.each(value,function(name,value){
+                            /*获取当前场地的id*/
+                            var present_siteId = value.id;
+                            var status_obj_init = status_obj[moment][value.status_num];
+                            /*获取当天*/
+                            var present_day = present_month+'-'+ day;
+                            if(value.status_num == '1'){
+                                status_obj_init = status_obj_init.replace('data-month','data-month="'+ present_day +'"');
+                                status_obj_init = status_obj_init.replace('data-site','data-site="'+ present_siteId +'"');
+                            }
+                            html_init = html_init + status_obj_init;
+
+                        });
+                        html = html + '<tr>' + html_init + '</tr>'
+                    });
+                });
+            }else{
+                console.log('无数据');
+                /*当月无数据*/
+                html = addDay(present_month,present_day_num,1);
+                console.log(html);
+            }
+
+            month_html.push(html);
+        });
+
+        function addDay(present_month,addDay,initDay){
+            /*定义天数补齐函数，用于当每月天数不够时，自动为当月补齐剩余天数。（补齐的天数中所有场地默认为可预约状态。）*/
+            /*函数接受3个参数，一个是当前月份，一个是要补齐的总天数，一个是从第几天开始补齐（包括需要补齐的那天。）*/
+            var init_cont = {
+                'morning':[
+                    {
+                        'id':'1',
+                        'value':'项目路演厅',
+                        'status_num':'1'
+                    },{
+                        'id':'2',
+                        'value':'儿童活动室',
+                        'status_num':'1'
+                    },{
+                        'id':'3',
+                        'value':'舞蹈活动室',
+                        'status_num':'1'
+                    },{
+                        'id':'4',
+                        'value':'心理咨询室',
+                        'status_num':'1'
+                    },{
+                        'id':'5',
+                        'value':'多功能培训室',
+                        'status_num':'1'
+                    }
+                ],
+                'afternoon':[
+                    {
+                        'id':'1',
+                        'value':'项目路演厅',
+                        'status_num':'1'
+                    },{
+                        'id':'2',
+                        'value':'儿童活动室',
+                        'status_num':'1'
+                    },{
+                        'id':'3',
+                        'value':'舞蹈活动室',
+                        'status_num':'1'
+                    },{
+                        'id':'4',
+                        'value':'心理咨询室',
+                        'status_num':'1'
+                    },{
+                        'id':'5',
+                        'value':'多功能培训室',
+                        'status_num':'1'
+                    }
+                ],
+                'evening':[
+                    {
+                        'id':'1',
+                        'value':'项目路演厅',
+                        'status_num':'1'
+                    },{
+                        'id':'2',
+                        'value':'儿童活动室',
+                        'status_num':'1'
+                    },{
+                        'id':'3',
+                        'value':'舞蹈活动室',
+                        'status_num':'1'
+                    },{
+                        'id':'4',
+                        'value':'心理咨询室',
+                        'status_num':'1'
+                    },{
+                        'id':'5',
+                        'value':'多功能培训室',
+                        'status_num':'1'
+                    }
+                ]
+            };
+            var html = '';
+            for(var i=initDay-1;i<addDay;i++){
+                var day = i + 1;
+                $.each(init_cont,function(name,value){
+                    var moment = name;
+                    var html_init = '';
+                    if(moment == 'morning'){
+                        html_init = '<td rowspan="3" class="active table-h-middle">'+ day +'</td>';
+                    }
+                    $.each(value,function(name,value){
+                        /*获取当前场地的id*/
+                        var present_siteId = value.id;
+                        var status_obj_init = status_obj[moment][value.status_num];
+                        /*获取当天*/
+                        var present_day = present_month+'-'+ day;
+                        if(value.status_num == '1'){
+                            status_obj_init = status_obj_init.replace('data-month','data-month="'+ present_day +'"');
+                            status_obj_init = status_obj_init.replace('data-site','data-site="'+ present_siteId +'"');
+                        }
+                        html_init = html_init + status_obj_init;
+
+                    });
+                    html = html + '<tr>' + html_init + '</tr>'
+                });
+            }
+            return html;
+        }
+
+        console.log(month_html);
+
+        $('#month-nav li a').each(function(index){
+            $(this).text(month[index]);
+        });
+        $('#month-content .tab-pane table tbody').each(function(index){
+            $(this).html(month_html[index]);
+        });
+        console.log(month);
+
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            e.preventDefault();
+        });
+
+        $('.myModal').on('shown.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var month = button.data('month'),
+                    site_id=button.data('site'),
+                    moment=button.data('moment');
+            var modal = $(this);
+            modal.find('input.click_day').val(month);
+            modal.find('input.click_site_id').val(site_id);
+            modal.find('input.click_moment').val(moment);
+
+        })
+    });
+
+
+</script>
+</body>
+</html>

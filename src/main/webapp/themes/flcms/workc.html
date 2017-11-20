@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!--#include file="head.html"-->
+<body>
+<!--#include file="header.html"-->
+<div class="banner bg-cover m-b-md" style="background-image:url(${themeurl!}/imgs/banner2.jpg)"></div>
+<div class="main m-b-lg">
+	<div class="container">
+		<div class="leftbar">
+			<div class="list m-b-md">
+				<!-- {article:list table=(article) cid=(107) status=(1) limit=(3) order=(time desc)}  -->
+				<div class="box pos-rlt wrapper-lg bg-white clear">
+					<!--{if:${article_index == 0}}-->
+					<div class="title-list bg-white text-md flex-center m-b">
+						<div class="w-full">
+							${current.name}
+							<small class="pull-right">
+								<a class="text-muted h-main" href="/listXXI.html">更多</a>
+							</small>
+						</div>
+					</div>
+					<!--{/if}-->
+					<div class="img-box w pull-left">
+						<img class="img-responsive center-block" alt="" src="${article.icon}">
+					</div>
+					<div class="text-box">
+						<div class="font-bold text-md text-ellipsis m-b-sm"><a class="h-main tras-01" href="${article.url}">${article.title}</a></div>
+						<div class="text-muted text-xs m-b-sm">
+							<span class="inline m-r">信息来源：<a class="h-main tras-01" href="#">${article.author}</a></span>
+							<span class="inline m-r">发布时间：<span>${article.time?string("yyyy-MM-dd")}</span></span>
+						</div>
+						<div class="text-xs text-ellipsis-3">
+							${article.description}
+						</div>
+					</div>
+				</div>
+				<!--{/list}-->
+			</div>
+			<div class="list m-b-md">
+				<div class="box pos-rlt wrapper-lg bg-white clear">
+					<div class="title-list bg-white text-md flex-center m-b">
+						<div class="w-full">
+							“武汉家风博物馆”物件捐赠
+							<div class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal">网上捐赠通道</div>
+						</div>
+					</div>
+					<div class="text-indent">${chip.museum!}</div>
+				</div>
+			</div>
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header text-center">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">武汉家风博物馆物件捐赠信息填写</h4>
+						</div>
+						<div class="modal-body" style="max-height:500px;overflow:auto;">
+							<form id="donationForm" method="post" onsubmit="return false;" class="form-horizontal" role="form">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">姓名：</label>
+									<div class="col-sm-9">
+										<input type="text" name="name" class="form-control" placeholder="请输入姓名">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">联系方式：</label>
+									<div class="col-sm-9">
+										<input type="text" name="phone" class="form-control" placeholder="请输入手机号或固话(xxx-xxxxxxxx)">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">联系地址：</label>
+									<div class="col-sm-9">
+										<textarea name="address" class="form-control" rows="3" style="resize:none"></textarea>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">物品简介：</label>
+									<div class="col-sm-9">
+										<textarea name="description" class="form-control" rows="3" style="resize:none"></textarea>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">捐赠方式：</label>
+									<div class="col-sm-9">
+										<div class="radio inline m-r">
+											<label class="i-checks">
+												<input name="method" value="1" type="radio">
+												<i></i>
+												自愿捐赠
+											</label>
+										</div>
+										<div class="radio inline m-r">
+											<label class="i-checks">
+												<input name="method" value="2" type="radio">
+												<i></i>
+												借展
+											</label>
+										</div>
+										<div class="radio inline m-r">
+											<label class="i-checks">
+												<input name="method" value="3" type="radio">
+												<i></i>
+												代管
+											</label>
+										</div>
+										<div class="radio inline m-r">
+											<label class="i-checks">
+												<input name="method" value="4" type="radio">
+												<i></i>
+												复制
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">物品照片：</label>
+									<div class="col-sm-9">
+										<label for="imgSrcs" class="btn btn-danger">选择文件</label>
+										<input id="imgSrcs" class="hide" type="file" name="imgSrcs"  multiple="multiple"/>
+									</div>
+								</div>
+							</form>
+							<div id="preview"></div>
+						</div>
+						<div class="modal-footer">
+							<button type="button"  onclick="save();" class="btn btn-danger">提交申请</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--#include file="sidebar_info.html"-->
+	</div>
+</div>
+
+<!--#include file="footer.html"-->
+<!--#include file="sidebar.html"-->
+
+<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+<script src="js/jquery.form.js" charset="UTF-8"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/about.js"></script>
+<script>
+if(location.search.indexOf("isopen") > 0 && document.cookie.indexOf("vist") == -1){
+	$("#myModal").modal('show');
+}
+</script>
+<script type="text/javascript">
+    $(function(){
+        function preview1(file) {
+            var img = new Image();
+            var url = img.src = URL.createObjectURL(file);
+            var $img = $(img);
+            $(img).addClass("img-responsive center-block");
+            img.onload = function() {
+                URL.revokeObjectURL(url);
+                $('#preview').show();
+                $('#preview').append($img);
+            };
+        }
+        $('[type=file]').change(function(e) {
+            var fileList = e.target.files;
+            $('#preview').empty();
+            if(fileList.length >4){
+                alert("最多上传４张图片！");
+                $('[type=file]').val("");
+                return;
+            }
+            for(var i=0; i<fileList.length; i++){
+                var fileName = fileList[i].name.substring(fileList[i].name.lastIndexOf(".")+1).toLowerCase();
+                if(fileName !="jpg" && fileName !="jpeg" && fileName !="png" && fileName !="gif" ){
+                    alert("请选择图片格式文件上传(jpg,png,gif)！");
+                    $('[type=file]').val("");
+                    $('#preview').hide();
+                    return
+                }
+                var size = fileList[i].size / 1024;
+                if(size　>　2000){
+                    alert("每个图片不能大于2M");
+                    $('[type=file]').val("");
+                    $('#preview').hide();
+                    return;
+                }
+                preview1(fileList[i]);
+            }
+        })
+    })
+</script>
+<script type="text/javascript">
+	function save(){
+		var name = $("input[name='name']").val();
+		var phone = $("input[name='phone']").val();
+		var address = $("textarea[name='address']").val();
+		var description = $("textarea[name='description']").val();
+		var method = $("input[name='method']").val();
+		var imgSrcs = $("input[name='imgSrcs']").val();
+		var reg = /^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/;
+		if(!name){
+			alert("请输入姓名！");
+			return;
+		}
+		if (!reg.test(phone)) {
+			alert("请输入正确电话号码！");
+			return;
+		}
+		if(!address){
+			alert("请输入地址！");
+			return;
+		}
+		if(!description){
+			alert("请输入物品简介！");
+			return;
+		}
+		if(!method){
+			alert("请选择捐赠方式！");
+			return;
+		}
+		if(!imgSrcs){
+			alert("请上传图片！");
+			return;
+		}
+		var options = {
+			type : "POST",
+			url : "front/donation/save.do",
+			dataType: 'json',
+			success: function(data) {
+				if(data.status){
+					alert(data.message);
+					$("#donationForm")[0].reset();
+				}
+				$('#myModal').modal('hide');
+			},
+			error: function(){
+				alert("提交失败!");
+			}
+		};
+		$('#donationForm').ajaxSubmit(options);
+	}
+</script>
+</body>
+</html>

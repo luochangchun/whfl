@@ -1,0 +1,43 @@
+<div class="rightbar" style="float:left;">
+	<div class="row">
+		<div class="sm-list m-b-md col-lg-12 col-md-4">
+			<div class="box bg-white padder-md">
+				<div class="title b-b text-md flex-center padder-v m-b">
+					<div class="w-full">组织简介</div>
+				</div>
+				<div class="">${organization.description}</div>
+				<div class="padder-v-xs b-dotted-dee5e7 clear">
+                </div>
+                <div class="padder-v-md clear">
+                    <div class="pull-left"><span>线上积分：<span class="color-red">${organization.onlinePoint!}</span></span></div>
+                    <div class="pull-right"><span>线下积分：<span class="color-red">${organization.offlinePonint!}</span></span></div>
+                </div>
+			</div>
+		</div>
+		<div class="sm-list m-b-md col-lg-12 col-md-4">
+			<div class="box bg-white padder-md">
+				<div class="title b-b text-md flex-center padder-v m-b">
+					<div class="w-full">活动预告<small class="pull-right"><a class="text-muted h-main" href="/listZI.html">更多</a></small></div>
+				</div>
+				<ul class="list-unstyled m-b-md">
+					<#list organization.activity as activity>
+						<li class="pos-rlt" data-time="${activity.time format=(yyyy-MM-dd)}">
+							<a class="text-ellipsis h-main tras-01" href="/cms?type=article&id=${activity.id?c}">${activity.title}</a></li>
+					</#list>
+				</ul>
+			</div>
+		</div>
+		<!--<div class="sm-list m-b-md col-lg-12 col-md-4">-->
+			<!--<div class="box bg-white padder-md">-->
+				<!--<div class="title b-b text-md flex-center padder-v m-b">-->
+					<!--<div class="w-full">对外交流<small class="pull-right"><a class="text-muted h-main" href="/listYIII.html">更多</a></small></div>-->
+				<!--</div>-->
+				<!--<ul class="list-unstyled m-b-md">-->
+					<!--&lt;!&ndash; {article:list table=(article) cid=(141) status=(1) limit=(8) order=(time desc)} &ndash;&gt;-->
+					<!--<li class="pos-rlt" data-time="${article.time format=(yyyy-MM-dd)}"><a class="text-ellipsis h-main tras-01" href="${article.url}">${article.title}</a></li>-->
+					<!--&lt;!&ndash; {/list} &ndash;&gt;-->
+				<!--</ul>-->
+			<!--</div>-->
+		<!--</div>-->
+	</div>
+</div>

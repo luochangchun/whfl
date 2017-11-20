@@ -1,0 +1,54 @@
+<div class="content">
+	<div class="tab_bar">
+		<ul>
+			<li class="tab_index" onclick="setTabContent(this);">回复留言</li>
+		</ul>
+		 <button class="btn_tabbar submit_it" onclick="mySubmitForm(this);" return="/plugin/guestbook/auditList?currentPageNo=1">通 过</button>
+		 <button class="btn_tabbar submit_it" onclick="rejectForm(this);" return="/plugin/guestbook/auditList?currentPageNo=1">驳 回</button>
+	</div>
+	
+	<form id="myForm" action="/plugin/guestbook/auditUpdate" method="post">
+	<input name="rid" type="hidden" value="${guestbook.id?c}" />
+	<input id="status" name="status" type="hidden" value="3" />
+	<input type="hidden" name="reject" id="reject" value="${guestbook.reject!}"/>
+	<input type="hidden" name="auditUser" value="${loginusername!}"/>
+	<div class="tab_content">
+		<div class="tab_item tab_show"> 
+			<table class="table_for_add">
+				<tbody>
+					<tr>
+						<th>留言标题：</th>
+						<td>${guestbook.title!}</td>
+					</tr>
+					<tr>
+						<th>留言内容：</th>
+						<td>${guestbook.content!}</td>
+					</tr>
+					<tr>
+						<th>留言回复：</th>
+						<td><textarea class="textarea_for_add" name="reply">${guestbook.reply!}</textarea></td>
+					</tr>
+					<tr>
+						<th>回复人： </th>
+						<td><input class="input_for_add" name="replyUser" readonly="readonly" type="text" value="${guestbook.replyUser!}" /></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	</form>
+</div>
+<script type="text/javascript">
+
+	function rejectForm(obj)
+	{
+	    $("#status").val(4); //驳回
+        flreject(obj);
+	}
+    function mySubmitForm(obj)
+	{
+	    $("#status").val(3); //通过
+        submitActionForm(obj);
+    }
+
+</script>

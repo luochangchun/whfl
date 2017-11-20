@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!--#include file="head.html"-->
+<body>
+
+<!--#include file="header_social.html"-->
+<div class="container">
+	<div class="main m-b-lg m-t-lg main-text" style="background-color:#fff;" >
+		<div class="social-head">
+			<div class="social-head-title">
+				<p>用户注册</p>
+			</div>
+		</div>
+		<div class="social-login social-registered" style="background:url(${themeurl!}/imgs/social/login.jpg) no-repeat right bottom;">
+			<div class="social-cont col-lg-8">
+				<form id="userForm" class="form-horizontal">
+					<div class="form-group">
+						<label for="name" class="col-sm-2 control-label">账号：</label>
+						<div class="col-sm-6">
+							<input type="text" name="name" class="form-control" id="name">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="pass" class="col-sm-2 control-label">密码：</label>
+						<div class="col-sm-6">
+							<input type="password" name="pass" class="form-control" id="pass">
+						</div>
+					</div>
+                    <div class="form-group">
+                        <label for="pass2" class="col-sm-2 control-label">确认密码：</label>
+                        <div class="col-sm-6">
+                            <input type="password" name="pass2" class="form-control" id="pass2">
+                        </div>
+                    </div>
+					<div class="form-group">
+						<label for="author" class="col-sm-2 control-label">负责人：</label>
+						<div class="col-sm-6">
+							<input type="text" name="author" class="form-control" id="author">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="phone" class="col-sm-2 control-label">联系电话：</label>
+						<div class="col-sm-6">
+							<input type="text" name="phone" class="form-control" id="phone">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="orgUid" class="col-sm-2 control-label">组织名称：</label>
+						<div class="col-sm-6">
+                            <select class="form-control" name="orgUid" id="orgUid">
+								<!-- {organization:list table=(organization) status=(1) } -->
+                                <option value="${organization.uuid!}">${organization.name!}</option>
+								<!-- {/list} -->
+                                <option value="0">其他</option>
+                            </select>
+						</div>
+					</div>
+                    <div class="form-group social_group_add">
+                        <label for="orgName" class="col-sm-2 control-label">新组织名称：</label>
+                        <div class="col-sm-6">
+                            <input type="text" name="orgName" class="form-control" id="orgName">
+                        </div>
+                    </div>
+                    <div class="form-group social_group_add" id="group-info">
+                        <label for="description" class="col-sm-2 control-label">组织简介：</label>
+                        <div class="col-sm-6">
+                            <textarea name="description" id="description"  rows="4" class="form-control"></textarea>
+                        </div>
+                    </div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-6">
+							<div id="save" onclick="save()" class="btn btn-danger btn-block">立即注册</div>
+						</div>
+					</div>
+				</form>
+			</div>
+            <div class="social-haveNumber">已有账号，请 <a href="/new_social_login.html" class="btn btn-danger btn-inline">登录</a></div>
+		</div>
+	</div>
+</div>
+<!--#include file="footer.html"-->
+<!--#include file="sidebar_social.html"-->
+
+<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+<script src="js/jquery.form.js" charset="UTF-8"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/about.js"></script>
+
+<script src="js/echarts.min.js"></script>
+<script src="js/mychart.js" charset="UTF-8"></script>
+
+
+</body>
+<script>
+    function save(){
+        var name = $("input[name='name']").val();
+        var pass = $("input[name='pass']").val();
+        var pass2 = $("input[name='pass2']").val();
+        var author = $("input[name='author']").val();
+        var phone = $("input[name='phone']").val();
+        var orgUid = $("input[name='orgUid']");
+        var orgName = $("input[name='orgName']").val();
+        var description = $("textarea[name='description']").val();
+        var reg = /^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/;
+        if(!name){
+            alert("请输入账号名！");
+            return;
+        }
+        if(!pass){
+            alert("请输入密码！");
+            return;
+        }
+        if(!pass2){
+            alert("请确认密码！");
+            return;
+        }
+        if(!(pass == pass2)){
+            alert("两次输入的密码不一致！");
+            return;
+        }
+        if(!author){
+            alert("请输入负责人姓名！");
+            return;
+        }
+        if (!reg.test(phone)) {
+            alert("请输入正确电话号码！");
+            return;
+        }
+        if($("#orgUid").val() == 0){
+            if(!orgName){
+                alert("请输入组织名称！");
+                return;
+            }
+            if(!description){
+                alert("请输入组织信息！");
+                return;
+            }
+        }
+        var options = {
+            type : "POST",
+            url : "front/user/register.do",
+            dataType: 'json',
+            success: function(data) {
+                if(data.status){
+                    alert(data.message);
+                    $("#userForm")[0].reset();
+                }
+            },
+            error: function(){
+                alert("提交失败!");
+            }
+        };
+        $('#userForm').ajaxSubmit(options);
+    }
+</script>
+<script>
+    $("#orgUid").change(function(){
+        console.log($(this).val());
+        if($(this).val() == 0){
+            console.log(123);
+            $(".social_group_add").show(200);
+            return;
+        }
+        $(".social_group_add").hide(200);
+    });
+</script>
+</html>

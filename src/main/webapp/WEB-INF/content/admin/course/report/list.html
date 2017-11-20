@@ -1,0 +1,165 @@
+<div class="content">
+	<div class="tab_bar">
+		<ul>
+			<li class="tab_index" onclick="setTabContent(this);">${course.name}</li>
+		</ul>
+		<button class="btn_tabbar" action="course/view.do" onclick="refreshContentByElement(this);">返回</button>
+	</div>
+	<div class="table_content">
+		<div class="tab_item tab_show">
+			<table class="table_for_list">
+				<thead>
+					<tr>
+						<th>报名人</th>
+						<th>报名单位</th>
+						<th>手机号</th>
+						<th>报名时间</th>
+						<th>QQ</th>
+						<th>备注</th>
+						<th>报名状态</th>
+					</tr>
+				</thead>
+				<tbody id="list-container">
+					<#list reports as report>
+						<tr>
+							<td>${report.name}</td>
+							<td>${report.organization}</td>
+							<td>${report.phone}</td>
+							<td>${report.time!string['yyyy-MM-dd HH:mm:ss']}</td>
+							<td>${report.qq}</td>
+							<td>${report.remark}</td>
+							<#if report.accepted < 0>
+							<td>被驳回</td>
+							<#elseif (report.accepted > 0)>
+							<td>已通过</td>
+							<#else>
+							<td id="${report.id}">
+								<a href="#" onclick="accept(${report.id});">通过</a>
+								|
+								<a href="#" onclick="deny(${report.id});">驳回</a>
+							</td>
+							</#if>
+						</tr>
+					</#list>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</div>
+<script type="text/javascript">
+	function accept(reportId) {
+		$.ajax({
+			type: "POST",
+			url: "course/report/ok.do?id="+reportId,
+			dataType: "json",
+			success: function (data) {
+				if (data.status) {
+					$('tbody#list-container td#'+reportId).html('已通过');
+				} else {
+					alert(data.message);
+				}
+			},
+			error: function () {
+				alert("提交失败！")
+			}
+		});
+	}
+	function deny(reportId) {
+		$.ajax({
+			type: "POST",
+			url: "course/report/no.do?id="+reportId,
+			dataType: "json",
+			success: function (data) {
+				if (data.status) {
+					$('tbody#list-container td#'+reportId).html('被驳回');
+				} else {
+					alert(data.message);
+				}
+			},
+			error: function () {
+				alert("提交失败！")
+			}
+		});
+	}
+	$(function () {
+		Date.prototype.format = function (format) {
+			var o = {
+				"M+": this.getMonth() + 1, //month
+				"d+": this.getDate(), //day
+				"h+": this.getHours(), //hour
+				"m+": this.getMinutes(), //minute
+				"s+": this.getSeconds(), //second
+				"q+": Math.floor((this.getMonth() + 3) / 3), //quarter
+				"S": this.getMilliseconds() //millisecond
+			};
+
+			if (/(y+)/.test(format)) {
+				format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+			}
+
+			for (var k in o) {
+				if (new RegExp("(" + k + ")").test(format)) {
+					format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+				}
+			}
+			return format;
+		};
+		// 注册插件
+		Handlebars.registerHelper('timeformat', function () {
+			return new Date(this.time).format("yyyy-MM-dd hh:mm:ss");
+		});
+
+		Handlebars.registerHelper("status", function () {
+			if (this.accepted > 0) {
+				return '已通过';
+			} else if (this.accepted < 0) {
+				return '已驳回';
+			} else {
+				return '<a href="#" onclick="accept({{courseId}})">通过</a>|<a href="#" onclick="deny({{courseId}});">驳回</a>';
+			}
+		});
+	});
+
+
+	// 上一页
+	function prevPage() {
+		var inputPageNo = $("#currentPageNo");
+		var newPageNo = parseInt(inputPageNo.val()) - 1;
+		if (newPageNo <= 0) {
+			zoom.showMessageDialog("已经到第一页了！", "消息提示", 500);
+		} else {
+			inputPageNo.val(newPageNo);
+			queryList();
+		}
+	}
+
+	// 下一页
+	function nextPage() {
+		var inputPageNo = $("#currentPageNo");
+		var newPageNo = parseInt(inputPageNo.val()) + 1;
+		var pageSize = parseInt($("#totalPages").text());
+		if (newPageNo > pageSize) {
+			zoom.showMessageDialog("已经到最后一页了！", "消息提示", 500);
+		} else {
+			inputPageNo.val(newPageNo);
+			queryList();
+		}
+	}
+
+	// go页码
+	function goPage() {
+		var newPageNo = parseInt($("#currentPageNo").val());
+		var pageSize = parseInt($("#totalPages").text());
+
+		if (newPageNo <= 0) {
+			zoom.showMessageDialog("页码应该大于1哦！", "消息提示", 500);
+		} else if (newPageNo > pageSize) {
+			zoom.showMessageDialog("页码超过最大页数咯！", "消息提示", 500);
+		} else if (isNaN(newPageNo)) {
+			zoom.showMessageDialog("页码格式不正确哈！", "消息提示", 500);
+		} else {
+			queryList();
+		}
+	}
+</script>

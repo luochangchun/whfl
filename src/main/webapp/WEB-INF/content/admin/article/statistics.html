@@ -1,0 +1,148 @@
+<div style="position: absolute; left: 5px; top:5px; bottom:5px; right:5px; min-width:700px; ">
+    <div style="padding-bottom:10px; line-height:40px; vertical-align: top; float:right; overflow: auto; position: absolute;left:0; right:0; height: 80px;">
+			<span style="display:inline-block;margin-right:10px;">
+				开始日期：<input type="text" id="beginDate" class="mh_date" value=""
+                            style="width:150px;border-left-width:1px;"/>
+				<button onclick="dataClear('#beginDate')"
+                        style="margin-left: -5px;border-radius: 0 4px 4px 0;height: 32px;"><i class="fa fa-trash-o"></i></button>
+			</span>
+        <span style="display:inline-block;margin-right:10px;">
+				结束日期：<input type="text" id="endDate" class="mh_date" value=""
+                            style="width:150px;border-left-width:1px;"/>
+				<button onclick="dataClear('#endDate')"
+                        style="margin-left: -5px;border-radius: 0 4px 4px 0;height: 32px;"><i class="fa fa-trash-o"></i></button>
+			</span>
+        <span style="display:inline-block;margin-right:10px;">
+				用户名称：<input type="text" id="userName" value="" style="width:150px;border-left-width:1px;"/>
+				<button onclick="dataClear('#userName')"
+                        style="margin-left: -5px;border-radius: 0 4px 4px 0;height: 32px;"><i class="fa fa-trash-o"></i></button>
+			</span>
+        <button onclick="queryList()"><i class="fa fa-search"></i></button>
+        <button class="btn_tabbar" onclick="exportExcel('admin/article/exportExcel.do');">导出
+        </button>
+
+        <!--<ul class="iptgroup">-->
+        <!--<li>开始日期<input type="text" readonly="readonly" class="doubledate ipticon" name="startTime" value=""/></li>-->
+        <!--<li>结束日期<input type="text" readonly="readonly" class="doubledate ipticon" name="endTime" value=""/></li>-->
+        <!--</ul>-->
+        <!--<button onclick="queryList();"><i class="fa fa-search"></i></button>-->
+    </div>
+    <div class="table_content" style="overflow: auto;  position: absolute; left:0; right:0; top:45px; bottom:35px;
+	    border: 1px solid #e5e5e5;">
+        <table class="table_for_list">
+            <thead>
+            <tr>
+                <th>用户名称</th>
+                <th>待发布</th>
+                <th>已发布</th>
+                <th>待审核</th>
+                <th>已驳回</th>
+            </tr>
+            </thead>
+            <tbody id="list-container">
+
+            </tbody>
+        </table>
+
+    </div>
+    <div style="position: absolute; left: 0px; right:0; height: 30px; bottom:0; overflow: hidden; ">
+
+        <div style="float:left;margin-left:5px;">
+
+        </div>
+
+    </div>
+
+
+</div>
+<script type="text/javascript" src="${url!}/public/datepicker/js/datepicker.js"></script>
+<script type="text/javascript" src="${url!}/public/datepicker/js/eye.js"></script>
+<script type="text/javascript" src="${url!}/public/datepicker/js/utils.js"></script>
+<script type="text/javascript" src="${url!}/public/datepicker/js/layout.js?ver=1.0.2"></script>
+
+<script type="text/javascript">
+    var template;
+    // 查询文章列表
+    function queryList() {
+        var beginDate = $("#beginDate").val();
+        var endDate = $("#endDate").val();
+        var userName = $("#userName").val();
+        if (beginDate > endDate) {
+            alert("开始日期不能大于结束日期，请重新选择日期！");
+            return;
+        }
+
+        var data = {
+            beginDate: beginDate,
+            endDate: endDate,
+            userName: userName
+        };
+        $.ajax({
+            url: "article/statistics.do",
+            data: data,
+            type: "get",
+            dataType: "json",
+            success: function (json) {
+                var html = template({"data": json});
+                $('#list-container').html(html);
+            }
+
+        });
+    }
+    //    $(function () {
+    //        $('.doubledate').kuiDate({
+    //            className: 'doubledate',
+    //            isDisabled: "1"
+    //        });
+    //    });
+    function dataClear(target) {
+        $(target).val("");
+    }
+    $(function () {
+        queryList();
+        // 加载模板
+        var source = $("#statistics-template").html();
+        template = Handlebars.compile(source);
+
+        $("#beginDate").DatePicker({
+            date: $(this).val(),
+            current: $(this).val(),
+            onBeforeShow: function () {
+                $('#beginDate').DatePickerSetDate($(this).val());
+            },
+            onChange: function (formated, dates) {
+                $('#beginDate').val(formated);
+                $('#beginDate').DatePickerHide();
+            }
+        });
+
+        $("#endDate").DatePicker({
+            date: $(this).val(),
+            current: $(this).val(),
+            onBeforeShow: function () {
+                $('#endDate').DatePickerSetDate($(this).val());
+            },
+            onChange: function (formated, dates) {
+                $('#endDate').val(formated);
+                $('#endDate').DatePickerHide();
+            }
+        });
+
+    });
+
+</script>
+
+<script id="statistics-template" type="text/x-handlebars-template">
+    {{#each data}}
+    <tr>
+        <td>{{userName}}</td>
+        <td style="text-align:right">{{wait_release}}</td>
+        <td style="text-align:right">{{already_release}}</td>
+        <td style="text-align:right">{{wait_audit}}</td>
+        <td style="text-align:right">{{rejected}}</td>
+    </tr>
+    {{/each}}
+</script>
+
+
+

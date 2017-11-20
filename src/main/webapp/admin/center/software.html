@@ -1,0 +1,100 @@
+<div class="content">
+	<div class="tab_bar">
+		<ul>
+			<li class="tab_index" onclick="setTabContent(this);">关于系统</li>
+		</ul>
+		<button class="btn_tabbar" onclick="gotoWebSite();">访问官方网站</button>
+	</div>
+	<div class="tab_content">
+		<div class="tab_item tab_show"> 
+			<div style="font-size:13px; line-height:25px; padding: 0 5px;">
+	  			<div><br />
+	    			<h2>汉搜云CMS帮助文档</h2>
+		      		<a href="help.docx">详细内容文档下载</a>
+	    			<div style="margin-top:10px; border-top:1px solid #ccc;"></div>
+	  			</div> 
+	       		  <br />
+	      		  <h3 style="margin:5px 0;">软件介绍：</h3>
+	        	 <p style="text-indent: 2em;">汉搜云CMS是一款模块化、高效率、高并发、CPU占用低等诸多优点的严格采用MVC设计模式设计
+	        	 ，灵感来来源于对网站建设的热爱。注重开发体验，为用户或者开发者提供插件、模型完美解决方案。
+	        	 </p>
+		 
+			 	<br /> 
+				<h3 style="margin:5px 0;">用户文档：</h3> 
+				<ul style="list-style-type: none;">
+					<li><h3><i class="fa fa-asterisk"></i> 内容 </h3>
+						<h5>文章管理</h5>
+						<p  style="text-indent: 2em;">文章管理栏目有查询、修改、删除、添加文章的功能，这个栏目主要用于添加文章和查看文章状态。</p>
+						<p  style="text-indent: 2em;">点击发布文章，创建新文章。</p>
+						<p  style="text-indent: 2em;"><b>文章类别：确定文章归属网站哪个板块。</b></p>
+						<p  style="text-indent: 2em;"><b>文章标题：文章标题为必填项。</b></p>
+						<p  style="text-indent: 2em;"><b>文章图标：请忽略。</b></p>
+						<p  style="text-indent: 2em;"><b>内容内型：请忽略。</b></p>
+						<p  style="text-indent: 2em;"><b>文章内容：根据文章类别在此输入文章主体内容，包括图片等等详情，如果有表格，建议保存表格为图片后上传图片。</b></p>
+						<p  style="text-indent: 4em;">优秀家政员、家政联盟形象展示，请忽略。</p>
+						<p  style="text-indent: 2em;"><b>文章关键字：请忽略。</b></p>
+						<p  style="text-indent: 2em;"><b>文章描述：根据文章类别情况必填。</b></p>
+						<p  style="text-indent: 4em;">时事要闻、工作动态、巧娘作品、优秀家政员、家政联盟形象展示，填写简介。</p>
+						<p  style="text-indent: 4em;">周四之约，填写主要职称。</p>
+						<p  style="text-indent: 4em;">妇女之家，填写联系电话。</p>
+						<p  style="text-indent: 2em;"><b>文章作者：根据文章类别情况必填。</b></p>
+						<p  style="text-indent: 4em;">妇女之家，填写负责人姓名。</p>
+						<p  style="text-indent: 4em;">巧娘作品，填写作者名称。</p>
+						<p  style="text-indent: 4em;">优秀家政员，填写公司名称。</p>
+						<p  style="text-indent: 2em;"><b>原文地址：请忽略。</b></p>
+						<p  style="text-indent: 2em;"><b>热点图片：根据文章类别情况必填。</b></p>
+						<p  style="text-indent: 4em;">社创益启学、益人益事汇、家公益大赛、巧娘商城、最美巾帼农场、女性创业大赛、时事要闻、工作动态、妇女之家、经典诵读、文明家庭风采、周四之约、优秀家政员、家政联盟形象展示、巾帼风采典型展示、巾帼文明岗，必须上传照片。宽高比例为4:3的2M以内图片.</p>
+						<p  style="text-indent: 2em;">在此栏目提交的文章为【待审核】状态。</b></p>
+						<h5>文章审核</h5>
+						<p  style="text-indent: 2em;">文章管理栏目有查询、修改、删除、审核文章的功能，这个栏目主要用于发布文章和驳回文章。</p>
+						<p  style="text-indent: 2em;">点击编辑文章，可以修改文章内容，点击驳回文章后，文章为【被驳回】状态，点击发布文章后，文章为【发布】状态，显示到前台页面</p>
+					</li>
+					<li><h3><i class="fa fa-asterisk"></i> 统计</h3>
+						<h5>今日统计</h5>
+						<p  style="text-indent: 2em;">以图表方式展现今日网站点击量。</p>
+						<h5>昨日统计</h5>
+						<p  style="text-indent: 2em;">以图表方式展现昨日网站点击量。</p>
+						<h5>月份统计</h5>
+						<p  style="text-indent: 2em;">以图表方式展现指定月份网站点击量。</p>
+					</li>
+				</ul>
+				<!-- <ul style="list-style-type: none;">
+					<li><i class="fa fa-asterisk"></i> <strong>统一数据库接口</strong>
+						<p  style="text-indent: 2em;"> DLCMS为特有的模块式组装网站，任何功能相互不依赖可以随时取出或者删除不会影响到其他的功能，使网站真正的达到可DIY定制化。 </p>
+					</li>
+					<li><i class="fa fa-asterisk"></i> <strong>数据库连接池支持</strong> 
+					<p  style="text-indent: 2em;">系统默认自带了文章、单页和图片3种类型的内容模块，默认模块中自带了5个扩展字段以备您的特殊需求，当然您可以依照默认模块来增加更多的模块会员、商城等等。另外官方会不定期的提供一些扩展模块来供给大家使用。 
+						</p>
+					</li>
+					<li><i class="fa fa-asterisk"></i> <strong>各层缓存支持</strong> 
+					<p  style="text-indent: 2em;">程序提供了强大的缓存类，包括数据库缓存、模板缓存和静态缓存使您的网站支持更大的数据负载量。 
+					</p>
+					</li>
+					<li><i class="fa fa-asterisk"></i> <strong>全注解开发</strong> 
+					<p  style="text-indent: 2em;">程序采用了模板分离技术，使您的网站程序与前台模板互相分离互补干扰可随时更换，并且程序采用了独有的简化式调用标签加快网站的开发速度。每个栏目可指定要显示的模板大大的使网站的自由化程度变更高。 </p></li>
+					<li><i class="fa fa-asterisk"></i> <strong>模块分离支持</strong>
+					<p  style="text-indent: 2em;"> 栏目采用了无限分类功能，可使您的网站增加N级的栏目，不受程序限制。</p></li>
+					<li><i class="fa fa-asterisk"></i> <strong>SEO支持</strong><p  style="text-indent: 2em;">系统会自动把您的关键词提取为tag标签来使您的网站达到内链的目的对搜索引擎更加的友好。</p> </li>
+					<li><i class="fa fa-asterisk"></i> <strong>拦截器支持</strong> <p  style="text-indent: 2em;">用户可以将文章内的任何文字替换成想要的文字或者把这些文字加上超链接使文字产生内部连接来优化您的网站。 </p></li>
+					<li><i class="fa fa-asterisk"></i> <strong>文件上传支持</strong> <p  style="text-indent: 2em;">程序集成了强大的无限制批量上传功能，您可以同时上传大量的图片而不需要一个一个点击，批量上传支持文件、视频、音乐、图片等文件格式。 </p></li>
+					<li><i class="fa fa-asterisk"></i> <strong>网站碎片</strong> <p  style="text-indent: 2em;">用户常常会有一些要经常更换的文字、视频、音乐等等内容，如果要改动模板对于用户来说很麻烦，网站碎片功能解决了这一问题，将这些内容分别存在网站的碎片里在模板内调用这些碎片，这样用户就可以在后台随时的修改这些内容。 </p></li>
+					<li><i class="fa fa-asterisk"></i> <strong>插件扩展</strong> <p  style="text-indent: 2em;">程序预留了强大的插件接口，通过插件接口可以使网站任意扩展，功能任意组合，例如：文章评论、友情链接、幻灯片、订单系统等均可开发，并且插件支持碎片式的调用与页面式的访问使插件的自由度更高。 </p></li>
+					<li><i class="fa fa-asterisk"></i> <strong>程序永久免费</strong> <p  style="text-indent: 2em;">您可以在完全遵循许可协议的情况下完全将本程序用于个人和商业用途，而不需交付本程序的使用费用。 </p></li>
+				</ul> 
+				<br />
+			    <div>
+				<div class="readme"><span class="title">作者博客：<a href="http://www.yl-blog.com" target="_blank">www.yl-blog.com</a></span></div>
+				<div class="readme"><span class="title">腾讯微博：<a href="http://t.qq.com/wuweiit" target="_blank">wuweiit</a></span></div>
+				</div>  -->
+	    		<br /><br />
+	    	</div>
+  		</div>
+  	</div>
+</div>
+<form id="mrcmssite" action="http://cms.yl-blog.com" target="_blank"></form>
+<script type="text/javascript">
+
+function gotoWebSite(){
+	$("#mrcmssite").submit();
+}
+</script>

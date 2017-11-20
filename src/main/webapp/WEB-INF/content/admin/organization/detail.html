@@ -1,0 +1,101 @@
+<div class="content">
+    <div class="tab_bar">
+        <ul>
+            <li class="tab_index" onclick="setTabContent(this);">社会组织详细信息</li>
+        </ul>
+        <button class="btn_tabbar" onclick="refreshContentByURL('organization/view.do');">返回</button>
+    </div>
+    <div class="tab_content">
+        <div class="tab_item tab_show">
+            <div>
+                <table class="table_for_add">
+                    <tr>
+                        <th>组织名称：</th>
+                        <td>${organization.name!}</td>
+                    </tr>
+                    <tr class="rowBgColor">
+                        <th>账号：</th>
+                        <td>${organization.account!}</td>
+                    </tr>
+                    <tr>
+                        <th>拟入驻类型：</th>
+                        <td>${organization.settledValue!}</td>
+                    </tr>
+                    <tr class="rowBgColor">
+                        <th>联系人1：</th>
+                        <td>${organization.author1!}</td>
+                    </tr>
+                    <tr>
+                        <th>联系电话1：</th>
+                        <td>${organization.phone1!}</td>
+                    </tr>
+                    <tr class="rowBgColor">
+                        <th>QQ1：</th>
+                        <td>${organization.qq1!}</td>
+                    </tr>
+                    <tr>
+                        <th>联系人2：</th>
+                        <td>${organization.author2!}</td>
+                    </tr>
+                    <tr class="rowBgColor">
+                        <th>联系电话2：</th>
+                        <td>${organization.phone2!}</td>
+                    </tr>
+                    <tr>
+                        <th>QQ2：</th>
+                        <td>${organization.author2!}</td>
+                    </tr>
+                    <tr class="rowBgColor">
+                        <th>组织类型：</th>
+                        <td>${organization.typeValue!}</td>
+                    </tr>
+                    <#if organization.type ?? && organization.type == 3 >
+                        <tr>
+                            <th>组织注册地：</th>
+                            <td>${organization.regPlace!}</td>
+                        </tr>
+                        <tr class="rowBgColor">
+                            <th>成立时间：</th>
+                            <td>${organization.foundingTime?string("yyyy年MM月dd日")}</td>
+                        </tr>
+                        <tr>
+                            <th>注册号：</th>
+                            <td>${organization.registerNum!}</td>
+                        </tr>
+                        <tr class="rowBgColor">
+                            <th>发证机关：</th>
+                            <td>${organization.registerNum!}</td>
+                        </tr>
+                        <tr>
+                            <th>组织地址：</th>
+                            <td>${organization.address!}</td>
+                        </tr>
+                    </#if>
+                    <tr>
+                        <th>服务领域：</th>
+                        <td>${organization.kingdom!}</td>
+                    </tr>
+                    <tr class="rowBgColor">
+                        <th>入驻需求：</th>
+                        <td>${organization.demand!}</td>
+                    </tr>
+                    <tr>
+                        <th>拟定合作发展计划：</th>
+                        <td>${organization.plan!}</td>
+                    </tr>
+                    <tr class="rowBgColor">
+                        <th>状态：</th>
+                        <#if organization.userStatus == 0>
+                            <td>未激活</td>
+
+                        </#if>
+                        <#if organization.userStatus == 1>
+                            <td>已激活</td>
+                        </#if>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

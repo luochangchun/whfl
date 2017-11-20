@@ -1,0 +1,28 @@
+<div class="rightbar">
+	<div class="row">
+		<div class="sm-list m-b-md col-lg-12 col-md-4">
+			<div class="box bg-white padder-md">
+				<div class="title b-b text-md flex-center padder-v m-b">
+					<div class="w-full">活动预告<small class="pull-right"><a class="text-muted h-main" href="/listVV.html">更多</a></small></div>
+				</div>
+				<ul class="list-unstyled m-b-md">
+					<!-- {article:list table=(article) cid=(121) status=(1) limit=(8) order=(time desc)} -->
+					<li class="pos-rlt" data-time="${article.time format=(yyyy-MM-dd)}"><a class="text-ellipsis h-main tras-01" href="${article.url}">${article.title}</a></li>
+					<!-- {/list} -->
+				</ul>
+			</div>
+		</div>
+		<div class="sm-list m-b-md col-lg-12 col-md-4">
+			<div class="box bg-white padder-md">
+				<div class="title b-b text-md flex-center padder-v m-b">
+					<div class="w-full">通知公示<small class="pull-right"><a class="text-muted h-main" href="/list.html">更多</a></small></div>
+				</div>
+				<ul class="list-unstyled m-b-md">
+					<!-- {article:list table=(article) cid=(41) status=(1) limit=(8) order=(time desc)} -->
+					<li class="pos-rlt" data-time="${article.time format=(yyyy-MM-dd)}"><a class="text-ellipsis h-main tras-01" href="${article.url}">${article.title}</a></li>
+					<!-- {/list} -->
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

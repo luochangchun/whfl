@@ -1,0 +1,39 @@
+<div class="banner bg-cover m-b-md"
+	style="background-image: url(${themeurl!}/imgs/banner2.jpg)"></div>
+<div class="main m-b-lg">
+	<div class="padder-v-lg text-center">
+		<img class="img-responsive center-block m-b" src="imgs/fam_title.png">
+		<div class="text-2x m-b">${article.title}妇女之家</div>
+		<a class="btn btn-danger"
+			href="//api.map.baidu.com/geocoder?address=${article.title}&output=html"
+			target="_blank"><i class="glyphicon glyphicon-map-marker"></i>
+			查看位置</a> <a class="btn btn-danger" href="/map.html">其它妇女之家</a>
+	</div>
+	<div class="fam-banner m-b-xl">
+		<div class="col-md-6 no-padder h-xxxl">
+			<div class="img-box h-xxxl">
+				<div class="bg-cover h-xxxl w-full pos-abt active"
+					style="background-image: url(/${article.icon})"></div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="text-box h-xxxl bg-white wrapper-xl">
+						<div class="text-lg font-bold">妇女之家简介</div>
+						<div class="text-xs text-muted m-b-lg">${article.time?string("yyyy-MM-dd")}</div>
+						<p class="m-b-lg">${article.content}</p>
+						<div class="sm-list no-img">
+							<div class="title text-md flex-center padder-v">联系方式</div>
+						</div>
+						<ul>
+							<li>负责人：<span>${article.author}</span></li>
+							<li>电话：<span>${article.description}</span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--#include file="pub-bottom.html"-->
+</div>

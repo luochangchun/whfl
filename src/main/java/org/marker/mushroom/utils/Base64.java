@@ -1,0 +1,144 @@
+package org.marker.mushroom.utils;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
+
+public class Base64
+{
+
+	private static final char[] legalChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".toCharArray();
+
+	/**
+	 * data[]进行编码
+	 * 
+	 * @param data
+	 * @return
+	 */
+	public static String encode(final byte[] data)
+	{
+		final int start = 0;
+		final int len = data.length;
+		final StringBuffer buf = new StringBuffer(data.length * 3 / 2);
+
+		final int end = len - 3;
+		int i = start;
+		int n = 0;
+
+		while (i <= end)
+		{
+			final int d = ((((int) data[i]) & 0x0ff) << 16) | ((((int) data[i + 1]) & 0x0ff) << 8) | (((int) data[i + 2]) & 0x0ff);
+
+			buf.append(legalChars[(d >> 18) & 63]);
+			buf.append(legalChars[(d >> 12) & 63]);
+			buf.append(legalChars[(d >> 6) & 63]);
+			buf.append(legalChars[d & 63]);
+
+			i += 3;
+
+			if (n++ >= 14)
+			{
+				n = 0;
+				buf.append(" ");
+			}
+		}
+
+		if (i == start + len - 2)
+		{
+			final int d = ((((int) data[i]) & 0x0ff) << 16) | ((((int) data[i + 1]) & 255) << 8);
+
+			buf.append(legalChars[(d >> 18) & 63]);
+			buf.append(legalChars[(d >> 12) & 63]);
+			buf.append(legalChars[(d >> 6) & 63]);
+			buf.append("=");
+		}
+		else if (i == start + len - 1)
+		{
+			final int d = (((int) data[i]) & 0x0ff) << 16;
+
+			buf.append(legalChars[(d >> 18) & 63]);
+			buf.append(legalChars[(d >> 12) & 63]);
+			buf.append("==");
+		}
+
+		return buf.toString();
+	}
+
+	public static byte[] decode(final String s)
+	{
+
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		try
+		{
+			decode(s, bos);
+		}
+		catch (final IOException e)
+		{
+			throw new RuntimeException();
+		}
+		final byte[] decodedBytes = bos.toByteArray();
+		try
+		{
+			bos.close();
+			bos = null;
+		}
+		catch (final IOException ex)
+		{
+			System.err.println("Error while decoding BASE64: " + ex.toString());
+		}
+		return decodedBytes;
+	}
+
+	private static void decode(final String s, final OutputStream os) throws IOException
+	{
+		int i = 0;
+
+		final int len = s == null ? 0 : s.length();
+
+		while (true)
+		{
+			while (i < len && s.charAt(i) <= ' ')
+				i++;
+
+			if (i == len)
+				break;
+
+			final int tri = (decode(s.charAt(i)) << 18) + (decode(s.charAt(i + 1)) << 12) + (decode(s.charAt(i + 2)) << 6)
+					+ (decode(s.charAt(i + 3)));
+
+			os.write((tri >> 16) & 255);
+			if (s.charAt(i + 2) == '=')
+				break;
+			os.write((tri >> 8) & 255);
+			if (s.charAt(i + 3) == '=')
+				break;
+			os.write(tri & 255);
+
+			i += 4;
+		}
+	}
+
+	private static int decode(final char c)
+	{
+		if (c >= 'A' && c <= 'Z')
+			return ((int) c) - 65;
+		else if (c >= 'a' && c <= 'z')
+			return ((int) c) - 97 + 26;
+		else if (c >= '0' && c <= '9')
+			return ((int) c) - 48 + 26 + 26;
+		else
+			switch (c)
+			{
+				case '+':
+					return 62;
+				case '/':
+					return 63;
+				case '=':
+					return 0;
+				default:
+					throw new RuntimeException("unexpected code: " + c);
+			}
+	}
+
+}

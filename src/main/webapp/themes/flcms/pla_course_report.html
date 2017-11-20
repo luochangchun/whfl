@@ -1,0 +1,109 @@
+<div class="modal fade myModal" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header text-center">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">课程报名信息填写</h4>
+			</div>
+			<div class="modal-body" style="max-height:540px;overflow:auto;">
+				<form id="reportForm" method="post" onsubmit="return false;" class="form-horizontal appSiteForm" role="form">
+					<input type="hidden" id="courseId" name="courseId" value="" />
+					<div class="form-group">
+						<label class="col-sm-3 control-label">课程名称：</label>
+						<div class="col-sm-7">
+							<input type="text" id="courseName" name="courseName" class="form-control" value="" disabled/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">报名单位：</label>
+						<div class="col-sm-7">
+							<input type="text" id="organization" name="organization" class="form-control" placeholder="请输入单位名称" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">报名人：</label>
+						<div class="col-sm-7">
+							<input type="text" id="name" name="name" class="form-control" placeholder="请输入报名人姓名" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">联系方式：</label>
+						<div class="col-sm-7">
+							<input type="text" id="phone" name="phone" class="form-control" placeholder="请输入手机号" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">QQ号：</label>
+						<div class="col-sm-7">
+							<input type="text" id="qq" name="qq" class="form-control" placeholder="请输入QQ号（选填）" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">备注：</label>
+						<div class="col-sm-7">
+							<input type="text" id="remark" name="remark" class="form-control" placeholder="输入备注消息（选填）" />
+						</div>
+					</div>
+					<div class="modal-footer"></div>
+				</form>
+				<div id="preview"></div>
+				<button type="button" onclick="saveCompany();" class="btn btn-danger btn-block">提交申请</button>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+<script src="js/dateUtils.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+	$('#reportModal').on('show.bs.modal', function (event) {
+		var button = $(event.relatedTarget);
+		var courseId = button.data('cid');
+		var courseName = button.data('cname');
+		$('#reportModal input#courseId').val(courseId);
+		$('#reportModal input#courseName').val(courseName);
+	});
+	function saveCompany() {
+		var name = $('#reportModal input#name').val();
+		var org = $('#reportModal input#organization').val();
+		var phone = $('#reportModal input#phone').val();
+		var qq = $('#reportModal input#qq').val();
+		var remark = $('#reportModal input#remak').val();
+		var reg = /^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/;
+		if (!org) {
+			alert("请输入单位名称！");
+			return;
+		}
+		if (!name) {
+			alert("请输入姓名！");
+			return;
+		}
+		if (!reg.test(phone)) {
+			alert("请输入正确的联系方式！");
+			return;
+		}
+
+		var form = $('#reportForm');
+		$.ajax({
+			type: "POST",
+			url: "front/course/report.do",
+			data: form.serialize(),
+			dataType: 'json',
+			success: function (data) {
+				if (data.status) {
+					alert(data.message);
+					form[0].reset();
+				}
+				$('.myModal').modal('hide');
+				location.reload(true);
+			},
+			error: function () {
+				alert("提交失败！")
+			}
+		});
+	}
+
+</script>

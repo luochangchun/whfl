@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <!--#include file="head.html"-->
+  <body>
+	<!--#include file="header.html"-->
+	<div class="banner bg-cover m-b-md" style="background-image:url(${themeurl!}/imgs/banner2.jpg)"></div>
+	<div class="main m-b-lg">
+		<div class="padder-v-lg"><img class="img-responsive center-block" src="imgs/pub_title.png"></div>
+		<div class="container">
+			<div class="row book-list">
+				<div class="col-lg-4 col-sm-6">
+					<a href="http://whwomen.org.cn/magazine/l4/" target="_blank">
+						<div class="book pos-rlt bg-white bg-contain h-lg tras-03 h-shadow m-b-lg" style="background-image:url(${themeurl!}/imgs/book01.jpg)">
+							<div class="text-box pos-abt w-full padder-v-lg text-center text-lg font-bold tras-03">
+								2016年第四期
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-4 col-sm-6">
+					<a href="http://whwomen.org.cn/magazine/l3/" target="_blank">
+						<div class="book pos-rlt bg-white bg-contain h-lg tras-03 h-shadow m-b-lg" style="background-image:url(${themeurl!}/imgs/book04.jpg)">
+							<div class="text-box pos-abt w-full padder-v-lg text-center text-lg font-bold tras-03">
+								2016年第三期
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-4 col-sm-6">
+					<a href="http://whwomen.org.cn/magazine/l2/" target="_blank">
+						<div class="book pos-rlt bg-white bg-contain h-lg tras-03 h-shadow m-b-lg" style="background-image:url(${themeurl!}/imgs/book03.jpg)">
+							<div class="text-box pos-abt w-full padder-v-lg text-center text-lg font-bold tras-03">
+								2016年第二期
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-4 col-sm-6">
+					<a href="http://whwomen.org.cn/magazine/l1/" target="_blank">
+						<div class="book pos-rlt bg-white bg-contain h-lg tras-03 h-shadow m-b-lg" style="background-image:url(${themeurl!}/imgs/book02.jpg)">
+							<div class="text-box pos-abt w-full padder-v-lg text-center text-lg font-bold tras-03">
+								2016年第一期
+							</div>
+						</div>
+					</a>
+				</div>
+				
+				
+			</div>
+		</div>
+	</div>
+	<!--#include file="footer.html"-->
+	<!--#include file="sidebar.html"-->
+
+	<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/about.js"></script>
+	<script>
+		$(function(){
+			$(".fam-banner .dots li").mouseenter(function(){
+				if(!$(this).hasClass("active")){
+					$(this).addClass("active").siblings().removeClass("active");
+					$(".fam-banner .img-box > div").eq($(this).index()).addClass("active").siblings().removeClass("active");
+				}
+			});
+		})
+	</script>
+  </body>
+</html>

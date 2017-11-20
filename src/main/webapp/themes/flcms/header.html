@@ -1,0 +1,21 @@
+<div class="header">
+	<div class="navbar-brand block">
+		<div class="container h-full">
+			<div class="pull-right text-gray visible-xs padder" data-toggle-class="hidden-xs" data-target=".main-nav">
+				<i class="glyphicon glyphicon-align-justify"></i>
+			</div>
+			<a href="/index.html"><img class="h-xxxs padder-v-xxs" alt="LOGO" src="imgs/logo.png"></a>
+			<ul class="main-nav list-inline m-n text-base hidden-xs pull-right">
+				<!-- {channel:list table=(channel) limit=(1000) order=(sort desc)}  -->
+					<!--{if:${channel.pid == 0 && channel.sort > 0}}-->
+						<!--{if:${channel.id == current.pid}}-->
+				<li class="active"><a href="/${channel.template}" class="tras-01-e">${channel.name}</a></li>
+						<!--{else}-->
+				<li class=""><a href="/${channel.template}" class="tras-01-e">${channel.name}</a></li>
+						<!--{/if}-->
+					<!--{/if}-->
+				<!--{/list}-->
+			</ul>
+		</div>
+	</div>
+</div>

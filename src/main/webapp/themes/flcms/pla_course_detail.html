@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!--#include file="head.html"-->
+
+<body>
+	<!--#include file="header_social.html"-->
+	<div class="banner bg-cover m-b-md" style="background-image:url(${themeurl!}/imgs/banner3.jpg)"></div>
+	<div class="main m-b-lg">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-offset-1 col-sm-10 m-b-lg">
+					<div class="main-text bg-white wrapper-lg">
+						<div class="font-bold text-xl m-b text-danger text-left">课程详情</div>
+						<ul class="media-list">
+							<li class="media row">
+								<div class="col-sm-8">
+									<div class="media-body">
+										<h4 id="cname" class="media-heading"></h4>
+										<span id="ccontent"></span>
+										<h5 id="caddress" class="media-bottom"></h5>
+										<h5 id="cguest" class="media-bottom"></h5>
+										<h5 id="cbrief" class="media-bottom"></h5>
+									</div>
+								</div>
+								<div class="col-sm-2 col-sm-offset-2">
+									<h5 class="media-heading text-center">限
+										<span id="ctotal" class="h4 text-danger padder-xxs"></span>人报名</h5>
+									<button id="cbutton" type="button" class="btn btn-block wrapper bg-white no-border" data-toggle="modal" data-target="#reportModal"
+									 data-cid data-cname>
+										<span class="h3 text-danger" style="font-weight:bold">报名</span>
+									</button>
+								</div>
+							</li>
+							<hr class="hr-dashed m-t-none">
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--#include file="pla_course_report.html"-->
+	<!--#include file="footer.html"-->
+	<!--#include file="sidebar_social.html"-->
+
+	<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/about.js"></script>
+	<script>
+		(function () {
+			function getUrlParam(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if (r != null) return unescape(r[2]); return null;
+			}
+			var id = getUrlParam("courseid");
+			if (id) {
+				$.ajax({
+					type: "GET",
+					url: "front/course/detail.do?courseid=" + id,
+					dataType: "json",
+					success: function (data) {
+						if (data) {
+							$("#cname").html(data.name);
+							$("#ccontent").html(data.content);
+							$("#caddress").html("地址：" + data.address + (data.startTime ? " 时间：" + data.startTime : ""));
+							$("#ctotal").html(data.total);
+							if (data.guest) $('#cguest').html('特邀嘉宾：<span class="text-danger h4">'+data.guest+'</span>');
+							if (data.brief) $('#cbrief').html(data.brief);
+							if (Number(data.reported) >= Number(data.total)) {
+								var denyBtn = $('<button type="button" class="btn btn-block wrapper bg-white no-border" disabled>'
+								+'<span class="h3" style="font-weight:bold">报名已满</span></button>');
+								$("#cbutton").replaceWith(denyBtn);
+							} else if (data.status == 1) {
+								var denyBtn = $('<button type="button" class="btn btn-block wrapper bg-white no-border" disabled>'
+								+'<span class="h3" style="font-weight:bold">报名截止</span></button>');
+								$("#cbutton").replaceWith(denyBtn);
+							} else {
+								var btn = $("#cbutton");
+								btn.attr("data-cid", data.id);
+								btn.attr("data-cname", data.name);
+							}
+						}
+					},
+					error: function () {
+					}
+				});
+			}
+		})(this);
+	</script>
+</body>
+
+</html>

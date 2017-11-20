@@ -1,0 +1,298 @@
+<div class="modal fade myModal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">申请场地信息填写</h4>
+            </div>
+            <div class="modal-body" style="max-height:540px;overflow:auto;">
+                <form id="appSiteForm" method="post" onsubmit="return false;" class="form-horizontal appSiteForm" role="form">
+                    <input type="hidden" name="site" class="click_site_id" value="" />
+                    <input type="hidden" name="makeTime" class="click_day" value="" />
+                    <input type="hidden" name="moment" class="click_moment" value="" />
+                    <input type="hidden" name="userId"  value="${Session.user.id!}" />
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">已选定场地：</label>
+                        <div class="col-sm-7">
+                            <input type="text" id="site" name="company" class="form-control click_site_value" value="" disabled/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">已选定时间：</label>
+                        <div class="col-sm-7">
+                            <input type="text" id="time" name="company" class="form-control click_days" value="" disabled/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">申请单位：</label>
+                        <div class="col-sm-7">
+                            <input type="text" id="company" name="company" class="form-control" placeholder="请输入单位名称"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">申请人：</label>
+                        <div class="col-sm-7">
+                            <input type="text" id="name" name="name" class="form-control" placeholder="请输入申请人姓名"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">联系方式：</label>
+                        <div class="col-sm-7">
+                            <input type="text" id="phone" name="phone" class="form-control" placeholder="请输入手机号"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">活动主题：</label>
+                        <div class="col-sm-7">
+                            <input type="text" id="theme" name="theme" class="form-control" placeholder="请输入活动主题"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">活动内容：</label>
+                        <div class="col-sm-7">
+                            <input type="text" id="content" name="content" class="form-control" placeholder="请输入活动内容"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">补充需求：</label>
+                        <div class="col-sm-7">
+                            <textarea name="demand" id="demand" class="form-control" rows="3" style="resize:none" placeholder="请输入补充需求"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </form>
+                <div id="preview"></div>
+                <button type="button"  onclick="saveCompany();" class="btn btn-danger btn-block">提交申请</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel2">申请入驻信息填写</h4>
+            </div>
+            <div class="modal-body" style="max-height:520px;overflow:auto;">
+                <form id="mechanismForm" method="post" onsubmit="return false;" class="form-horizontal mechanismForm" role="form">
+                    <input type="hidden" name="demand"/>
+                    <input type="hidden" name="status" value="0"/>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">申请入驻机构名称：</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="name" class="form-control" placeholder="请输入单位名称"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">成立时间：</label>
+                        <div class="col-sm-7">
+                            <input  type="text"  name="foundingDate" class="input form-control" style=" display:inline-block;" placeholder="点击选择年月日" onClick="WdatePicker()"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">机构负责人姓名：</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="contacts" class="form-control" placeholder="请输入负责人姓名"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">联系方式：</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="phone" class="form-control" placeholder="请输入联系方式"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">团队规模：</label>
+                        <div class="col-sm-7">
+                            <select class="form-control" name="scale">
+                                <option value="">--请选择--</option>
+                                <!-- {dictionaries:list table=(dictionaries) name=('scale') type=('mechanism')} -->
+                                <option value="${dictionaries.code!}">${dictionaries.value!}</option>
+                                <!-- {/list} -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">机构类别（单选）：</label>
+                        <div class="col-sm-8">
+                            <!-- {dictionaries:list table=(dictionaries) name=('category') type=('mechanism')} -->
+                            <div class="radio inline m-r">
+                                <label class="i-checks">
+                                    <input name="category" value="${dictionaries.code!}" type="radio">
+                                    <i></i>
+                                    ${dictionaries.value!}
+                                </label>
+                            </div>
+                            <!-- {/list} -->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">入驻需求（多选）：</label>
+                        <div class="col-sm-7">
+                            <!-- {dictionaries:list table=(dictionaries) name=('category') type=('mechanism')} -->
+                            <div class="radio inline m-r">
+                                <label class="i-checks">
+                                    <input name="demands" value="${dictionaries.code!}" type="checkbox"/>
+                                    <i></i>
+                                    ${dictionaries.value!}
+                                </label>
+                            </div>
+                            <!-- {/list} -->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </form>
+                <div id="preview2"></div>
+                <button type="button"  onclick="saveMechanism();" class="btn btn-danger btn-block">提交申请</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="js/dateUtils.js"></script>
+
+<script type="text/javascript">
+    function saveCompany()
+    {
+        var company = $("#appSiteForm input[name='company']").val();
+        var name = $("#appSiteForm input[name='name']").val();
+        var phone = $("#appSiteForm input[name='phone']").val();
+        var theme = $("#appSiteForm input[name='theme']").val();
+        var content = $("#appSiteForm input[name='content']").val();
+        var demand = $("#appSiteForm textarea[name='demand']").val();
+        var reg = /^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/;
+        if(!company){
+            alert("请输入公司名称！");
+            return;
+        }
+        if(!name){
+            alert("请输入姓名！");
+            return;
+        }
+
+        if (!reg.test(phone)) {
+            alert("请输入正确的联系方式！");
+            return;
+        }
+        if(!(theme)){
+            alert("请输入活动主题！");
+            return;
+        }
+        if(!content){
+            alert("请输入活动内容！");
+            return;
+        }
+        if(!demand){
+            alert("请输入补充需求！");
+            return;
+        }
+
+        $.ajax
+        ({
+            type : "POST",
+            url: "front/applicationSite/save.do",
+            data: $("#appSiteForm").serialize(),
+            dataType: 'json',
+            success: function(data)
+            {
+                if(data.status)
+                {
+                    alert(data.message);
+                    $("#appSiteForm")[0].reset();
+                }
+                $('.myModal').modal('hide');
+                location.reload(true);
+            },
+            error: function(){
+                alert("提交失败！")
+            }
+        });
+    }
+    function saveMechanism()
+    {
+
+        var name = $("#mechanismForm input[name='name']").val();
+        var foundingDate = $("#mechanismForm input[name='foundingDate']");
+        var contacts = $("#mechanismForm input[name='contacts']").val();
+        var phone = $("#mechanismForm input[name='phone']").val();
+        var scale = $("#mechanismForm select[name='scale']").val();
+        var category = $("#mechanismForm input[name='category']:checked").val();
+
+        var reg = /^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/;
+        if(!name) {
+            alert("请输入单位名称！");
+            return;
+        }
+
+        if(!foundingDate.val()) {
+            alert("请输入单位成立时间！");
+            return;
+        }
+
+        if(!contacts){
+            alert("请输入负责人姓名！");
+            return;
+        }
+        if (!reg.test(phone)) {
+            alert("请输入正确的联系方式！");
+            return;
+        }
+        if(!scale){
+            alert("请选择团队规模！");
+            return;
+        }
+        if(!category){
+            alert("请选择机构类别！");
+            return;
+        }
+
+        var demand = $("#mechanismForm input[name='demand']");
+
+        var list = "";
+        var temp;
+        $("#mechanismForm input[name='demands']:checked").each(function()
+        {
+            temp = $(this).attr("value");
+            list += temp + ",";
+        });
+
+        if(list !== "")
+        {
+            list = list.substr(0,list.length-1);
+            demand.val(list);
+        }
+        if(!demand.val()){
+            alert("请选择入驻需求！");
+            return;
+        }
+        $.ajax
+        ({
+            type : "POST",
+            url: "front/mechanism/save.do",
+            data: $("#mechanismForm").serialize(),
+            dataType: 'json',
+            success: function(data)
+            {
+                if(data.status)
+                {
+                    alert(data.message);
+                    $("#mechanismForm")[0].reset();
+                }
+                $('.myModal2').modal('hide');
+            },
+            error: function(){
+                alert("提交失败！")
+            }
+        });
+    }
+
+
+
+</script>
+
+
+

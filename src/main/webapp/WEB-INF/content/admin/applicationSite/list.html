@@ -1,0 +1,263 @@
+<div class="content">
+    <div class="tab_bar">
+        <ul>
+            <li class="tab_index" onclick="setTabContent(this);">场地申请</li>
+        </ul>
+    </div>
+    <div class="table_content">
+        <div class="tab_item tab_show">
+            <table class="table_for_list">
+                <thead>
+                <tr>
+                    <th>活动室</th>
+                    <th width="100">预约日期</th>
+                    <th>申请单位</th>
+                    <th>申请人</th>
+                    <th>联系方式</th>
+                    <th width="100">活动主题</th>
+                    <th width="220">活动内容</th>
+                    <th>补充需求</th>
+                    <th width="60">状态</th>
+                    <th width="80">操作</th>
+                </tr>
+                </thead>
+                <tbody id="list-container">
+
+                </tbody>
+            </table>
+            <div style="overflow: hidden; ">
+                <div style="float: right;">
+                    每页: <select id="pageSize" style="height: 27px; width: 50px;">
+                    <option value="10">10</option>
+                    <option value="20" selected>20</option>
+                    <option value="40">40</option>
+                    <option value="60">60</option>
+                    <option value="80">80</option>
+                    <option value="100">100</option>
+                </select> 条
+
+                    <button onclick="prevPage()" title="上一页"><i class="fa fa-step-backward"></i></button>
+                    <button onclick="nextPage()" title="下一页"><i class="fa fa-step-forward"></i></button>
+                    &nbsp;
+                    <input id="currentPageNo" style="height: 25px; width: 50px;text-align: center;" value="1"/> / <span
+                        id="totalPages">12</span>
+                    &nbsp;
+                    <button onclick="goPage();" title="GO"><i class="fa fa-arrow-circle-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    var template;
+    $(function () {
+        queryList();
+        $("#pageSize").change(function () {
+            queryList();
+        });
+
+        // 加载模板
+        var source = $("#list-template").html();
+        template = Handlebars.compile(source);
+
+        Date.prototype.format = function (format) {
+            var o = {
+                "M+": this.getMonth() + 1, //month
+                "d+": this.getDate(), //day
+                "h+": this.getHours(), //hour
+                "m+": this.getMinutes(), //minute
+                "s+": this.getSeconds(), //second
+                "q+": Math.floor((this.getMonth() + 3) / 3), //quarter
+                "S": this.getMilliseconds() //millisecond
+            };
+
+            if (/(y+)/.test(format)) {
+                format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            }
+
+            for (var k in o) {
+                if (new RegExp("(" + k + ")").test(format)) {
+                    format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+                }
+            }
+            return format;
+        };
+        // 注册插件
+        Handlebars.registerHelper('dateformat', function () {
+            return new Date(this.time).format("yyyy-MM-dd hh:mm:ss");
+        });
+
+        Handlebars.registerHelper('dateformat', function (d, dateStyle) {
+
+            return new Date(d).format(dateStyle);
+        });
+        Handlebars.registerHelper("compare", function (x1, x2, options) {
+            if (x1 == x2) {//满足添加继续执行
+                return options.fn(this);
+            } else {
+                //不满足条件执行{{else}}部分
+                return options.inverse(this);
+            }
+
+        });
+
+        Handlebars.registerHelper("indexOf", function (x1, x2, options) {
+            if (x1.indexOf(x2) > -1) {//满足添加继续执行
+                return options.fn(this);
+            } else {
+                //不满足条件执行{{else}}部分
+                return options.inverse(this);
+            }
+
+        });
+
+    });
+
+
+    // 查询文章列表
+    function queryList() {
+        var currentPageNo = $("#currentPageNo").val();
+        var pageSize = $("#pageSize").val();
+        var data = {
+            currentPageNo: currentPageNo,
+            pageSize: pageSize
+
+        };
+        $.ajax({
+            url: "applicationSite/list.do",
+            data: data,
+            type: "get",
+            dataType: "json",
+            success: function (json) {
+                $("#totalPages").text(json.totalPages);
+                $("#currentPageNo").val(json.currentPageNo);
+                $("#totalPages").text(json.totalPages);
+
+                var html = template({"data": json.data});
+                $('#list-container').html(html);
+            }
+
+        });
+    }
+
+    // 上一页
+    function prevPage() {
+        var inputPageNo = $("#currentPageNo");
+        var newPageNo = parseInt(inputPageNo.val()) - 1;
+        if (newPageNo <= 0) {
+            zoom.showMessageDialog("已经到第一页了！", "消息提示", 500);
+        } else {
+            inputPageNo.val(newPageNo);
+            queryList();
+        }
+    }
+
+    // 下一页
+    function nextPage() {
+        var inputPageNo = $("#currentPageNo");
+        var newPageNo = parseInt(inputPageNo.val()) + 1;
+        var pageSize = parseInt($("#totalPages").text());
+        if (newPageNo > pageSize) {
+            zoom.showMessageDialog("已经到最后一页了！", "消息提示", 500);
+        } else {
+            inputPageNo.val(newPageNo);
+            queryList();
+        }
+    }
+
+    // go页码
+    function goPage() {
+        var newPageNo = parseInt($("#currentPageNo").val());
+        var pageSize = parseInt($("#totalPages").text());
+
+        if (newPageNo <= 0) {
+            zoom.showMessageDialog("页码应该大于1哦！", "消息提示", 500);
+        } else if (newPageNo > pageSize) {
+            zoom.showMessageDialog("页码超过最大页数咯！", "消息提示", 500);
+        } else if (isNaN(newPageNo)) {
+            zoom.showMessageDialog("页码格式不正确哈！", "消息提示", 500);
+        } else {
+            queryList();
+        }
+    }
+
+    function audit(id, status, audit) {
+        var tips = "";
+        var action = "applicationSite/audit.do";
+
+        var data = {
+            aid: id,
+            status: status,
+            audit: audit
+        };
+
+        if (status === 0) {
+            tips = "是否要通过此申请？";
+        }
+        else if (status === 1) {
+            tips = "是否要拒绝此申请？";
+        }
+        zoom.showConfirmDialog(tips, "消息提示", function () {
+            $.getJSON(action, data, function (data) {
+                if (data.status) {
+                    zoom.showMessageDialog(data.message, "消息提示", 1500);
+                    queryList();
+                }
+                else {
+                    zoom.showMessageDialog(data.message, "消息提示", 1500);
+                }
+                zoom.closeConfirmDialog();
+            });
+        });
+    }
+
+</script>
+
+
+<script id="list-template" type="text/x-handlebars-template">
+
+    {{#each data}}
+
+    <tr>
+        <td>{{siteValue}}</td>
+        <td>{{dateformat makeDate "yyyy-MM-dd"}}
+			{{#compare moment 'morning'}}
+			<span>&nbsp;上午</span>
+			{{/compare}}
+			{{#compare moment 'afternoon'}}
+			<span>&nbsp;下午</span>
+			{{/compare}}
+		</td>
+        <td>{{company}}</td>
+        <td>{{name}}</td>
+        <td>{{phone}}</td>
+        <td style="text-align:center">{{theme}}</td>
+        <td style="text-align:center">{{content}}</td>
+        <td style="text-align:center">{{demand}}</td>
+        <td style="text-align:center">
+            {{#compare status 2}}
+            <b style="color:#eede00;"><i class="fa fa-dot-circle-o"></i></b>审核中
+            {{/compare}}
+            {{#compare status 1}}
+            <b style="color:#dc0008;"><i class="fa fa-times-circle"></i></b>已拒绝
+            {{/compare}}
+            {{#compare status 0}}
+            <b style="color:green;"><i class="fa fa-check-circle"></i></b>已预约
+            {{/compare}}
+        </td>
+        <td style="text-align:center">
+            {{#compare status 2}}
+            <a href="#" onclick="audit({{id}},0,${userid!});">
+                通过
+            </a>
+            <a href="#" onclick="audit({{id}},1,${userid!});">
+                拒绝
+            </a>
+            {{/compare}}
+        </td>
+
+    </tr>
+    {{/each}}
+</script>
+

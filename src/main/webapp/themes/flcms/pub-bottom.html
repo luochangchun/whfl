@@ -1,0 +1,50 @@
+<div class="container">
+<!-- {category:list table=(category) limit=(10000) order=(sort desc)}  -->
+	<!-- {if:${category.pid == article.cid}} -->
+		<div class="leftbar">
+			<div class="list m-b-md">
+				<@page model="article" size="4" cid="${category.id}" status="1" order="time desc">
+					<#list page.data as article>
+					<div class="box pos-rlt wrapper-lg bg-white clear">
+						<!-- {if:${article_index == 0}} -->
+						<div class="title-list bg-white text-md m-t-n m-b-lg">
+							${category.name}
+						</div>
+						<!-- {/if} -->
+						<div class="img-box w pull-left">
+							<img class="img-responsive center-block" alt="" src="/${article.icon}">
+						</div>
+						<div class="text-box">
+							<div class="font-bold text-md text-ellipsis m-b-sm"><a class="h-main tras-01" href="${article.url}">${article.title}</a></div>
+							<div class="text-muted text-xs m-b-sm">
+								<span class="inline m-r">信息来源：<a class="h-main tras-01" href="#">${article.author}</a></span>
+								<span class="inline m-r">发布时间：<span>${article.time?string("yyyy-MM-dd")}</span></span>
+							</div>
+							<div class="text-xs text-ellipsis-3">
+								${article.description}
+							</div>
+						</div>
+					</div>
+					</#list>
+				</@page>
+				<!--#include file="whome_page.html"-->
+				<@paginate currentPage=page.currentPageNo totalPage=page.totalPages actionUrl="" cid=category.id/>
+			</div>
+		</div>
+	<!-- {/if} -->
+<!-- {/list} -->
+	<div class="rightbar">
+		<div class="sm-list m-b-md col-lg-12 col-md-4">
+			<div class="box bg-white padder-md">
+				<div class="title b-b text-md flex-center padder-v m-b">
+					<div class="w-full">活动预告<small class="pull-right"><a class="text-muted h-main" href="/listVVI.html">更多</a></small></div>
+				</div>
+				<ul class="list-unstyled m-b-md">
+					<!-- {article:list table=(article) cid=(138) status=(1) limit=(10) order=(time desc)} -->
+					<li class="pos-rlt" data-time="${article.time format=(yyyy-MM-dd)}"><a class="text-ellipsis h-main tras-01" href="${article.url}">${article.title}</a></li>
+					<!-- {/list} -->
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

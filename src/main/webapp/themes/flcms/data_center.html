@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!--#include file="head.html"-->
+  <body>
+	<!--#include file="header.html"-->
+	<div class="banner bg-cover m-b-md" style="background-image:url(${themeurl!}imgs/banner3.jpg)"></div>
+	<div class="main m-b-lg">
+		<div class="container">
+			<div class="leftbar">
+				<div class="list no-img m-b-md">
+					<div class="box pos-rlt wrapper-lg bg-white b clear">
+						<div class="title-list bg-white text-md flex-center">
+							<div class="w-full">今日聚焦<small class="pull-right"><a class="text-muted h-main" href="/work.html">更多</a></small></div>
+						</div>
+						<!-- {article:list table=(article) cid=(37) status=(1) limit=(2) order=(time desc)}  -->
+						<div class="text-box padder-v">
+							<div class="font-bold text-md text-ellipsis m-b-sm"><a href="${article.url}" class="h-main tras-01">${article.title}</a></div>
+							<div class="text-muted text-xs m-b-sm">
+								<span class="inline m-r">信息来源：<a href="#" class="h-main tras-01">${article.author}</a></span>
+								<span class="inline m-r">发布时间：<span>${article.time?string("yyyy-MM-dd")}</span></span>
+							</div>
+							<div class="text-xs text-ellipsis-2">
+								${article.description}
+							</div>
+						</div>
+						<!--{/list}-->
+					</div>
+					<div class="box pos-rlt wrapper-lg bg-white clear">
+						<div class="title-list bg-white text-md flex-center m-b">
+							<div class="w-full">领导讲话<small class="pull-right"><a class="text-muted h-main" href="/listIV.html">更多</a></small></div>
+						</div>
+						<!-- {article:list table=(article) cid=(45) status=(1) limit=(2) order=(time desc)}  -->
+						<div class="text-box padder-v">
+							<div class="font-bold text-md text-ellipsis m-b-sm"><a href="${article.url}" class="h-main tras-01">${article.title}</a></div>
+							<div class="text-muted text-xs m-b-sm">
+								<span class="inline m-r">信息来源：<a href="#" class="h-main tras-01">${article.author}</a></span>
+								<span class="inline m-r">发布时间：<span>${article.time?string("yyyy-MM-dd")}</span></span>
+							</div>
+							<div class="text-xs text-ellipsis-2">
+								${article.description}
+							</div>
+						</div>
+						<!--{/list}-->
+					</div>
+					<div class="box pos-rlt wrapper-lg bg-white clear">
+						<div class="title-list bg-white text-md flex-center m-b">
+							<div class="w-full">妇联文件<small class="pull-right"><a class="text-muted h-main" href="/listV.html">更多</a></small></div>
+						</div>
+						<!-- {article:list table=(article) cid=(46) status=(1) limit=(2) order=(time desc)}  -->
+						<div class="text-box padder-v">
+							<div class="font-bold text-md text-ellipsis m-b-sm"><a href="${article.url}" class="h-main tras-01">${article.title}</a></div>
+							<div class="text-muted text-xs m-b-sm">
+								<span class="inline m-r">信息来源：<a href="#" class="h-main tras-01">${article.author}</a></span>
+								<span class="inline m-r">发布时间：<span>${article.time?string("yyyy-MM-dd")}</span></span>
+							</div>
+							<div class="text-xs text-ellipsis-2">
+								${article.description}
+							</div>
+						</div>
+						<!--{/list}-->
+					</div>
+				</div>
+			</div>
+			<!--#include file="sidebar_info.html"-->
+		</div>
+	</div>
+
+	<!--#include file="footer.html"-->
+	<!--#include file="sidebar.html"-->
+
+	<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/about.js"></script>
+	
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!--#include file="head.html"-->
+<body>
+<!--#include file="header_social.html"-->
+<div class="banner bg-cover m-b-md" style="background-image:url(${themeurl!}/imgs/banner3.jpg)"></div>
+<div class="main m-b-lg">
+    <div class="container">
+		<div class="row">
+			<div class="col-sm-12 m-b-lg">
+				<div class="main-text bg-white wrapper-lg">
+					<div class="font-bold text-xl m-b text-danger text-center">注册须知</div>
+					<div class="text-indent">
+						${chip.registinform}
+					</div>
+					<!--{if:${article.cid == 121}}-->
+					<!--#include file="together_joinButton.html"-->
+					<!--{/if}-->
+				</div>
+			</div>
+		</div>
+    </div>
+</div>
+
+<!--#include file="schedule_list_button.html"-->
+<!--#include file="footer.html"-->
+<!--#include file="sidebar_social.html"-->
+
+<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/about.js"></script>
+
+</body>
+</html>
+
+

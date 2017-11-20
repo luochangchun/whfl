@@ -1,0 +1,74 @@
+<div class="header">
+    <div class="navbar-brand-social block padder-v-xs">
+        <div class="container h-full">
+            <div class="pull-right">
+				<#if !(Session.user)?? || Session.user == "" >
+					<a href="/new_social_login.html">登录</a> | <a href="/new_social_registered.html">注册</a>
+				<#else>
+					${Session.user.name!} | <a onclick="logout();">注销</a>
+				</#if>
+			</div>
+        </div>
+    </div>
+	<div class="navbar-brand block">
+		<div class="container h-full">
+			<div class="pull-right text-gray visible-xs padder" data-toggle-class="hidden-xs" data-target=".main-nav">
+				<i class="glyphicon glyphicon-align-justify"></i>
+			</div>
+			<a href="/index.html"><img class="h-xxxs padder-v-xxs" alt="LOGO" src="imgs/logo.png"></a>
+			<ul class="main-nav list-inline m-n text-base hidden-xs pull-right">
+				<!-- {channel:list table=(channel) limit=(1000) order=(sort desc)}  -->
+					<!--{if:${channel.pid == 120 && channel.id != 175 && channel.id != 176}}-->
+						<!--{if:${channel.id == current.id}}-->
+				<li class="active"><a href="/${channel.template}" class="tras-01-e">${channel.name}</a></li>
+						<!--{else}-->
+							<!--{if:${channel.id == 173}}-->
+				<li class=""><a href="http://xskc.whwomen.org.cn/" target="_blank" class="tras-01-e">${channel.name}</a></li>
+							<!--{/if}-->
+							<!--{if:${channel.id == 172}}-->
+                            <li class="">
+                                <a href="/${channel.template}" class="tras-01-e">${channel.name}</a>
+                            </li>
+							<!--{/if}-->
+                            <!--{if:${channel.id != 172 && channel.id != 173 && channel.id != 195}}-->
+                                <li class=""><a href="/${channel.template}" class="tras-01-e">${channel.name}</a></li>
+                            <!--{/if}-->
+						<!--{/if}-->
+					<!--{/if}-->
+				<!--{/list}-->
+			</ul>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	function logout()
+	{
+        var template = "new_social.html";
+		/* 加载内容 */
+        $.ajax({
+            type : "GET",
+            contentType : "text/plain;charset=utf-8",
+            url : "/front/user/logout.do",
+            dataType : "json",
+            success : function(data)
+			{
+                if (data.status)
+                {
+
+                    window.location.reload();
+                    /*window.location.href = window.location.protocol + "//"
+                        + window.location.host + "/" + template;*/
+                }
+                else
+				{
+				    alert(data.message);
+                }
+            }
+        });
+	}
+    function loginTip(){
+        alert("登录的用户才能使用服务平台！");
+        window.location = '/new_social_login.html?schedule';
+    }
+
+</script>

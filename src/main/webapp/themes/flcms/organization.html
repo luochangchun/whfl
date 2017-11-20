@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!--#include file="head.html"-->
+<body>
+<div class="header">
+    <div class="navbar-brand-social block padder-v-xs">
+        <div class="container h-full">
+            <div class="pull-right">
+                <#if !(Session.user)?? || Session.user == "" >
+                    <a href="/new_social_login.html">登录</a> | <a href="/new_social_registered.html">注册</a>
+                    <#else>
+                        ${Session.user.name!} | <a onclick="logout();">注销</a>
+                </#if>
+            </div>
+        </div>
+    </div>
+    <div class="navbar-brand block">
+        <div class="container h-full">
+            <div class="pull-right text-gray visible-xs padder" data-toggle-class="hidden-xs" data-target=".main-nav">
+                <i class="glyphicon glyphicon-align-justify"></i>
+            </div>
+            <a href="/index.html"><img class="h-xxxs padder-v-xxs" alt="LOGO" src="imgs/logo.png"></a>
+            <ul class="main-nav list-inline m-n text-base hidden-xs pull-right">
+                <li class=""><a href="/new_social.html" class="tras-01-e">网站首页</a></li>
+                <li class=""><a href="/listYI.html" class="tras-01-e">园区动态</a></li>
+                <li class=""><a href="/social_style.html" class="tras-01-e">组织风采</a></li>
+                <li class=""><a href="/schedule_list.html" class="tras-01-e">服务平台</a></li>
+                <li class=""><a href="http://xskc.hansap.cn/" class="tras-01-e">线上课程</a></li>
+                <li class=""><a href="/listM.html" class="tras-01-e">家·公益</a></li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="banner bg-cover m-b-md" style="background-image:url(${themeurl!}/imgs/banner3.jpg)"></div>
+<div class="main m-b-lg">
+    <div class="container">
+        <!--#include file="sidebar_info_Z.html"-->
+        <div class="leftbar m-b-lg" style="float:right; height:1500px;">
+            <iframe id="mainfrm" name="mainfrm" src="/organization_d.html" style="width: 100%; height:100%; border:none;"></iframe>
+        </div>
+    </div>
+</div>
+<!--#include file="footer.html"-->
+<!--#include file="sidebar_social.html"-->
+<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+<script src="js/jquery.form.js" charset="UTF-8"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/about.js"></script>
+<script>
+    function getLocation(){
+        window.location.reload();
+        return location;
+    }
+</script>
+</body>
+</html>

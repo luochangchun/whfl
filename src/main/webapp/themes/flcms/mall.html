@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>家·发展——巧娘商城</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="css/app.css" rel="stylesheet" type="text/css">
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<link type="image/x-icon" href="imgs/logos.png" rel="shortcut icon">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  </head>
+  <body>
+	<!--#include file="header.html"-->
+	<div class="banner bg-cover m-b-md" style="background-image:url(${themeurl!}/imgs/banner3.jpg)"></div>
+	<div class="main m-b-lg">
+        <div class="container goods m-b-lg">
+            <div class="text-center text-danger text-2x m-b-lg">巧娘商城</div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="title fam-banner m-b-xs text-center">
+                        <div class="content inline text-lg text-bold wrapper text-white">
+                            <div class="b wrapper" style="border-color:white; text-align:center;">
+								<span>商城链接</span>
+								<a href="/business_link.html" style="color:white; font-size:12px;">更多</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="row">
+                        <!-- {article:list table=(article) cid=(246) status=(1) limit=(8) order=(time desc)}  -->
+                        <div class="col-md-3 col-sm-4">
+                            <a target="_blank" href=${article.keywords}>
+                                <div class="b h-shadow tras-03 box bg-white padder-v-md text-center m-b-xs">
+                                    <div class="bg-cover m-b-sm h-sm" style="background-image:url(${article.icon})"></div>
+                                    <div class="text-md">
+                                        <span class="inline b-t b-2x pader text-ellipsis-3 " style="padding-top:5px; height:30px; border-color:#F15081;" title="${article.title}">${article.title}</span>
+                                    </div>
+                                    <div class="text-xs text-muted m-b-sm">作者：${article.author}</div>
+                                    <div class="padder padder-v-xxs text-left text-xs h-xxs text-ellipsis-3" title="${article.description}">${article.description}</div>
+                                </div>
+                            </a>
+                        </div>
+                        <!--{/list}-->
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="container goods m-b-lg">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="title fam-banner m-b-xs text-center">
+						<div class="content inline text-lg text-bold wrapper text-white">
+							<div class="b wrapper" style="border-color:white;">巧娘作品</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-9">
+					<div class="row">
+						<!-- {article:list table=(article) cid=(76) status=(1) limit=(8) order=(time desc)}  -->
+						<div class="col-md-3 col-sm-4">
+							<a href="${article.url}">
+								<div class="b h-shadow tras-03 box bg-white padder-v-md text-center m-b-xs">
+									<div class="bg-cover m-b-sm h-sm" style="background-image:url(${article.icon})"></div>
+									<div class="text-md">
+										<span class="inline b-t b-2x pader" style="padding-top:5px; border-color:#F15081;">${article.title}</span>
+									</div>
+									<div class="text-xs text-muted m-b-sm">作者：${article.author}</div>
+									<div class="padder padder-v-xxs text-left text-xs h-xxs text-ellipsis-3">${article.description}</div>
+								</div>
+							</a>
+						</div>
+						<!--{/list}-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container goods m-b-lg">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="title fam-banner m-b-xs text-center">
+						<div class="content inline text-lg text-bold wrapper text-white">
+							<div class="b wrapper" style="border-color:white;">巧娘作品</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-9">
+					<div class="row">
+						<!-- {article:list table=(article) cid=(76) status=(1) limit=(16) order=(time desc)}  -->
+						<!--{if:${article_index > 7}}-->
+						<div class="col-md-3 col-sm-4">
+							<a href="${article.url}">
+								<div class="b h-shadow tras-03 box bg-white padder-v-md text-center m-b-xs">
+									<div class="bg-cover m-b-sm h-sm" style="background-image:url(${article.icon})"></div>
+									<div class="text-md">
+										<span class="inline b-t b-2x pader" style="padding-top:5px; border-color:#F15081;">${article.title}</span>
+									</div>
+									<div class="text-xs text-muted m-b-sm">作者：${article.author}</div>
+									<div class="padder padder-v-xxs text-left text-xs h-xxs text-ellipsis-3">${article.description}</div>
+								</div>
+							</a>
+						</div>
+						<!--{/if}-->
+						<!--{/list}-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--#include file="footer.html"-->
+	<!--#include file="sidebar.html"-->
+	
+
+	<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/about.js"></script>
+	<script>
+		$(function(){
+			$(".fam-banner .dots li").mouseenter(function(){
+				if(!$(this).hasClass("active")){
+					$(this).addClass("active").siblings().removeClass("active");
+					$(".fam-banner .img-box > div").eq($(this).index()).addClass("active").siblings().removeClass("active");
+				}
+			});
+		})
+	</script>
+  </body>
+</html>

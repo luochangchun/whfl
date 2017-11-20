@@ -1,0 +1,10 @@
+*.iml
+.project
+.classpath
+.settings
+.idea
+.vscode
+.svn
+target
+build
+src/main/webapp/data/cache

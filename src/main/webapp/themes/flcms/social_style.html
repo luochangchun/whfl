@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <!--#include file="head.html"-->
+  <body style="background-color:#fff;">
+	<!--#include file="header_social.html"-->
+	<div class="banner bg-cover m-b-md" style="background-image:url(${themeurl!}/imgs/social/social_style_top.jpg)"></div>
+	<div class="main m-b-lg dropdown-submenu">
+		<div class="container padder-v-xxxl">
+			<div class="social_tree dropdown-submenu" style="background-image:url(${themeurl!}/imgs/social/social_tree.jpg)">
+                <!--(div.tree$>a[title=bar$])*30-->
+                <!-- {organization:list table=(organization) status=(1) limit=(30) order=(time desc)} -->
+                <!--{if:${organization.id == 40 }}-->
+                <div class="tree40" style="background-image:url(/${organization.icon})"><a href="/social_online.html" title="${organization.name}"></a></div>
+                <!--{else}-->
+                <div class="tree${organization_index+1}" style="background-image:url(/${organization.icon})"><a href="${organization.url}" title="${organization.name}"></a></div>
+                <!--{/if}-->
+                <!-- {/list} -->
+			</div>
+		</div>
+        <div class="social_trees col-12" style="background-image:url(${themeurl!}/imgs/social/social_trees.png)"></div>
+	</div>
+	<!--#include file="footer.html"-->
+	<!--#include file="sidebar_social.html"-->
+
+	<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/about.js"></script>
+
+  </body>
+</html>

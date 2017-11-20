@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!--#include file="head.html"-->
+<body>
+<!--#include file="header_social.html"-->
+<div class="banner bg-cover m-b-md" style="background-image:url(${themeurl!}/imgs/social/social_style_top.jpg)"></div>
+<div class="main">
+    <div class="container m-b-md">
+        <div class="main-text bg-white wrapper-lg">
+            <div class="text-center m-b-lg">
+                <div>
+                    <span class="inline text-xxl padder b-b b-2x">招募招聘</span>
+                </div>
+            </div>
+            <div class="row">
+                <@page model="article" size="4" cid="${current.cid}" status="1" order="time desc">
+                <#list page.data as article>
+                    <div class="col-md-3 col-sm-6">
+                        <a href="${article.url}" title="${article.title}">
+                            <div class="h-shadow tras-03 m-b-lg">
+                                <div class="bg-cover img h-sm wrapper" style="background-image:url(${article.icon});overflow: hidden; text-overflow:ellipsis;">
+                                </div>
+                                <div class="text-box bg-light wrapper">
+                                    <div>
+                                        <span class="text-ellipsis">${article.title}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </#list>
+            </@page>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <!--#include file="common/page.html"-->
+                <@paginate currentPage=page.currentPageNo totalPage=page.totalPages actionUrl=""  />
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!--#include file="footer.html"-->
+<!--#include file="sidebar_social.html"-->
+
+<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/about.js"></script>
+</body>
+
+</html>

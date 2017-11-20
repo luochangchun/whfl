@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>《武汉妇联》首页</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="css/app.css" rel="stylesheet" type="text/css">
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<link type="image/x-icon" href="imgs/logos.png" rel="shortcut icon">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <style>
+      	.tip1{padding-top:60px;}
+      	.tip2{padding-top:40px;}
+      	.index-icon .index-icon-info{background:rgb(225, 90, 134);}
+      </style>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+	<style>body{background:white;}</style>
+	<div class="header header-index">
+		<div class="navbar-brand block">
+			<div class="container h-full">
+				<div class="pull-right text-gray visible-xs padder" data-toggle-class="hidden-xs" data-target=".main-nav">
+					<i class="glyphicon glyphicon-align-justify"></i>
+				</div>
+				<a href="/index.html"><img class="h-xxxs padder-v-xxs" alt="LOGO" src="imgs/logo.png"></a>
+				<ul class="list-inline m-n text-base hidden-xs pull-right">
+					<li><a href="http://whwomen.org.cn/index_old.html" target="_blank" class="tras-01-e" style="color:#6f404e">老版首页</a></li>
+					<!-- <li><a href="#" class="tras-01-e" style="color:#6f404e">设为首页</a></li>
+					<li><a href="#" class="tras-01-e" style="color:#6f404e">添加收藏</a></li> -->
+					<li><a href="/admin/index.do" class="tras-01-e" style="color:#6f404e" target="_blank">信息报送</a></li>
+					<li style="color:#6f404e">
+						<div id="time">
+							<script>
+								document.getElementById('time').innerHTML = new Date().toLocaleString();
+								setInterval("document.getElementById('time').innerHTML = new Date().toLocaleString()",1000);
+							</script>
+						</div>
+					</li>
+				</ul>
+				<ul class="main-nav list-inline m-n text-base hidden-xs">
+					<li><a href="/about.html" class="tras-01-e">妇联简介</a></li>
+					<li><a href="/listIX.html" class="tras-01-e">机关党建</a></li>
+					<li><a href="/data_center.html" class="tras-01-e">资料中心</a></li>
+					<li><a href="/pubcation.html" class="tras-01-e">《武汉妇联》内刊</a></li>
+					<li><a href="/mails.html" class="tras-01-e">主席信箱</a></li>
+					<li><a href="/list.html" class="tras-01-e">通知公示</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="animation-banner index">
+		<div class="banner-box">
+			<div class="img-box">
+				<img class="img" src="imgs/banner2.png" alt="">
+				<img class="img" src="imgs/banner1.png" alt="">
+				<img class="img" src="imgs/banner4.png" alt="">
+				<img class="img" src="imgs/banner3.png" alt="">
+
+			</div>
+			<div class="banner-btn">
+				<div class="btn-left tras-03"><i class="glyphicon glyphicon-chevron-left"></i></div>
+				<div class="btn-right tras-03"><i class="glyphicon glyphicon-chevron-right"></i></div>
+			</div>
+			<div class="banner-bottom clear">
+				<div class="dots">
+					<div class="active tras-03"></div>
+					<div class="tras-03"></div>
+					<div class="tras-03"></div>
+					<div class="tras-03"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container padder-v">
+		<div class="row">
+			<div class="col-md-6 col-md-push-3 m-b-lg info1">
+				<div class="info1-left m-t">
+					<div class="top">
+						<div class="title">
+							<div class="info1_tit tit1 info1_tit1 active">
+								<p class="m-b-sm">今日聚焦</p>
+								<i></i>
+							</div>
+							<i>/</i>
+							<div class="info1_tit tit2 info1_tit2">
+								<p class="m-b-sm">妇联工作动态</p>
+								<i></i>
+							</div>
+						</div>
+						<a href="/work.html" class="more">更多 ></a>
+						<a href="/info.html" class="more dis-hidden">更多 ></a>
+					</div>
+					<div class="slide slide1 clear">
+						<div id="slideBox" class="slideBox">
+							<div class="hd">
+								<ul class="list-unstyled"><li>1</li><li>2</li><li>3</li></ul>
+							</div>
+							<div class="bd">
+								<ul class="list-unstyled">
+									<!-- {article:list table=(article) cid=(37) status=(1) limit=(3) order=(time desc)} -->
+									<li>
+										<a href="${article.url}" title="${article.title}">
+											<img class="w-full block" alt="" src="${article.icon}">
+											<span class="img_tit text-ellipsis">${article.title}</span>
+										</a>
+									</li>
+									<!-- {/list} -->
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="slide slide2 clear dis-hidden">
+						<div id="slideBox2" class="slideBox">
+							<div class="hd">
+								<ul class="list-unstyled"><li>1</li><li>2</li><li>3</li></ul>
+							</div>
+							<div class="bd">
+								<ul class="list-unstyled">
+									<!-- {article:list table=(article) cid=(38) status=(1) limit=(3) order=(time desc)} -->
+									<li>
+										<a href="${article.url}" title="${article.title}">
+											<img class="w-full block" alt="" src="${article.icon}">
+											<span class="img_tit text-ellipsis">${article.title}</span>
+										</a>
+									</li>
+									<!-- {/list} -->
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 col-md-pull-6 col-sm-6 m-b-lg">
+				<div class="sm-list">
+					<div class="box bg-white padder-md">
+						<div class="title b-b text-md flex-center padder-v m-b">
+							<div class="w-full">通知公示<small class="pull-right"><a class="text-muted h-main" href="/list.html">更多</a></small></div>
+						</div>
+						<ul class="list-unstyled m-b-md">
+							<!-- {article:list table=(article) cid=(41) status=(1) limit=(15) order=(time desc)} -->
+							<li class="pos-rlt" data-time="${article.time format=(yyyy-MM-dd)}"><a class="text-ellipsis h-main tras-01" href="${article.url}">${article.title}</a></li>
+							<!-- {/list} -->
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-6 m-b-lg">
+				<div class="sm-list">
+					<div class="box bg-white padder-md">
+						<div class="title b-b text-md flex-center padder-v m-b">
+							<div class="w-full">今日聚焦<small class="pull-right"><a class="text-muted h-main" href="/listVIII.html">更多</a></small></div>
+						</div>
+						<ul class="list-unstyled m-b-md">
+							<!-- {article:list table=(article) cid=(37) status=(1) limit=(15) order=(time desc)} -->
+							<li class="pos-rlt" data-time="${article.time format=(yyyy-MM-dd)}"><a class="text-ellipsis h-main tras-01" href="${article.url}">${article.title}</a></li>
+							<!-- {/list} -->
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-4 m-b-lg">
+				<div class="sm-list">
+					<div class="box bg-white padder-md">
+						<div class="title b-b text-md flex-center padder-v m-b">
+							<div class="w-full">市妇联工作动态<small class="pull-right"><a class="text-muted h-main" href="/listVI.html">更多</a></small></div>
+						</div>
+						<ul class="list-unstyled m-b-md">
+							<!-- {article:list table=(article) cid=(38) status=(1) limit=(8) order=(time desc)} -->
+							<li class="pos-rlt" data-time="${article.time format=(yyyy-MM-dd)}"><a class="text-ellipsis h-main tras-01" href="${article.url}">${article.title}</a></li>
+							<!-- {/list} -->
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4 m-b-lg">
+				<div class="sm-list">
+					<div class="box bg-white padder-md">
+						<div class="title b-b text-md flex-center padder-v m-b">
+							<div class="w-full">区妇联信息速递<small class="pull-right"><a class="text-muted h-main" href="/listVII.html">更多</a></small></div>
+						</div>
+						<ul class="list-unstyled m-b-md">
+							<!-- {article:list table=(article) cid=(47) status=(1) limit=(8) order=(time desc)} -->
+							<li class="pos-rlt" data-time="${article.time format=(yyyy-MM-dd)}"><a class="text-ellipsis h-main tras-01" href="${article.url}">${article.title}</a></li>
+							<!-- {/list} -->
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4 m-b-lg">
+				<div class="sm-list">
+					<div class="box bg-white padder-md">
+						<div class="title b-b text-md flex-center padder-v m-b">
+							<div class="w-full">机关党建<small class="pull-right"><a class="text-muted h-main" href="/listIX.html">更多</a></small></div>
+						</div>
+						<ul class="list-unstyled m-b-md">
+							<!-- {article:list table=(article) cid=(49) status=(1) limit=(8) order=(time desc)} -->
+							<li class="pos-rlt" data-time="${article.time format=(yyyy-MM-dd)}"><a class="text-ellipsis h-main tras-01" href="${article.url}">${article.title}</a></li>
+							<!-- {/list} -->
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="padder-v-md m-b-xxxl bg-cover padder-v-xxxl" style="background-image:url(${themeurl!}/imgs/index_ad.png);">
+		<div class="container">
+			<div class="row">
+				<a class="col-sm-4 block text-center m-b-lg" href="/listXI.html">
+					<div class="index-link bg-white w-full wrapper b tras-03">
+						<img class="h-xxs w-xxs center-block m-b" src="imgs/icon/icon_9.png">
+						<span class="text-lg">部门预算及“三公”经费</span>
+					</div>
+				</a>
+				<a class="col-sm-4 block text-center m-b-lg" href="/listIII.html">
+					<div class="index-link bg-white w-full wrapper b tras-03">
+						<img class="h-xxs w-xxs center-block m-b" src="imgs/icon/icon_10.png">
+						<span class="text-lg">政府采购信息</span>
+					</div>
+				</a>
+				<a class="col-sm-4 block text-center m-b-lg" href="/admin/index.do" target="_blank">
+					<div class="index-link bg-white w-full wrapper b tras-03">
+						<img class="h-xxs w-xxs center-block m-b" src="imgs/icon/icon_11.png">
+						<span class="text-lg">信息报送</span>
+					</div>
+				</a>
+			</div>
+			<div class="row">
+				<a class="col-sm-4 block text-center m-b-lg" href="/consultation.html">
+					<div class="index-link bg-white w-full wrapper b tras-03">
+						<img class="h-xxs w-xxs center-block m-b" src="imgs/icon/icon_6.png">
+						<span class="text-lg"><span class="inline">网上妇联</span><span class="inline">维权咨询服务中心</span></span>
+					</div>
+				</a>
+				<a class="col-sm-4 block text-center m-b-lg" href="/nopage.html">
+					<div class="index-link bg-white w-full wrapper b tras-03">
+						<img class="h-xxs w-xxs center-block m-b" src="imgs/icon/icon_8.png">
+						<span class="text-lg">网上家风博物馆</span>
+					</div>
+				</a>
+				<a class="col-sm-4 block text-center m-b-lg" href="/social.html">
+					<div class="index-link bg-white w-full wrapper b tras-03">
+						<img class="h-xxs w-xxs center-block m-b" src="imgs/icon/icon_7.png">
+						<span class="text-lg"><span class="inline">网上女性</span><span class="inline">社会组织服务中心</span></span>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div>
+		<div class="container text-center index-icon">
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-1 m-b-lg">
+					<div class="padder-v-lg b r-3x pos-rlt index-icon-box">
+						<div class="h-xs m-b">
+							<img class="h-full" alt="" src="imgs/icon/icon_3.png">
+						</div>
+						<div class="text-xl font-bold">示范妇女之家</div>
+						<div class="pos-abt w-full flex-center r-3x index-icon-info tras-03 tip1">
+							<div class="w-full">
+								<a class="inline tras-01" href="/map.html">地图总览</a><br>
+								<a class="inline tras-01" href="/article/407.html">妇女之家</a><br>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 col-sm-offset-2 m-b-lg">
+					<div class="padder-v-lg b r-3x pos-rlt index-icon-box">
+						<div class="h-xs m-b">
+							<img class="h-full" alt="" src="imgs/icon/icon_1.png">
+						</div>
+						<div class="text-xl font-bold">巾帼风采</div>
+						<div class="pos-abt w-full flex-center r-3x index-icon-info tras-03 tip1">
+							<div class="w-full">
+								<a class="inline tras-01" href="/listXVI.html">历年查询</a><br>
+								<a class="inline tras-01" href="/dxzs.html">风采展示</a><br>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4 m-b-lg">
+					<div class="padder-v-lg b r-3x pos-rlt index-icon-box">
+						<div class="h-xs m-b">
+							<img class="h-full" alt="" src="imgs/icon/icon_2.png">
+						</div>
+						<div class="text-xl font-bold">家·文明</div>
+						<div class="pos-abt w-full flex-center r-3x index-icon-info tras-03 tip2">
+							<div class="w-full">
+								<a class="inline tras-01" href="/familyCivilized.html">文明家庭</a><br>
+								<a class="inline tras-01" href="/want.html">巾帼志愿服务</a><br>
+								<a class="inline tras-01" href="http://fulian.hansap.cn/" target="_blank">家教大讲堂</a><br>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 m-b-lg">
+					<div class="padder-v-lg b r-3x pos-rlt index-icon-box">
+						<div class="h-xs m-b">
+							<img class="h-full" alt="" src="imgs/icon/icon_4.png">
+						</div>
+						<div class="text-xl font-bold">家·发展</div>
+						<div class="pos-abt w-full flex-center r-3x index-icon-info tras-03 tip2">
+							<div class="w-full">
+								<a class="inline tras-01" href="/mall.html">巧娘商城</a><br>
+								<a class="inline tras-01" href="/innovation.html">创新创业</a><br>
+								<a class="inline tras-01" href="/jgjg.html">巾帼建功</a><br>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 m-b-lg">
+					<div class="padder-v-lg b r-3x pos-rlt index-icon-box">
+						<div class="h-xs m-b">
+							<img class="h-full" alt="" src="imgs/icon/icon_5.png">
+						</div>
+						<div class="text-xl font-bold">家·服务</div>
+						<div class="pos-abt w-full flex-center r-3x index-icon-info tras-03 tip2">
+							<div class="w-full">
+								<a class="inline tras-01" href="/consultation.html">维权咨询服务</a><br>
+								<a class="inline tras-01" href="/family.html">家政服务</a><br>
+								<a class="inline tras-01" href="/social.html">社会组织服务</a><br>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--#include file="footer.html"-->
+	<!--#include file="sidebar.html"-->
+
+    <script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/about.js"></script>
+
+	<!--info1 js-->
+    <script>
+        $(function(){
+        	$(".slideBox").each(function(){
+        		$(this).find(".bd li").first().addClass("active");
+        		$(this).find(".hd li").first().addClass("on");
+        	});
+        	function autoMove(){
+        		$(".slideBox").each(function(){
+        			if($(this).find(".hd li.on").index() == $(this).find(".hd li").length-1){
+	            		$(this).find(".bd li").first().addClass("active").siblings().removeClass("active");
+	            		$(this).find(".hd li").first().addClass("on").siblings().removeClass("on");
+        			}else{
+	            		$(this).find(".bd li.active").next().addClass("active").siblings().removeClass("active");
+	            		$(this).find(".hd li.on").next().addClass("on").siblings().removeClass("on");
+        			}
+            	});
+        	}
+        	$(".slide .slideBox .hd li").click(function(){
+        		var n = $(this).index();
+        		$(".slideBox").each(function(){
+            		$(this).find(".bd li").eq(n).addClass("active").siblings().removeClass("active");
+            		$(this).find(".hd li").eq(n).addClass("on").siblings().removeClass("on");
+            	});
+        	});
+        	var timer = setInterval(function(){
+        		autoMove();
+        	},3000);
+        	$(".slideBox").hover(function(){
+        		clearInterval(timer);
+        	},function(){
+        		timer = setInterval(function(){
+            		autoMove();
+            	},3000);
+        	});
+        	
+            $('.info1_tit1').click(function(){
+				if($(this).hasClass("active")) return;
+                $('.info1_tit2').removeClass('active');
+                $(this).addClass('active');
+                $('.slide1').removeClass('dis-hidden');
+                $('.slide2').addClass('dis-hidden');
+                $('.info1-right1').removeClass('dis-hidden');
+                $('.info1-right2').addClass('dis-hidden');
+				$(".info1 .top .more").toggleClass("dis-hidden");
+            });
+            $('.info1_tit2').click(function(){
+				if($(this).hasClass("active")) return;
+                $('.info1_tit1').removeClass('active');
+                $(this).addClass('active');
+                $('.slide1').addClass('dis-hidden');
+                $('.slide2').removeClass('dis-hidden');
+                $('.info1-right1').addClass('dis-hidden');
+                $('.info1-right2').removeClass('dis-hidden');
+				$(".info1 .top .more").toggleClass("dis-hidden");
+            });
+
+			$(".index-icon .index-icon-box").hover(function(){
+				$(this).addClass("active");
+			},function(){
+				$(this).removeClass("active");
+			});
+
+			$(".index-icon-list .index-icon-main li > div").mouseover(function(){
+				if(!$(this).hasClass("active")){
+					$(".index-icon-list .index-icon-main li > div").removeClass("active");
+					$(this).addClass("active");
+					$(".index-icon-list .child-list ul").eq($(this).parent().index()).addClass("active").siblings().removeClass("active");
+				}
+			});
+        });
+    </script>
+  </body>
+</html>

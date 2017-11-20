@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!--#include file="head.html"-->
+
+<body>
+	<!--#include file="header_social.html"-->
+	<div class="banner bg-cover m-b-md" style="background-image:url(${themeurl!}/imgs/banner3.jpg)"></div>
+	<div class="main m-b-lg">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-offset-1 col-sm-10 m-b-lg">
+					<div class="main-text bg-white wrapper-lg">
+						<div class="font-bold text-xl m-b text-danger text-left">课程列表</div>
+						<ul class="media-list">
+							<!-- {course:list table=(course) limit=(50) order=(startTime desc)} -->
+							<li class="media row">
+								<div class="col-sm-8">
+									<a class="media-body" href="/pla_course_detail.html?courseid=${course.id}">
+										<h4 class="media-heading">${course.name}</h4>
+										<div class="h-xs" style="max-height:50px;overflow: hidden; text-overflow:ellipsis;">
+											${course.content}
+										</div>
+										<h5 class="media-bottom">
+											地址：${course.address} 时间：${course.startTime?string['yyyy-MM-dd']}
+										</h5>
+										<h5 class="media-bottom">
+											特邀嘉宾：<span class="text-danger h4">${course.guest}</span>
+										</h5>
+										<h5 class="media-bottom">${course.brief}</h5>
+									</a>
+								</div>
+								<div class="col-sm-2 col-sm-offset-2">
+									<h5 class="media-heading text-center">限
+										<span class="h4 text-danger padder-xxs">${course.total!c}</span>人报名</h5>
+									<#if (course.reported >= course.total)>
+									<button type="button" class="btn btn-block wrapper bg-white no-border" disabled>
+										<span class="h3" style="font-weight:bold">报名已满</span>
+									</button>
+									<#elseif course.status == 1>
+									<button type="button" class="btn btn-block wrapper bg-white no-border" disabled>
+										<span class="h3" style="font-weight:bold">报名截止</span>
+									</button>
+									<#else>
+									<button type="button" class="btn btn-block wrapper bg-white no-border" data-toggle="modal" data-target="#reportModal" data-cid="${course.id}" data-cname="${course.name}">
+										<span class="h3 text-danger" style="font-weight:bold">报名</span>
+									</button>
+									</#if>
+								</div>
+							</li>
+							<hr class="hr-dashed m-t-none">
+							<!-- {/list} -->
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--#include file="pla_course_report.html"-->
+	<!--#include file="footer.html"-->
+	<!--#include file="sidebar_social.html"-->
+
+	<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/about.js"></script>
+</body>
+
+</html>

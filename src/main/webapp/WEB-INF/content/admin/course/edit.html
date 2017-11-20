@@ -1,0 +1,106 @@
+<div class="content">
+	<div class="tab_bar">
+		<ul>
+			<li class="tab_index" onclick="setTabContent(this);">添加课程</li>
+		</ul>
+		<button class="btn_tabbar" onclick="submit(this);" return="course/view.do">保 存</button>
+	</div>
+	<form id="myForm" action="course/update.do" method="post">
+		<input type="hidden" name="id" value="${course.id?c}"/>
+		<div class="tab_content">
+			<div class="tab_item tab_show">
+				<table class="table_for_add">
+					<tbody>
+						<tr>
+							<th width="140">课程名称： </th>
+							<td align="left">
+								<input class="input_for_add" id="name" name="name" type="text" value="${course.name!}" />
+								<span id="Validform_checktip"></span>
+							</td>
+						</tr>
+						<tr>
+							<th>报名状态：</th>
+							<td>
+								<select id="status" class="select_for_add" name="status">
+									<@statusTree/>
+								</select>
+							</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>活动地点： </th>
+							<td>
+								<input class="input_for_add" name="address" type="text" value="${course.address!}" />
+							</td>
+						</tr>
+						<tr>
+							<th>活动时间： </th>
+							<td>
+								<input type="text" name="startTime" class="input_for_add" id="startTime"
+									style="display:inline-block;" placeholder="点击选择活动时间" onClick="WdatePicker()"/>
+							</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>总人数： </th>
+							<td>
+								<input class="input_for_add" name="total" type="number" min="0" value="${course.total!}" />
+							</td>
+						</tr>
+						<tr>
+							<th>特邀嘉宾： </th>
+							<td>
+								<input class="input_for_add" name="guest" type="text" placeholder="请填写特邀嘉宾。" value="${course.guest!}"/>
+							</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>嘉宾简介： </th>
+							<td>
+								<input class="input_for_add" name="brief" type="text" placeholder="请填写嘉宾简介。" maxlength="220" value="${course.brief!}"/>
+							</td>
+						</tr>
+						<tr>
+							<th>活动内容：</th>
+							<td></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<script type="text/plain" id="mushroomeditor" name="content" style="height:350px;">${course.content!}
+								</script>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</form>
+</div>
+<script type="text/javascript">
+	$(function () {
+		if (window.editor != null) {
+			window.editor.destroy();
+		}
+
+		//实例化编辑器
+		//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+		window.editor = UE.getEditor('mushroomeditor');
+
+		window.editor.ready(function () {
+			$("#title").focus();//纠正显示
+		});
+	});
+
+	function submit(obj) {
+		window.editor.sync();//手动提交需要手动同步编辑器数据
+		submitActionForm(obj);
+	}
+
+</script>
+
+<#macro statusTree>
+<#if course.status == 1>
+<option value="0">等待报名</option>
+<option value="1" selected>报名截止</option>
+<#else>
+<option value="0" selected>等待报名</option>
+<option value="1">报名截止</option>
+</#if>
+</#macro>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>走进妇联-工作动态</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="css/app.css" rel="stylesheet" type="text/css">
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<link type="image/x-icon" href="imgs/logos.png" rel="shortcut icon">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  </head>
+  <body>
+	<!--#include file="header.html"-->
+	<div class="banner bg-cover m-b-md" style="background-image:url(${themeurl!}/imgs/banner3.jpg)"></div>
+	<div class="main m-b-lg">
+		<div class="container">
+			<div class="leftbar">
+				<div class="m-b-md">
+					<div class="main-box bg-white b wrapper-lg">
+						<div class="list m-b">
+							<div class="title-list bg-white text-md flex-center">
+								<div class="w-full">今日聚焦<small class="pull-right"><a class="text-muted h-main" href="/work.html">更多</a></small></div>
+							</div>
+						</div>
+					<!-- {article:list table=(article) cid=(37) status=(1) limit=(7) order=(time desc)} -->
+						<!--{if:${article_index == 0}}-->
+						<div class="row b-b m-b-md">
+							<div class="col-md-8 col-md-push-4">
+								<img class="img-responsive center-block w-full" alt="" src="${article.icon}">
+								<div class="text-box padder-v h-sm clear">
+									<div class="font-bold text-md text-ellipsis m-b-sm"><a href="${article.url}" class="h-main tras-01">${article.title}</a></div>
+									<div class="text-muted text-xs m-b-sm">
+										<span class="inline m-r">信息来源：<a href="#" class="h-main tras-01">${article.author}</a></span>
+										<span class="inline m-r">发布时间：<span>${article.time?string("yyyy-MM-dd")}</span></span>
+									</div>
+									<div class="text-xs text-ellipsis-3">
+										${article.description}
+									</div>
+								</div>
+							</div>
+						<!--{/if}-->
+						<!--{if:${article_index == 1}}-->
+							<div class="col-md-4 col-md-pull-8">
+								<div class="row">
+									<div class="col-md-12 col-sm-6">
+										<img class="img-responsive center-block" alt="" src="${article.icon}">
+										<div class="text-box padder-v">
+											<div class="font-bold text-ellipsis"><a href="${article.url}" class="h-main tras-01">${article.title}</a></div>
+											<div class="text-muted text-xs">
+												<span class="inline m-r"><span>${article.time?string("yyyy-MM-dd")}</span></span>
+											</div>
+										</div>
+									</div>
+						<!--{/if}-->
+						<!--{if:${article_index == 2}}-->
+									<div class="col-md-12 col-sm-6">
+										<img class="img-responsive center-block" alt="" src="${article.icon}">
+										<div class="text-box padder-v">
+											<div class="font-bold text-ellipsis"><a href="${article.url}" class="h-main tras-01">${article.title}</a></div>
+											<div class="text-muted text-xs">
+												<span class="inline m-r"><span>${article.time?string("yyyy-MM-dd")}</span></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--{/if}-->
+						<!--{if:${article_index == 3}}-->
+						<div class="row">
+						<!--{/if}-->
+						<!--{if:${article_index >= 3 && article_index < 7}}-->
+							<div class="col-md-3 col-sm-6">
+								<img class="img-responsive center-block" alt="" src="${article.icon}">
+								<div class="text-box padder-v">
+									<div class="font-bold text-ellipsis"><a href="${article.url}" class="h-main tras-01">${article.title}</a></div>
+									<div class="text-muted text-xs">
+										<span class="inline m-r"><span>${article.time?string("yyyy-MM-dd")}</span></span>
+									</div>
+								</div>
+							</div>
+						<!--{/if}-->
+						<!-- {/list} -->
+						</div>
+					</div>
+				</div>
+				<div class="list m-b-md">
+					<!-- {article:list table=(article) cid=(38) status=(1) limit=(3) order=(time desc)}  -->
+					<div class="box pos-rlt wrapper-lg bg-white clear">
+						<!--{if:${article_index == 0}}-->
+						<div class="title-list bg-white text-md flex-center m-b">
+							<div class="w-full">工作动态<small class="pull-right"><a class="text-muted h-main" href="/listVI.html">更多</a></small></div>
+						</div>
+						<!--{/if}-->
+						<div class="img-box w pull-left">
+							<img class="img-responsive center-block" alt="" src="${article.icon}">
+						</div>
+						<div class="text-box">
+							<div class="font-bold text-md text-ellipsis m-b-sm"><a class="h-main tras-01" href="${article.url}">${article.title}</a></div>
+							<div class="text-muted text-xs m-b-sm">
+								<span class="inline m-r">信息来源：<a class="h-main tras-01" href="#">${article.author}</a></span>
+								<span class="inline m-r">发布时间：<span>${article.time?string("yyyy-MM-dd")}</span></span>
+							</div>
+							<div class="text-xs text-ellipsis-3">
+								${article.description}
+							</div>
+						</div>
+					</div>
+					<!--{/list}-->
+				</div>
+			</div>
+			<!--#include file="sidebar_info.html"-->
+		</div>
+	</div>
+	<!--#include file="footer.html"-->
+	<!--#include file="sidebar.html"-->
+
+	<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/about.js"></script>
+
+  </body>
+</html>

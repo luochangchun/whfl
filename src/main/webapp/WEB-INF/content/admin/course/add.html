@@ -1,0 +1,87 @@
+<div class="content">
+	<div class="tab_bar">
+		<ul>
+			<li class="tab_index" onclick="setTabContent(this);">添加课程</li>
+		</ul>
+		<button class="btn_tabbar" onclick="submit(this);" return="course/view.do">保 存</button>
+	</div>
+	<form id="myForm" action="course/save.do" method="post">
+		<input id="status" name="status" value="0" type="hidden" />
+		<div class="tab_content">
+			<div class="tab_item tab_show">
+				<table class="table_for_add">
+					<tbody>
+						<tr>
+							<th width="140">课程名称： </th>
+							<td align="left">
+								<input class="input_for_add" id="name" name="name" type="text" placeholder="请填写课程名称。" />
+							</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>活动地点： </th>
+							<td>
+								<input class="input_for_add" name="address" type="text" placeholder="请填写活动地点。" />
+							</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>活动时间： </th>
+							<td>
+								<input type="text" name="startTime" class="input_for_add" id="startTime" style="display:inline-block;" placeholder="点击选择活动时间" onClick="WdatePicker()"
+								/>
+							</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>总人数： </th>
+							<td>
+								<input class="input_for_add" name="total" type="number" min="0" placeholder="请填写人数。" />
+							</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>特邀嘉宾： </th>
+							<td>
+								<input class="input_for_add" name="guest" type="text" placeholder="请填写特邀嘉宾。" />
+							</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>嘉宾简介： </th>
+							<td>
+								<input class="input_for_add" name="brief" type="text" placeholder="请填写嘉宾简介。" maxlength="220" />
+							</td>
+						</tr>
+						<tr>
+							<th>活动内容：</th>
+							<td></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<script type="text/plain" id="mushroomeditor" name="content" style="height:350px;"></script>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</form>
+</div>
+<script type="text/javascript">
+	$(function () {
+		if (window.editor != null) {
+			window.editor.destroy();
+		}
+
+		//实例化编辑器
+		//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+		window.editor = UE.getEditor('mushroomeditor');
+
+		window.editor.ready(function () {
+			$("#title").focus();//纠正显示
+		});
+	});
+
+	function submit(obj) {
+		window.editor.sync();//手动提交需要手动同步编辑器数据
+		console.log($("input[name='startTime']").val());
+		submitActionForm(obj);
+	}
+
+</script>

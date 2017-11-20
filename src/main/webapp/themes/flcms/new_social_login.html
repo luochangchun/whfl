@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <!--#include file="head.html"-->
+  <body>
+	<!--#include file="header_social.html"-->
+	<div class="container">
+        <div class="main m-b-lg m-t-lg main-text" style="background-color:#fff;" >
+            <div class="social-head">
+                <div class="social-head-title">
+                    <p>用户登录</p>
+                </div>
+            </div>
+            <div class="social-login" style="background:url(${themeurl!}/imgs/social/login.jpg) no-repeat;">
+                <div class="social-cont col-lg-6">
+                    <form id="loginForm" class="form-horizontal">
+                        <input type="hidden" name="device" id="device"/>
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">账号：</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="name" class="form-control" id="name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass" class="col-sm-2 control-label">密码：</label>
+                            <div class="col-sm-6">
+                                <input type="password" name="pass" class="form-control" id="pass">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-6">
+                                <div type="submit" onclick="login()" class="btn btn-danger btn-block">登录</div>
+                            </div>
+                            <div class="col-sm-offset-2 col-sm-6 text-right wrapper-md">还没有账号？   立即 <a href="/new_social_registered.html" class="color-fen">免费注册</a></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+	<!--#include file="footer.html"-->
+	<!--#include file="sidebar_social.html"-->
+
+	<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+    <script src="js/jquery.form.js" charset="UTF-8"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/about.js"></script>
+
+	<script src="js/echarts.min.js"></script>
+	<script src="js/mychart.js" charset="UTF-8"></script>
+
+  </body>
+  <script>
+      function login(){
+          var template = "new_social.html";
+          var name = $("input[name='name']").val();
+          var pass = $("input[name='pass']").val();
+          if(!name){
+              alert("请输入账号名！");
+              return;
+          }
+          if(!pass){
+              alert("请输入密码！");
+              return;
+          }
+          $("input[name='device']").val(getSysInfo());
+
+          var options = {
+              type : "POST",
+              url : "front/user/login.do",
+              dataType: 'json',
+              success: function(data)
+              {
+                  if(data.status)
+                  {
+                      $("#loginForm")[0].reset();
+                      if(location.search === '?schedule'){
+                          window.location = '/schedule_list.html';
+                          return;
+                      }
+                      window.location.href = window.location.protocol + "//" + window.location.host + "/" + template;
+
+                  }
+                  else
+                  {
+                      alert(data.message);
+                  }
+              },
+              error: function()
+              {
+                  alert("提交失败!");
+              }
+          };
+          $('#loginForm').ajaxSubmit(options);
+      }
+  </script>
+</html>

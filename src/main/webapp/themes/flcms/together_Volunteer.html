@@ -1,0 +1,469 @@
+<div class="list m-b-md">
+    <div class="box pos-rlt wrapper-lg bg-white clear">
+        <div class="title-list bg-white text-md flex-center m-b">
+            <div class="w-full">
+                志愿者申请
+                <div class="btn btn-danger btn-xs text-base" data-toggle="modal" data-target="#myModal">个人申请通道</div>
+                <div class="btn btn-danger btn-xs text-base" data-toggle="modal" data-target="#myModal_group">团体申请通道</div>
+            </div>
+        </div>
+        <div class="text-indent">${chip.zhiyuanzhe!}</div>
+    </div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">个人志愿者申请信息填写</h4>
+            </div>
+            <div class="modal-body" style="max-height:500px;overflow:auto;">
+                <form id="personalForm" method="post" onsubmit="return false;" class="form-horizontal" role="form">
+                    <input type="hidden" name="description"/>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">姓名：</label>
+                        <div class="col-sm-7">
+                            <input type="text" id="name" name="name" class="form-control" placeholder="请输入姓名"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">身份证号：</label>
+                        <div class="col-sm-7">
+                            <input type="text" id="idCard" name="idCard" class="form-control" placeholder="请输入身份证号"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">文化程度：</label>
+                        <div class="col-sm-7">
+                            <input type="text" id="culture" name="culture" class="form-control" placeholder="请填写文化程度"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">爱好特长：</label>
+                        <div class="col-sm-7">
+                            <input type="text" id="like" name="like" class="form-control" placeholder="请输入爱好特长"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">联系方式：</label>
+                        <div class="col-sm-7">
+                            <input type="text" id="phone" name="phone" class="form-control" placeholder="请输入手机号"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">所属区：</label>
+                        <div class="col-sm-7">
+                            <select class="form-control" name="region">
+                                    <option value="">---请选择---</option>
+                                <!-- {dictionaries:list table=(dictionaries) name=('region') type=('volunteer')} -->
+                                    <option value="${dictionaries.code!}">${dictionaries.value!}</option>
+                                <!--{/list}-->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">服务方向：</label>
+                        <div class="col-sm-7">
+                            <div class="radio inline m-r">
+                                <label class="i-checks">
+                                    <input name="descriptions" value="1" type="checkbox"/>
+                                    <i></i>
+                                    亲子阅读
+                                </label>
+                            </div>
+                            <div class="radio inline m-r">
+                                <label class="i-checks">
+                                    <input name="descriptions" value="2" type="checkbox"/>
+                                    <i></i>
+                                    亲子活动
+                                </label>
+                            </div>
+                            <div class="radio inline m-r">
+                                <label class="i-checks">
+                                    <input name="descriptions" value="3" type="checkbox"/>
+                                    <i></i>
+                                    家庭教育
+                                </label>
+                            </div>
+                            <div class="radio inline m-r">
+                                <label class="i-checks">
+                                    <input name="descriptions" value="4" type="checkbox"/>
+                                    <i></i>
+                                    邻里关照
+                                </label>
+                            </div>
+                            <div class="radio inline m-r">
+                                <label class="i-checks">
+                                    <input name="descriptions" value="5" type="checkbox"/>
+                                    <i></i>
+                                    爱心助学
+                                </label>
+                            </div>
+                            <div class="radio inline m-r">
+                                <label class="i-checks">
+                                    <input name="descriptions" value="6" type="checkbox"/>
+                                    <i></i>
+                                    法律援助
+                                </label>
+                            </div>
+                            <div class="radio inline m-r">
+                                <label class="i-checks">
+                                    <input name="descriptions" value="7" type="checkbox"/>
+                                    <i></i>
+                                    心理咨询
+                                </label>
+                            </div>
+                            <div class="radio inline m-r">
+                                <label class="i-checks">
+                                    <input name="descriptions" value="8" type="checkbox"/>
+                                    <i></i>
+                                    婚姻调解
+                                </label>
+                            </div>
+                            <div class="radio inline m-r">
+                                <label class="i-checks">
+                                    <input name="descriptions" value="9" type="checkbox"/>
+                                    <i></i>
+                                    其他
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </form>
+                <div id="preview"></div>
+                <button type="button"  onclick="savePersonal();" class="btn btn-danger btn-block">提交申请</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal_group" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_group" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel_group">团队志愿者申请信息填写</h4>
+            </div>
+            <div class="modal-body" style="max-height:500px;overflow:auto;">
+                <form id="teamFrom" method="post" onsubmit="return false;" class="form-horizontal" role="form">
+                    <input type="hidden" name="description"/>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">团队名称：</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="name" class="form-control" placeholder="请输入姓名"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">代表人身份证：</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="idCard" class="form-control" placeholder="请输入身份证号"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">团队人数：</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="number" class="form-control" placeholder="请填写团队人数"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">团队专长：</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="like" class="form-control" placeholder="请输入团队专长"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">团队联系方式：</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="phone" class="form-control" placeholder="请输入手机号"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">所属区：</label>
+                        <div class="col-sm-7">
+                            <select class="form-control" name="region">
+                                <option value="">---请选择---</option>
+                                <!-- {dictionaries:list table=(dictionaries) name=('region') type=('volunteer')} -->
+                                <option value="${dictionaries.code!}">${dictionaries.value!}</option>
+                                <!--{/list}-->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">服务方向：</label>
+                        <div class="col-sm-7">
+                            <div class="radio inline m-r">
+                                <label class="i-checks">
+                                    <input name="descriptions" value="1" type="checkbox"/>
+                                    <i></i>
+                                    亲子阅读
+                                </label>
+                            </div>
+                            <div class="radio inline m-r">
+                                <label class="i-checks">
+                                    <input name="descriptions" value="2" type="checkbox"/>
+                                    <i></i>
+                                    亲子活动
+                                </label>
+                            </div>
+                            <div class="radio inline m-r">
+                                <label class="i-checks">
+                                    <input name="descriptions" value="3" type="checkbox"/>
+                                    <i></i>
+                                    家庭教育
+                                </label>
+                            </div>
+                            <div class="radio inline m-r">
+                                <label class="i-checks">
+                                    <input name="descriptions" value="4" type="checkbox"/>
+                                    <i></i>
+                                    邻里关照
+                                </label>
+                            </div>
+                            <div class="radio inline m-r">
+                                <label class="i-checks">
+                                    <input name="descriptions" value="5" type="checkbox"/>
+                                    <i></i>
+                                    爱心助学
+                                </label>
+                            </div>
+                            <div class="radio inline m-r">
+                                <label class="i-checks">
+                                    <input name="descriptions" value="6" type="checkbox"/>
+                                    <i></i>
+                                    法律援助
+                                </label>
+                            </div>
+                            <div class="radio inline m-r">
+                                <label class="i-checks">
+                                    <input name="descriptions" value="7" type="checkbox"/>
+                                    <i></i>
+                                    心理咨询
+                                </label>
+                            </div>
+                            <div class="radio inline m-r">
+                                <label class="i-checks">
+                                    <input name="descriptions" value="8" type="checkbox"/>
+                                    <i></i>
+                                    婚姻调解
+                                </label>
+                            </div>
+                            <div class="radio inline m-r">
+                                <label class="i-checks">
+                                    <input name="descriptions" value="9" type="checkbox"/>
+                                    <i></i>
+                                    舞蹈、球类、健身类
+                                </label>
+                            </div>
+                            <div class="radio inline m-r">
+                                <label class="i-checks">
+                                    <input name="descriptions" value="10" type="checkbox"/>
+                                    <i></i>
+                                    其他
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div id="fdfd"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button"  onclick="saveTeam();" class="btn btn-danger btn-block">提交申请</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function savePersonal()
+    {
+        var name = $("#personalForm input[name='name']").val();
+        var idCard = $("#personalForm input[name='idCard']").val();
+        var phone = $("#personalForm input[name='phone']").val();
+        var region = $("#personalForm select[name='region']").val();
+        var culture = $("#personalForm input[name='culture']").val();
+        var like = $("#personalForm input[name='like']").val();
+        var description = $("#personalForm input[name='description']");
+
+        var reg = /^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/;
+        if(!name){
+            alert("请输入姓名！");
+            return;
+        }
+        if(!(checkID(idCard))){
+            return;
+        }
+        if (!reg.test(phone)) {
+            alert("请输入联系方式！");
+            return;
+        }
+        if(!(region)){
+            alert("请输入选择区位信息！");
+            return;
+        }
+        if(!(like)){
+            alert("请输入兴趣爱好、特长等等！");
+            return;
+        }
+        if(!culture){
+            alert("请输入文化程度和学历水平！");
+            return;
+        }
+
+        var list = "";
+        var temp;
+        $("#personalForm input[name='descriptions']:checked").each(function()
+        {
+            temp = $(this).attr("value");
+            list += temp + ",";
+        });
+
+        if(list != "")
+        {
+            list = list.substr(0,list.length-1);
+            description.val(list);
+        }
+
+        if(!(description.val())){
+            alert("请选择服务方向！");
+            return;
+        }
+
+
+        $.ajax
+        ({
+            type : "POST",
+            url: "front/volunteer/personal/save.do",
+            data: $("#personalForm").serialize(),
+            dataType: 'json',
+            success: function(data)
+            {
+                if(data.status)
+                {
+                    alert(data.message);
+                    $("#personalForm")[0].reset();
+                }
+                $('#myModal').modal('hide');
+            },
+            error: function(){
+                alert("提交失败！")
+            }
+        });
+    }
+
+    function saveTeam()
+    {
+        var name = $("#teamFrom input[name='name']").val();
+        var idCard = $("#teamFrom input[name='idCard']").val();
+        var phone = $("#teamFrom input[name='phone']").val();
+        var region = $("#teamFrom select[name='region']").val();
+        var number = $("#teamFrom input[name='number']").val();
+        var like = $("#teamFrom input[name='like']").val();
+        var description = $("#teamFrom input[name='description']");
+
+        if(!name){
+            alert("请输入姓名！");
+            return;
+        }
+        if(!(checkID(idCard))){
+            return;
+        }
+        var reg = /^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/;
+        if (!reg.test(phone)) {
+            alert("请输入联系方式！");
+            return;
+        }
+        if(!number)
+        {
+            alert("请输入团队人数！");
+            return;
+        }
+        if(!region)
+        {
+            alert("请选择区位信息！");
+            return;
+        }
+        reg = /^[0-9]*[1-9][0-9]*$/;
+        if(!reg.test(number)){
+            alert("团队人数只能为数字！");
+            return;
+        }
+        if(!like){
+            alert("请输入团队专长等等！");
+            return;
+        }
+        var list = "";
+        var temp;
+        $("#teamFrom input[name='descriptions']:checked").each(function()
+        {
+            temp = $(this).attr("value");
+            list += temp + ",";
+        });
+
+        if(list != "")
+        {
+            list = list.substr(0,list.length-1);
+            description.val(list);
+        }
+        if(!description.val()){
+            alert("请选择服务方向！");
+            return;
+        }
+        var options = {
+            type : "POST",
+            url : "/front/volunteer/team/save.do",
+            data : $("#teamFrom").serialize(),
+            dataType: 'json',
+            success: function(data) {
+                if(data.status){
+                    alert(data.message);
+                    $("#teamFrom")[0].reset();
+                }
+                $('#myModal_group').modal('hide');
+            },
+            error: function(){
+                alert("提交失败!");
+            }
+        };
+        $('#teamFrom').ajaxSubmit(options);
+    }
+
+    function checkID(ID) {
+        if(typeof ID !== 'string'){
+            alert("不是正确的身份证号，请重新输入身份证号");
+            return false;
+        }
+        var city = {11:"北京",12:"天津",13:"河北",14:"山西",15:"内蒙古",21:"辽宁",22:"吉林",23:"黑龙江 ",31:"上海",32:"江苏",33:"浙江",34:"安徽",35:"福建",36:"江西",37:"山东",41:"河南",42:"湖北 ",43:"湖南",44:"广东",45:"广西",46:"海南",50:"重庆",51:"四川",52:"贵州",53:"云南",54:"西藏 ",61:"陕西",62:"甘肃",63:"青海",64:"宁夏",65:"新疆",71:"台湾",81:"香港",82:"澳门",91:"国外"};
+        var birthday = ID.substr(6, 4) + '/' + Number(ID.substr(10, 2)) + '/' + Number(ID.substr(12, 2));
+        var d = new Date(birthday);
+        var newBirthday = d.getFullYear() + '/' + Number(d.getMonth() + 1) + '/' + Number(d.getDate());
+        var currentTime = new Date().getTime();
+        var time = d.getTime();
+        var arrInt = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
+        var arrCh = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'];
+        var sum = 0, i, residue;
+
+        if(!/^\d{17}(\d|x)$/i.test(ID)){
+            alert("非法身份证,请重新输入身份证号");
+            return false;
+        }
+        if(city[ID.substr(0,2)] === undefined){
+            alert("身份证上的地区非法，请重新输入身份证号");
+            return false;
+        }
+        if(time >= currentTime || birthday !== newBirthday){
+            alert("身份证上生日非法，请重新输入身份证号");
+            return false;
+        }
+        for(i=0; i<17; i++) {
+            sum += ID.substr(i, 1) * arrInt[i];
+        }
+        residue = arrCh[sum % 11];
+        if (residue !== ID.substr(17, 1)){
+            alert("身份证号出错，请重新输入身份证号");
+            return false;
+        }
+        console.log(city[ID.substr(0,2)]+","+birthday+","+(ID.substr(16,1)%2?" 男":"女"));
+        return true;
+    }
+</script>

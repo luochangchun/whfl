@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <!--#include file="head.html"-->
+  <body>
+	<!--#include file="header.html"-->
+	<div class="banner bg-cover m-b-md" style="background-image:url(${themeurl!}/imgs/banner1.jpg)"></div>
+	<div class="main m-b-lg">
+		<div class="container">
+			<a href onclick="mailto()"><img class="center-block img-responsive" src="${themeurl!}/imgs/mails.png"></a>
+		</div>
+	</div>
+	<!--#include file="footer.html"-->
+	<!--#include file="sidebar.html"-->
+
+	<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/about.js"></script>
+    <script>
+        function mailto() { window.open('mailto:whfl2003@163.com'); return false; }
+    </script>
+	
+  </body>
+</html>

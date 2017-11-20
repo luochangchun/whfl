@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!--#include file="head.html"-->
+
+<body>
+	<!--#include file="header_social.html"-->
+	<div class="banner bg-cover m-b-md" style="background-image:url(${themeurl!}/imgs/banner3.jpg)"></div>
+	<div class="main m-b-lg">
+		<div class="container">
+			<div class="mb-20">
+				<div class="btn btn-danger btn-xs text-base social-full-right settled mr-20" style="display:none" data-toggle="modal" data-target="#myModal2">申请入驻</div>
+			</div>
+			<div>
+				<ul class="nav nav-tabs m-b-md" id="month-nav" role="tablist">
+					<li role="presentation" class="active">
+						<a id="1" href role="tab" data-toggle="tab" onclick="switchto(this);">项目路演厅</a>
+					</li>
+					<li role="presentation">
+						<a id="2" href role="tab" data-toggle="tab" onclick="switchto(this);">儿童活动室</a>
+					</li>
+					<li role="presentation">
+						<a id="3" href role="tab" data-toggle="tab" onclick="switchto(this);">舞蹈活动室</a>
+					</li>
+					<li role="presentation">
+						<a id="4" href role="tab" data-toggle="tab" onclick="switchto(this);">心理咨询室</a>
+					</li>
+					<li role="presentation">
+						<a id="5" href role="tab" data-toggle="tab" onclick="switchto(this);">多功能培训室</a>
+					</li>
+				</ul>
+			</div>
+			<div id="calendar"></div>
+		</div>
+	</div>
+
+	<!--#include file="schedule_list_button.html"-->
+	<!--#include file="footer.html"-->
+	<!--#include file="sidebar_social.html"-->
+
+	<style>
+		.fc-scroller {
+			overflow-y: hidden!important;
+		}
+
+		.fc-content {
+			font-size: 14px;
+			text-align: center;
+		}
+
+		.fc-event {
+			margin: 10px 14px!important;
+		}
+
+		.fc-pointer:hover {
+			cursor: pointer!important;
+		}
+
+		.fc-nopointer:hover {
+			cursor: default!important;
+		}
+		@media screen and (max-width: 990px) {
+			.container {
+				width: 100%!important;
+			}
+		}
+		@media screen and (max-width: 768px) {
+			.fc-content {
+				word-break: normal!important;
+				white-space: pre-wrap!important;
+			}
+			.fc-event {
+				margin: 5px!important;
+			}
+			.fc-scroller {
+				overflow-y: scroll!important;
+			}
+		}
+	</style>
+	<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/about.js"></script>
+	<script src="js/My97DatePicker/WdatePicker.js"></script>
+
+	<!-- fullcalendar lib -->
+	<link rel='stylesheet' href='js/fullcalendar/fullcalendar.css' />
+	<script src='js/fullcalendar/lib/moment.min.js'></script>
+	<script src='js/fullcalendar/fullcalendar.min.js'></script>
+	<script src='js/fullcalendar/locale/zh-cn.js'></script>
+
+	<script>
+		/*几种基本状态
+		* 状态0：已预约
+		* 状态1：可预约
+		* 状态2：审核中
+		*/
+		var stlist = ['（已预约）', '（可预约）', '（审核中）'];
+		var resources = {};
+		var eventSources = [{ events: [] }];
+		var currentTarget = null;
+		function switchto(target) {
+			var tab = $(target)[0];
+			eventSources.events = resources[tab.id];
+			$('#calendar').fullCalendar('removeEventSources');
+			$('#calendar').fullCalendar('addEventSource', eventSources);
+		}
+
+		$(document).ready(function () {
+			$.ajax({
+				type: "POST",
+				url: "front/applicationSite/list.do",
+				dataType: "json",
+				success: function (result) {
+					var start = result.start;
+					var end = result.end;
+					var dateIdx = {};
+					var list = {};
+					/* 返回的原始数据筛选，生成日期索引 */
+					$.each(result.data, function (name, value) {
+						var site = value.site;
+						var moment = value.moment;
+						var key = site + ":" + moment;
+						if (!dateIdx[key]) {
+							dateIdx[key] = [];
+							list[key] = [];
+						}
+						dateIdx[key].push(new Date(value.makeDate).format('yyyy-MM-dd'));
+						list[key].push(value);
+					});
+					parseToEvent(result.pre, dateIdx, list);/*上月*/
+					parseToEvent(result.curr, dateIdx, list);/*当月*/
+					parseToEvent(result.next, dateIdx, list);/*下月*/
+
+					eventSources = [{ events: resources["1"] }];
+					/* fullcalendar 初始化 */
+					$('#calendar').fullCalendar({
+						locale: 'zh-cn',
+						editable: false,
+						contentHeight: 550,
+						header: {
+							left: 'month basicWeek',
+							center: 'title',
+							right: 'today prev next'
+						},
+						fixedWeekCount: false,
+						defaultView: 'month',
+						validRange: {
+							start: start,
+						},
+						eventClick: function (calEvent, jsEvent, view) {
+							var user = '${Session.user}';
+							if (!user || user == '') {
+								loginTip();
+								return;
+							}
+							var title = calEvent.title;
+							if (title.indexOf(stlist[1]) < 0) return;
+							var ymd = calEvent.start.toDate().format('yyyy-MM-dd');
+							if (title.indexOf('上午') >= 0) {
+								title = 'morning';
+							} else {
+								title = 'afternoon';
+							}
+							currentTarget = calEvent;
+							$('.myModal').modal('show');
+						},
+						eventSources: eventSources
+					});
+				},
+				error: function () {
+					console.log('something error');
+				}
+			});
+		});
+
+		$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+			e.preventDefault();
+		});
+
+		$('.myModal').on('shown.bs.modal', function (event) {
+			var tab = $('li[class="active"] > a[role="tab"]')[0];
+			var site_id = tab.id;
+			var site_value = tab.text;
+
+			var month = currentTarget.start.toDate().format('yyyy-MM-dd');
+			var moment = currentTarget.title;
+			var months;
+			if (moment.indexOf('上午') >= 0) {
+				moment = 'morning';
+				months = month + ' 上午';
+			} else {
+				moment = 'afternoon';
+				months = month + ' 下午';
+			}
+			var modal = $(this);
+			modal.find('input.click_day').val(month);
+			modal.find('input.click_days').val(months);
+			modal.find('input.click_site_id').val(site_id);
+			modal.find('input.click_site_value').val(site_value);
+			modal.find('input.click_moment').val(moment);
+			currentTarget = null;
+		});
+
+		/**
+		 * 解析后台返回的预约数据，填充fullcalendar事件
+		 */
+		function parseToEvent(dateInfo, dateIdx, datalist) {
+			var year = dateInfo.year;
+			var month = dateInfo.month;
+			/* 遍历当月的每一天，设置预约信息 */
+			for (var day = 1; day <= dateInfo.days; day++) {
+				var ymd = new Date(year, month - 1, day).format('yyyy-MM-dd');
+				/* 5个活动室，分别标示上/下午是否有预约 */
+				var sites = {
+					"1": { morning: false, afternoon: false },
+					"2": { morning: false, afternoon: false },
+					"3": { morning: false, afternoon: false },
+					"4": { morning: false, afternoon: false },
+					"5": { morning: false, afternoon: false }
+				};
+
+				/* 遍历预约数据，设置当天的已预约标识 */
+				var li = $.map(dateIdx, function(value, key) {
+					var idx = value.indexOf(ymd);
+					return idx >= 0 ? {key: key, idx: idx} : null;
+				});
+				$.each(li, function(index, value) {
+					var idx = value.idx;
+					var key = value.key;
+
+					var data = datalist[key][idx];
+					var site = data.site;
+					var moment = data.moment;
+
+					var title;
+					var st = stlist[data.status];
+					if (data.moment == 'morning') {
+						title = '上午' + st;
+						sites[site].morning = true;
+					} else {
+						title = '下午' + st;
+						sites[site].afternoon = true;
+					}
+
+					if (!resources[site]) resources[site] = [];
+					resources[site].push({
+						className: 'fc-nopointer',
+						title: title,
+						start: ymd,
+						color: '#CCCCCC',
+					});
+				});
+
+				/* 为每个活动室添加当天的可预约标识 */
+				$.each(sites, function (key, value) {
+					if (!resources[key]) resources[key] = [];
+
+					if (!value.morning) {
+						resources[key].push({
+							className: 'fc-pointer',
+							title: '上午' + stlist[1],
+							start: ymd,
+						});
+					}
+					if (!value.afternoon) {
+						resources[key].push({
+							className: 'fc-pointer',
+							title: '下午' + stlist[1],
+							start: ymd,
+						});
+					}
+				});
+			}
+		}
+
+		function loginTip() {
+			alert("登录的用户才能使用服务平台！");
+			window.location = '/new_social_login.html?schedule';
+		}
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <!--#include file="head.html"-->
+  <body>
+	<!--#include file="header.html"-->
+	<div class="banner bg-cover m-b-md" style="background-image:url(${themeurl!}/imgs/banner3.jpg)"></div>
+	<div class="main m-b-lg">
+		<div class="container">
+			<div class="leftbar m-b-lg">
+				<div class="list bg-white wrapper-md b">
+					<div class="title-list bg-white text-md flex-center">
+						<div class="w-full">${current.name}</div>
+					</div>
+					<@page model="article" size="10" cid="247" status="1" order="time desc">
+						<#list page.data as article>
+							<div class="b-b b-b-dashed">
+								<a class="h-main tras-01 padder-v block clear" href="${article.url}">
+									<div class="text-ellipsis pull-left" style="width: calc(100% - 90px);">${article.title}</div>
+									<span class="pull-right" style="width:90px;">${article.time?string("yyyy-MM-dd")}</span>
+								</a>
+							</div>
+						</#list>
+					</@page>
+					<!--#include file="common/page.html"-->
+					<@paginate currentPage=page.currentPageNo totalPage=page.totalPages actionUrl=""  />
+				</div>
+			</div>
+			<!--#include file="dxzs_right.html"-->
+		</div>
+	</div>
+	<!--#include file="footer.html"-->
+	<!--#include file="sidebar.html"-->
+
+
+
+	<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/about.js"></script>
+
+  </body>
+</html>

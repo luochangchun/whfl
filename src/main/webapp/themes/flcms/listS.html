@@ -1,0 +1,17 @@
+<div class="leftbar m-b-lg" style="float:right;">
+    <div class="list bg-white wrapper-md b">
+        <div class="title-list bg-white text-md padder-v b-b flex-center">
+            <div class="w-full">组织动态</div>
+        </div>
+        <@page model="article" size="2" cid="${organization.cid2!}" status="1" order="time desc">
+        <#list page.data as article>
+            <div class="b-b b-b-dashed pt-30">
+                <p>${article.title!}</p>
+                <img src="${article.icon!}" alt="" style="width:100%; height:316px;">
+                <p class="text-right m-t-md m-r-lg l-h-1x"><span class="m-r-lg">发布时间：${article.time format=(yyyy-MM-dd hh:mm:ss)}</span> <a href=""><i class="social_up m-r-xs"></i>点个赞</a></p>
+            </div>
+        </#list>
+    </@page>
+    <!--#include file="common/page.html"-->
+    <@paginate currentPage=page.currentPageNo totalPage=page.totalPages actionUrl=""  />
+</div>

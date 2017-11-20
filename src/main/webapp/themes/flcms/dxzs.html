@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--#include file="head.html"-->
+<html lang="zh-CN">
+  <body>
+	<!--#include file="header.html"-->
+	<div class="banner bg-cover m-b-md" style="background-image:url(${themeurl!}/imgs/banner2.jpg)"></div>
+	<div class="main m-b-lg">
+		<div class="container">
+            <div class="leftbar m-b-lg">
+                <div class="bg-white wrapper-lg">
+                    <div class="text-3x font-bold text-danger text-center m-b-lg">${current.name}</div>
+                    <div class="form-group m-b-lg">
+                            <!-- {category:list table=(category) pid=(61) order=(sort desc)} -->
+                            <!--{if:${category_index == 0}}-->
+                        <select class="form-control" id="selectY" value="${category.id}">
+                            <!--{/if}-->
+                            <option value="${category.id}">${category.name}</option>
+                            <!-- {/list} -->
+                        </select>
+                    </div>
+                    <!-- {category:list table=(category) pid=(61) order=(id desc)} -->
+                    <div class="item" data-time="${category.id}">
+                        <!-- {article:list table=(article) status=(1) order=(time desc)} -->
+                        <!--{if:${article.cid == category.id}}-->
+                        <div class="book-list bg-light m-b-lg">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="book pos-rlt bg-white bg-contain h-lg tras-03 active" style="background-image:url(${article.icon})">
+                                        <div class="text-box pos-abt w-full padder-v text-center text-lg tras-03">
+                                            ${article.title}<br><small>${article.description}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="wrapper-lg clear">
+                                        <div>
+                                            ${article.content}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--{/if}-->
+                        <!-- {/list} -->
+                    </div>
+                    <!-- {/list} -->
+                </div>
+            </div>
+            <!--#include file="dxzs_right.html"-->
+		</div>
+	</div>
+	<!--#include file="footer.html"-->
+	<!--#include file="sidebar.html"-->
+
+	<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/about.js"></script>
+	<script type="text/javascript">
+		var _val = $("#selectY").val();
+		function showVal(_val){
+			$(".item").each(function(){
+				if($(this).data("time") == _val){
+					$(this).show().siblings(".item").hide();
+				}
+			});
+		};
+		showVal(_val);
+		$("#selectY").change(function(){
+			_val = $(this).val();
+			showVal(_val);
+		});
+	</script>
+  </body>
+</html>
