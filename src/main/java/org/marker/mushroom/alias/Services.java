@@ -30,4 +30,8 @@ public interface Services
 	String DICTIONARIES = "dictionariesService";
 
 	String COURSE = "courseService";
+	
+	String APPLYINCUBATOR = "applyForIncubatorService";
+	
+	String ENROLACTIVITY = "enrolActivityService";
 }

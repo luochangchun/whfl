@@ -1,0 +1,41 @@
+<div class="content">
+	<div class="tab_bar">
+		<button class="btn_tabbar" action="applyincubator/list.do" onclick="refreshContentByElement(this);">返回</button>
+	</div>
+	<form id="myForm">
+		<div class="tab_content">
+			<div class="tab_item tab_show">
+				<table class="table_for_add">
+					<tbody>
+						<tr>
+							<th>联系人：</th>
+							<td>${tenancy.name!""}</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>手机号：</th>
+							<td>${tenancy.phone!""}</td>
+						</tr>
+						<tr>
+							<th>公司名称：</th>
+							<td>${tenancy.company!""}</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>团队人数：</th>
+							<td>${tenancy.team!""}</td>
+						</tr>
+						<tr>
+							<th>申请时间：</th>
+							<td>${tenancy.date!""}</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>公司简介：</th>
+							<td colspan="4">
+								${tenancy.text!""}
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</form>
+</div>

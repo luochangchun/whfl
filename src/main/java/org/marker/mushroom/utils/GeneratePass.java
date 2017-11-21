@@ -19,5 +19,11 @@ public class GeneratePass {
 		 return MD5.getMD5Code(Base64.encode(DES.encrypt(
 					password.getBytes(), key))); 
 	}
+	
+	public static void main(String[] args) throws Exception {
+		String password = "123456";
+		String key = "iSDCRbyRZP0\\=";
+		System.out.println(MD5.getMD5Code(Base64.encode(DES.encrypt(password.getBytes(), key))));
+	}
 
 }
