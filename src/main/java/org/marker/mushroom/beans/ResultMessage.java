@@ -15,7 +15,22 @@ public class ResultMessage
 	private String message;
 	// 传值
 	private String param;
-
+	
+	
+	/**
+	 * 返回信息
+	 */
+	public ResultMessage(){
+		
+	};
+	
+	/**
+	 * 返回信息
+	 */
+	public ResultMessage(final String message){
+		this.message=message;
+	}
+	
 	/**
 	 * 登录消息
 	 *
@@ -43,7 +58,7 @@ public class ResultMessage
 		this.message = message;
 		this.param = param;
 	}
-
+	
 	/**
 	 * 校验前台验证码
 	 *

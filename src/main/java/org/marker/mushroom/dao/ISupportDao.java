@@ -42,8 +42,7 @@ public interface ISupportDao
 	 * @return
 	 */
 	boolean update(Object entity);
-
-
+	
 	/**
 	 * 批量删除
 	 * 
@@ -51,7 +50,6 @@ public interface ISupportDao
 	 * @return
 	 */
 	public boolean deleteByIds(Class<?> clzz, String ids);
-
 
 	/**
 	 * 批量删除
