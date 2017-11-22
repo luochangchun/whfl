@@ -34,4 +34,8 @@ public interface Services
 	String APPLYINCUBATOR = "applyForIncubatorService";
 	
 	String ENROLACTIVITY = "enrolActivityService";
+	
+	String WOMANWORK = "womanworkService";
+	
+	String MENTORAPPLICATION = "mentorApplicationService";
 }

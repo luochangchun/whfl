@@ -1,0 +1,132 @@
+<div class="content">
+	<div class="tab_bar">
+		<button class="btn_tabbar" action="mentorapplication/list.do" onclick="refreshContentByElement(this);">返回</button>
+	</div>
+	<form id="myForm">
+		<div class="tab_content">
+			<div class="tab_item tab_show">
+				<table class="table_for_add">
+					<tbody>
+						<tr>
+							<th>姓名：</th>
+							<td>${tenancy.name!""}</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>性别：</th>
+							<td>${tenancy.gender!""}</td>
+						</tr>
+						<tr>
+							<th>出生年月：</th>
+							<td>${tenancy.birthday!""}</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>毕业院校：</th>
+							<td>${tenancy.university!""}</td>
+						</tr>
+						<tr>
+							<th>学历：</th>
+							<td>${tenancy.educationalBackground!""}</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>专业：</th>
+							<td>${tenancy.majors!""}</td>
+						</tr>
+						<tr>
+							<th>办公室电话：</th>
+							<td>${tenancy.officePhone!""}</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>手机：</th>
+							<td>${tenancy.phone!""}</td>
+						</tr>
+						<tr>
+							<th>电子邮箱/QQ：</th>
+							<td>${tenancy.mailorqq!""}</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>单位名称：</th>
+							<td>${tenancy.unit!""}</td>
+						</tr>
+						<tr>
+							<th>职务：</th>
+							<td>${tenancy.duty!""}</td>
+						</tr>
+						<tr class="rowBgColor"> 
+							<th>行业：</th>
+							<td>${tenancy.industry!""}</td>
+						</tr>
+						<tr>
+							<th>居住地：</th>
+							<td>${tenancy.address!""}</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>创业指导课程：</th>
+							<td>${tenancy.courses!""}</td>
+						</tr>
+						<tr>
+							<th>登记时间：</th>
+							<td>${tenancy.time!""}</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>公司详细介绍：</th>
+							<td></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<script type="text/plain" id="mushroomeditor1" name="introduce" style="height:350px;">${tenancy.introduce!}
+								</script>
+							</td>
+						</tr>
+						<tr>
+							<th>个人介绍：</th>
+							<td></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<script type="text/plain" id="mushroomeditor2" name="introduce" style="height:350px;">${tenancy.resume!}
+								</script>
+							</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>照片：</th>
+							<td></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<script type="text/plain" id="mushroomeditor3" name="introduce" style="height:350px;">${tenancy.photographs!}
+								</script>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</form>
+</div>
+<script type="text/javascript">
+	
+	$(function () {
+		if (window.editor != null) window.editor.destroy();
+		if (window.editor2 != null) window.editor2.destroy();
+		if (window.editor3 != null) window.editor3.destroy();
+
+		//实例化编辑器
+		//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+		window.editor = UE.getEditor('mushroomeditor1');
+		window.editor.ready(function () {
+			editor.setContent($("#mrcmsContent1").val());
+		});
+
+		window.editor2 = UE.getEditor('mushroomeditor2');
+		window.editor2.ready(function () {
+			editor2.setContent($("#mrcmsContent2").val());
+		});
+		
+		window.editor3 = UE.getEditor('mushroomeditor3');
+		window.editor3.ready(function () {
+			editor3.setContent($("#mrcmsContent2").val());
+		});
+
+	});
+
+</script>

@@ -1,8 +1,8 @@
 package org.marker.mushroom.controller;
 
-import org.marker.mushroom.beans.EnrolActivity;
 import org.marker.mushroom.beans.ResultMessage;
-import org.marker.mushroom.service.impl.EnrolActivityService;
+import org.marker.mushroom.beans.Womanwork;
+import org.marker.mushroom.service.impl.WomanworkService;
 import org.marker.mushroom.support.SupportController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 /**
- *申请活动
+ * 女性创业申请表单
  * @author Administrator
  *
  */
 @Controller
-@RequestMapping("/front/enrolactivity")
-public class EnrolActivityController extends SupportController{
+@RequestMapping("/front/womanwork")
+public class WomanworkController extends SupportController{
 	
 	@Autowired
-	private EnrolActivityService enrolActivityService;
+	private WomanworkService womanworkService;
 
-	public EnrolActivityController() {
-		this.viewPath = "/front/enrolactivity/";
+	public WomanworkController() {
+		this.viewPath="/front/womanwork/";
 	}
 	
 	//申请入孵页面
@@ -37,8 +37,8 @@ public class EnrolActivityController extends SupportController{
 	//申请入孵操作
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	@ResponseBody
-	public ResultMessage insert(@RequestBody EnrolActivity enrolActivity) throws Exception {
-		ResultMessage createEnrolActivity = enrolActivityService.createEnrolActivity(enrolActivity);
-		return createEnrolActivity;
+	public ResultMessage insert(@RequestBody Womanwork womanwork) throws Exception {
+		ResultMessage createWomanwork = womanworkService.createWomanwork(womanwork);
+		return createWomanwork;
 	}
 }

@@ -1,8 +1,8 @@
 package org.marker.mushroom.controller;
 
-import org.marker.mushroom.beans.EnrolActivity;
+import org.marker.mushroom.beans.MentorApplication;
 import org.marker.mushroom.beans.ResultMessage;
-import org.marker.mushroom.service.impl.EnrolActivityService;
+import org.marker.mushroom.service.impl.MentorApplicationService;
 import org.marker.mushroom.support.SupportController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,33 +12,33 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 /**
- *申请活动
+ * 导师申请表单
  * @author Administrator
  *
  */
 @Controller
-@RequestMapping("/front/enrolactivity")
-public class EnrolActivityController extends SupportController{
-	
-	@Autowired
-	private EnrolActivityService enrolActivityService;
+@RequestMapping("/front/mentorapplication")
+public class MentorApplicationController extends SupportController{
 
-	public EnrolActivityController() {
-		this.viewPath = "/front/enrolactivity/";
+	@Autowired
+	private MentorApplicationService mentorApplicationService;
+	
+	public MentorApplicationController() {
+		this.viewPath="/front/mentorapplication/";
 	}
 	
-	//申请入孵页面
+	//申请页面
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView addview() {
 		final ModelAndView view = new ModelAndView(this.viewPath + "add");
 		return view;
 	}
 	
-	//申请入孵操作
+	//申请操作
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	@ResponseBody
-	public ResultMessage insert(@RequestBody EnrolActivity enrolActivity) throws Exception {
-		ResultMessage createEnrolActivity = enrolActivityService.createEnrolActivity(enrolActivity);
-		return createEnrolActivity;
+	public ResultMessage insert(@RequestBody MentorApplication mentorApplication) throws Exception {
+		 ResultMessage createMentorApplication = mentorApplicationService.createMentorApplication(mentorApplication);
+		return createMentorApplication;
 	}
 }

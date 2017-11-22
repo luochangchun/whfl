@@ -1,0 +1,121 @@
+<div class="content">
+	<div class="tab_bar">
+		<button class="btn_tabbar" action="womanwork/list.do" onclick="refreshContentByElement(this);">返回</button>
+	</div>
+	<form id="myForm">
+		<div class="tab_content">
+			<div class="tab_item tab_show">
+				<table class="table_for_add">
+					<tbody>
+						<tr>
+							<th>姓名：</th>
+							<td>${tenancy.name!""}</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>性别：</th>
+							<td>${tenancy.gender!""}</td>
+						</tr>
+						<tr>
+							<th>出生年月：</th>
+							<td>${tenancy.birth!""}</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>学历：</th>
+							<td>${tenancy.background!""}</td>
+						</tr>
+						<tr>
+							<th>专业：</th>
+							<td>${tenancy.majors!""}</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>党派：</th>
+							<td>${tenancy.party!""}</td>
+						</tr>
+						<tr>
+							<th>单位及职务：</th>
+							<td>${tenancy.unitandduty!""}</td>
+						</tr>
+						<tr class="rowBgColor"> 
+							<th>企业所属行业：</th>
+							<td>${tenancy.industry!""}</td>
+						</tr>
+						<tr>
+							<th>企业所在地：</th>
+							<td>${tenancy.home!""}</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>办公室电话：</th>
+							<td>${tenancy.officePhone!""}</td>
+						</tr>
+						<tr>
+							<th>地址和邮编：</th>
+							<td>${tenancy.addressandpostcode!""}</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>移动电话：</th>
+							<td>${tenancy.movePhone!""}</td>
+						</tr>
+						<tr>
+							<th>电子邮箱：</th>
+							<td>${tenancy.mail!""}</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>登记时间：</th>
+							<td>${tenancy.time!""}</td>
+						</tr>
+						
+						<!-- 企业基本情况和简历 ，用富文本编辑器-->
+						<!-- <tr class="rowBgColor">
+							<th>公司简介：</th>
+							<td colspan="4">
+								${tenancy.text!""}
+							</td>
+						</tr> -->
+						
+						<tr>
+							<th>公司简介：</th>
+							<td></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<script type="text/plain" id="mushroomeditor1" name="introduce" style="height:350px;">${tenancy.introduce!}
+								</script>
+							</td>
+						</tr>
+						<tr class="rowBgColor">
+							<th>简历：</th>
+							<td></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<script type="text/plain" id="mushroomeditor2" name="introduce" style="height:350px;">${tenancy.resume!}
+								</script>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</form>
+</div>
+<script type="text/javascript">
+	
+	$(function () {
+		if (window.editor != null) window.editor.destroy();
+		if (window.editor2 != null) window.editor2.destroy();
+
+		//实例化编辑器
+		//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+		window.editor = UE.getEditor('mushroomeditor1');
+		window.editor.ready(function () {
+			editor.setContent($("#mrcmsContent1").val());
+		});
+
+		window.editor2 = UE.getEditor('mushroomeditor2');
+		window.editor2.ready(function () {
+			editor2.setContent($("#mrcmsContent2").val());
+		});
+
+	});
+
+</script>

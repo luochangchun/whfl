@@ -42,7 +42,7 @@ public class ApplyForIncubatorController extends SupportController{
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	@ResponseBody
 	public ResultMessage insert(@RequestBody ApplyForIncubator applyForIncubator) throws Exception {
-		applyForIncubatorService.createApplyIncubator(applyForIncubator);
-		return new ResultMessage(true, "申请成功！");
+		ResultMessage createApplyIncubator = applyForIncubatorService.createApplyIncubator(applyForIncubator);
+		return createApplyIncubator;
 	}
 }

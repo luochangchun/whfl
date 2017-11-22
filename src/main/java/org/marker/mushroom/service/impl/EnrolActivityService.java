@@ -1,5 +1,8 @@
 package org.marker.mushroom.service.impl;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.marker.mushroom.alias.Services;
 import org.marker.mushroom.beans.ApplyForIncubator;
 import org.marker.mushroom.beans.EnrolActivity;
@@ -29,15 +32,26 @@ public class EnrolActivityService extends BaseService{
 	@Transactional
 	public ResultMessage createEnrolActivity(EnrolActivity enrolActivity) {
 		
+		 Pattern p = null;  
+	     Matcher m = null;  
+	     boolean b = false; 
+	     String str=enrolActivity.getPhone();
+	     p = Pattern.compile("^[0-9]{8,11}$"); // 验证手机号8到11位 
+	     m = p.matcher(str);  
+	     b = m.matches(); 
+	     if(b==false){
+	    	 return new ResultMessage(false, "号码格式不正确！请重新输入！");
+	     }
+		
 		if(StringUtil.isBlank(enrolActivity.getName())
-				|| StringUtil.isBlank(enrolActivity.getPhone())
 				|| StringUtil.isBlank(enrolActivity.getAppellation()))
 				return new ResultMessage("资料不完善，请填写完整信息！");
 	
 		if(commonDao.save(enrolActivity)==false){
 			return new ResultMessage(false, "申请失败，请重新申请！");
-		};
-		return new ResultMessage();
+		}else{
+			return new ResultMessage(true, "申请成功！");
+		}
 	}
 
 	//后台展示
@@ -47,9 +61,9 @@ public class EnrolActivityService extends BaseService{
 	}
 
 	//删除操作
-	public ResultMessage EnrolActivityDelete(String rid) {
-		commonDao.deleteByIds(EnrolActivity.class, rid);
-		return new ResultMessage();
+	public boolean EnrolActivityDelete(String rid) {
+		boolean deleteByIds = commonDao.deleteByIds(EnrolActivity.class, rid);
+		return deleteByIds;
 	}
 	
 	

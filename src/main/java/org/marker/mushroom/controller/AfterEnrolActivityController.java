@@ -41,8 +41,12 @@ public class AfterEnrolActivityController extends SupportController{
 	@RequestMapping("/delete")
 	@ResponseBody
 	public ResultMessage applydelete(@RequestParam("rid") String rid) {
-		enrolActivityService.EnrolActivityDelete(rid);
-		return new ResultMessage(true, "删除成功！");
+		boolean enrolActivityDelete = enrolActivityService.EnrolActivityDelete(rid);
+		if(enrolActivityDelete==true){
+			return new ResultMessage(true, "删除成功！");
+		}else{
+			return new ResultMessage(false, "删除失败！");
+		}
 	}
 	
 }
