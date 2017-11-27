@@ -1,22 +1,222 @@
-<!doctype html>
-<html lang="${config['defaultlang']}">
-<head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="${current.description!}">
-  	<meta name="keywords" content="${current.keywords!}">
-    <meta name="author" content="marker">
-	<title><@message "website.title" /></title>
-	<link href="lib/bootstrap3/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="lib/bootstrap3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
-    <link href="css/main.css" rel="stylesheet" type="text/css">
-  	
-</head>
+<!--#include file="head_neutron.html"-->
 
-<body>
-	<h1>${current.name!}</h1>
-	<p>this is a sample html tempate!</p>
-	<p>keywords: ${current.keywords!}</p>
-	<p>desc: ${current.description!}</p>
+<!--创业阵地-->
+<div class="main m-b-lg">
+    <div class="container goods m-b-lg">
+        <div class="text-center text-danger text-2x m-b-lg">
+            创业阵地<img src="${themeurl!}/img/index/cyzd_icon.png" />
+            <a href="/cyzd.html" class="more text-center pull-right" style="margin-top:-15px;">MORE+</a>
+        </div>
+        <div class="container-p" style="margin-top:-15px;">(武汉巾帼园)</div>
+        <p style="line-height:30px;padding:0 10px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为全方位帮扶女性创业就业，为创业创新女性提供阵地支持，2017年市妇联将占地面积10亩，总建筑面积11092平方米的武汉妇女干部学校（妇女创业中心）打造成武汉巾帼园，为女性就业、创业、乐业提供一条龙服务，园区按功能划分为6大板块。
+        </p>
+        <div class="row position cyzd">
+            <!-- {article:list table=(article) cid=(266) limit=(8)} -->
+            <a href="${article.url}" title="${article.title!}">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-sm-6">
+                    <img src="${article.icon}" alt="" >
+                    <p>${article.title!}</p>
+                </div>
+            </a>
+            <!-- {/list} -->
+        </div>
+    </div>
+</div>
+<!--女创联盟-->
+<div class="main m-b-lg" style="background-color: #fff">
+    <div class="container goods m-b-lg">
+        <div class="text-center text-danger text-2x m-b-lg">女创联盟<img src="${themeurl!}/img/index/cyzd_icon.png" /></div>
+        <div class="row alliance">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-sm-12 alliance_pic">
+                <span><img src="${themeurl!}/img/index/alliance_pic.jpg" alt=""></span>
+            </div>
+            <!-- {article:list table=(article) cid=(267) status=(1) limit=(8) order=(top desc,time desc)} -->
+            <div class="col-lg-8 col-md-8 col-sm-12 col-sm-12">
+                <p>${article.description}</p>
+                <a href="/nclm.html"><button>查看详情>></button></a>
+            </div>
+            <!-- {/list} -->
+        </div>
+    </div>
+</div>
+<!--创业政策-->
+<div class="main m-b-lg">
+    <div class="container goods m-b-lg">
+        <div class="text-center text-danger text-2x m-b-lg">创业政策<img src="${themeurl!}/img/index/cyzd_icon.png" /><a href="/nccyzc.html" class="more pull-right text-center" style="margin-top:-25px;">MORE+</a></div>
+        <div class="row position policy">
+            <a href="/article/3055.html">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6" style="text-align: center">
+                    <span><img src="${themeurl!}/img/index/cyzd_img1.png" alt=""></span>
+                    <p>2017大学生创业政策</p>
+                </div>
+            </a>
+            <a href="p/article/3058.html">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6" style="text-align: center">
+                    <span><img src="${themeurl!}/img/index/cyzd_img2.png" alt=""></span>
+                    <p>高新技术企业认定</p>
+                </div>
+            </a>
+            <a href="/article/3056.html">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6" style="text-align: center">
+                    <span><img src="${themeurl!}/img/index/cyzd_img3.png" alt=""></span>
+                    <p>企业研发中心认定</p>
+                </div>
+            </a>
+            <a href="/article/3057.html">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6" style="text-align: center">
+                    <span><img src="${themeurl!}/img/index/cyzd_img4.png" alt=""></span>
+                    <p>市级电子商务示范企业</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<!--创业项目-->
+<div class="main m-b-lg" style="background-color: #fff">
+    <div class="container goods m-b-lg">
+        <a href="/cyxm.html" style="text-decoration: none"><div class="text-center text-danger text-2x m-b-lg">创业项目<img src="${themeurl!}/img/index/cyzd_icon.png" /></div><a href="/cyxm.html" class="more pull-right text-center" style="margin-top:-65px;">MORE+</a></a>
+        <div class="row position project teacher">
+            <!-- {article:list table=(article) cid=(268) status=(1) limit=(4) order=(top desc,time desc)} -->
+            <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6 div1">
+                <div class="box">
+                    <h2 title="${article.title!}">${article.title!}</h2>
+                    <span>${article.description}</span>
+                    <a href="${article.url}"><button>查看详情>></button></a>
+                </div>
+            </div>
+            <!-- {/list} -->
+        </div>
+    </div>
+</div>
+<!--创业导师-->
+<div class="main m-b-lg">
+    <div class="container goods m-b-lg">
+        <a href="/cyds.html" style="text-decoration: none"><div class="text-center text-danger text-2x m-b-lg">创业导师<img src="${themeurl!}/img/index/cyzd_icon.png" /></div><a href="/cyds.html" class="more pull-right text-center" style="margin-top:-65px;">MORE+</a></a>
+        <div class="row position enterprise_teache">
+            <!-- {article:list table=(article) cid=(269) status=(1) limit=(4) order=(top desc,time desc)} -->
+            <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6">
+                <div class="box">
+					<div class="avatar" style="background-image:url(${article.icon});"></div>
+                    <h2>${article.title!}</h2>
+                    <p>${article.description}...</p>
+                    <div>
+                        <a href="${article.url}" ><button>查看详情>></button></a>
+                    </div>
+                </div>
+            </div>
+            <!-- {/list} -->
+        </div>
+    </div>
+</div>
+<!--创业故事-->
+<div class="main m-b-lg" style="background-color: #fff">
+    <div class="container goods m-b-lg">
+        <a href="/cyxm.html" style="text-decoration: none"><div class="text-center text-danger text-2x m-b-lg">创业故事<img src="${themeurl!}/img/index/cyzd_icon.png" /></div><a href="/cygs.html" class="more pull-right text-center" style="margin-top:-65px;">MORE+</a></a>
+        <div class="row position project teacher">
+            <!-- {article:list table=(article) cid=(270) status=(1) limit=(4) order=(top desc,time desc)} -->
+            <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6 div1">
+                <div class="box">
+                    <h2 title="${article.title!}">${article.title!}</h2>
+                    <span>${article.description}</span>
+                    <a href="${article.url}"><button>查看详情>></button></a>
+                </div>
+            </div>
+            <!-- {/list} -->
+        </div>
+    </div>
+</div>
+<!--线上课堂-->
+<div class="main m-b-lg">
+    <div class="container goods m-b-lg">
+        <div class="text-center text-danger text-2x m-b-lg">线上课堂</div>
+        <div class="row position">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6">
+                <img src="${themeurl!}/img/17.png" alt="">
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6">
+                <img src="${themeurl!}/img/18.png" alt="">
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6">
+                <img src="${themeurl!}/img/19.png" alt="">
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6">
+                <img src="${themeurl!}/img/20.png" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<!--创业活动-->
+<div class="main m-b-lg active" style="background-color: #fff">
+    <div class="container goods m-b-lg">
+        <div class="text-center text-danger text-2x m-b-lg">创业活动<img src="${themeurl!}/img/index/cyzd_icon.png" /><a href="/cyhd.html" class="more pull-right text-center" style="margin-top:-35px;">MORE+</a></div>
+        <div class="row position">
+            <!-- {article:list table=(article) cid=(275) status=(1) limit=(1) order=(top desc,time desc)} -->
+            <a href="${article.url}">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6">
+                    <p class="tag">创业调研报告</p>
+                    <img src="${article.icon}" alt="">
+                    <h2 title="${article.title!}">${article.title!}</h2>
+                    <span>${article.time format=(yyyy-MM-dd)}</span>
+                </div>
+            </a>
+            <!-- {/list} -->
+
+            <!-- {article:list table=(article) cid=(272) status=(1) limit=(1) order=(top desc,time desc)} -->
+            <a href="${article.url}">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6">
+                    <p class="tag">女性创业大赛</p>
+                    <img src="${article.icon}" alt="">
+                    <h2 title="${article.title!}">${article.title!}</h2>
+                    <span>${article.time format=(yyyy-MM-dd)}</span>
+                </div>
+            </a>
+            <!-- {/list} -->
+
+            <!-- {article:list table=(article) cid=(273) status=(1) limit=(1) order=(top desc,time desc)} -->
+            <a href="${article.url}">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6">
+                    <p class="tag">女神时间</p>
+                    <img src="${article.icon}" alt="">
+                    <h2 title="${article.title!}">${article.title!}</h2>
+                    <span>${article.time format=(yyyy-MM-dd)}</span>
+                </div>
+            </a>
+            <!-- {/list} -->
+
+            <!-- {article:list table=(article) cid=(274) status=(1) limit=(1) order=(top desc,time desc)} -->
+            <a href="${article.url}">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6">
+                    <p class="tag">创业荟</p>
+                    <img src="${article.icon}" alt="">
+                    <h2 title="${article.title!}">${article.title!}</h2>
+                    <span>${article.time format=(yyyy-MM-dd)}</span>
+                </div>
+            </a>
+            <!-- {/list} -->
+        </div>
+    </div>
+</div>
+<!--加入我们-->
+<div class="main m-b-lg">
+    <div class="container goods m-b-lg">
+        <div class="text-center text-danger text-2x m-b-lg">加入我们</div>
+        <div class="row position">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6">
+                <a href="${themeurl!}/join_sqrl.html" data-toggle="modal" data-target="#myModal"><img src="${themeurl!}/img/25.png" alt=""></a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6">
+                <a href="${themeurl!}/join_hdbm.html" data-toggle="modal" data-target="#myModal2"><img src="${themeurl!}/img/26.png" alt=""></a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6">
+                <a href="/join_nclm.html"><img src="${themeurl!}/img/27.png" alt=""></a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6">
+                <a href="/join_dssq.html"><img src="${themeurl!}/img/28.png" alt=""></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--#include file="footer_neutron.html"-->
 </body>
 </html>

@@ -1,0 +1,114 @@
+.list-inline>li{
+    padding:0 12px;
+    position: relative;
+}
+a:hover{
+    text-decoration: none;
+}
+.list-inline>li .curument{
+    color:#ff6699
+}
+.list-inline>li .down{
+    position: absolute;
+    top:60px;
+    left: -15px;
+    background: #fff;
+    overflow: hidden;
+    padding:0 10px 10px;
+    width:120px;
+    display: none;
+}
+.list-inline>li .down a{
+    line-height: 30px;
+}
+.list-inline>li a:hover{
+    color:#ff6699!important;
+    text-decoration: none;
+}
+
+    /*导师详情*/
+.teacher_a{
+    overflow: hidden;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 30px;
+}
+.teacher_a p{
+    display: inline-block;
+    margin-right: 20px;
+    font-size:12px;
+    color:#999;
+}
+.clear{
+    clear:both;
+    text-align: center;
+    border-top:1px solid #ddd;
+    padding-top: 20px;
+}
+.clear2{
+    clear:both;
+    border-top:1px solid #ddd;
+    padding-top: 20px;
+}
+.clear1{
+    clear:both;
+    /*border-top:1px solid #ddd;*/
+    padding-top: 20px;
+}
+.teacher-main{
+    background-color: #fff;
+    margin-top: 20px;
+    padding: 10px 30px!important;
+}
+.teacher-p{
+    line-height:30px;
+    color:#666;
+    font-size:14px;
+    margin-top: 20px;
+    margin-bottom: 200px;
+}
+.text-x{
+    font-size: 1.5em;
+}
+.m-b-lg {
+   margin: 0 auto;
+}
+.m-b-md {
+     margin-bottom: 0;
+}
+
+/*活动详情*/
+.activity-p{
+    line-height:30px;
+    color:#666;
+    font-size:14px;
+    margin-top: 20px;
+}
+.picture1 img{
+    width:46%;
+}
+
+
+/*表格*/
+.table_style_a tr{
+    height:30px;
+    line-height:30px;
+}
+.table_style_a tr td,th{
+    border:1px solid #ddd;
+    padding:3px 7px 2px 7px;
+    text-align: center;
+}
+
+/*字体*/
+.bold{
+    line-height:30px;
+    margin-bottom: -15px;
+    font-weight: bold;
+}
+
+/*导师图*/
+.t_img img{
+    width:100%;
+}
+
+

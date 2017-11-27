@@ -1,0 +1,119 @@
+<div class="footer">
+	<div class="container">
+	    <div class="text-center padder-v b-t">
+	        <img class="img-responsive inline" src="imgs/link.png">
+	    </div>
+	    <div class="text-center m-b">
+	        ${chip.zanzhu!}
+	    </div>
+	    <div class="row">
+	    	<div class="col-sm-4 col-md-offset-2 col-sm-offset-1">
+	    		<ul class="list-unstyled text-center m-t-md">
+	    			<li class="m-b">市纪委派驻市委政法委纪检组</li>
+	    			<li class="m-b">举报信箱：zfwjjz12388@163.com</li>
+	    			<li class="m-b">举报电话：82402446</li>
+	    			<li class="m-b text-danger">建议使用谷歌浏览器</li>
+	    		</ul>
+	    	</div>
+	    	<div class="col-sm-3 col-md-2">
+	    		<img class="center-block w-full" src="imgs/code.jpg">
+	    	</div>
+	    	<div class="col-sm-3 col-md-2">
+	    		<a href="funvzhijialogo.zip" target="_blank" download="妇女之家LOGO.zip">
+	    			<img class="center-block w-full" src="imgs/logo_down.jpg">
+	    		</a>
+	    	</div>
+	    </div>
+	    <div class="text-center padder-v text-xs text-muted">
+	        <span class="inline padder">鄂ICP备05023479号</span>
+	        <span class="inline padder">Copyright (c) 2000 www.whwomen.org.cn All rights reserved</span>
+	        <span class="inline padder">主办单位：武汉市妇女联合会</span>
+	        <span class="inline padder">日访问量：<span id="todayAccess"></span></span>
+	        <span class="inline padder">总访问量：<span id="totalAccess"></span></span>
+	    </div>
+	</div>
+</div>
+
+<!--申请弹窗-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body"></div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body"></div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
+<script src="js/jquery-1.9.1.min.js" charset="UTF-8"></script>
+<script type="text/javascript">
+    $(function(){
+        totalAccess();
+        todayAccess();
+ 	});
+
+	function totalAccess() {
+        $.ajax({
+            type: "GET",
+            contentType: "text/plain;charset=utf-8",
+            url: "/front/article/totalAccess.do",
+            success: function (data) {
+                if (data.code === 200) {
+                    var sum = data.totalAccess.views;
+					/*sum += 348546;*/
+                    $("#totalAccess").html(sum);
+                }
+                else if (data.code === 500) {
+                    alert('数据加载异常：' + JSON.stringify(data.error));
+                }
+            },
+            error: function () {
+                console.error("数据加载异常...");
+            }
+        });
+    }
+	function todayAccess() {
+        $.ajax({
+            type: "GET",
+            contentType: "text/plain;charset=utf-8",
+            url: "/front/article/todayAccess.do",
+            success: function (data) {
+                if (data.code === 200) {
+                    var sum = data.todayAccess.views;
+					/*sum += 348546;*/
+                    $("#todayAccess").html(sum);
+                }
+                else if (data.code === 500) {
+                    alert('数据加载异常：' + JSON.stringify(data.error));
+                }
+            },
+            error: function () {
+                console.error("数据加载异常...");
+            }
+        });
+    }
+</script>
+
+<script>
+	$(".list-inline>li").hover(function(){
+	    $(this).find(".down").stop(true).slideToggle('slow');
+	});
+</script>
+<script type="text/javascript">
+    var urlstr = location.href;
+    var urlstatus=false;
+    $(".list-inline>li>a").each(function () {
+        if ((urlstr + '/').indexOf($(this).attr('href')) > -1&&$(this).attr('href')!='') {
+            $(this).addClass('curument'); urlstatus = true;
+        } else {
+            $(this).removeClass('curument');
+        }
+    });
+    if (!urlstatus) {$(".list-inline>li>a").eq(0).addClass('curument'); }
+</script>

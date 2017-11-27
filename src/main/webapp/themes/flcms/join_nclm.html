@@ -1,0 +1,170 @@
+<!--#include file="head_neutron.html"-->
+<div class="container">
+	<div class="Application">
+		<h3>武汉女性创新创业联盟成员登记表</h3>
+		<form class="form-horizontal" role="form" method="post" id="joinrForm" >
+			<div class="form-group">
+				<label class="col-sm-3 control-label">姓名 <span class="red">*</span></label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" name="name" placeholder="请输入您的姓名" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">性别</label>
+				<div class="col-sm-9">
+					<label class="radio-inline">
+						<input type="radio" name="gender" value="option1" checked> 男
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="gender" value="option2"> 女
+					</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">出生日期</label>
+				<div class="col-sm-9">
+					<input type="text" class="Wdate form-control" id="d122" onclick="WdatePicker({isShowWeek:true,onpicked:function() {$dp.$('d122_1').value=$dp.cal.getP('W','W');$dp.$('d122_2').value=$dp.cal.getP('W','WW');}})"  name="birth" placeholder="请输入您的出生日期" required>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">学历<span class="red">*</span></label>
+				<div class="col-sm-9">
+					<select name="background" class="groud-input">
+						<option value="">本科</option>
+						<option value="">本科</option>
+						<option value="">本科</option>
+					</select>
+					<label class="col-sm-3 control-label">专业</label>
+					<div class="form-group ">
+						<input type="text" class="groud-input" name="majors" required>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">办公电话</label>
+				<div class="col-sm-9">
+					<input type="text" class="groud-input" name="officePhone" required>
+					<label class="col-sm-3 control-label">手机<span class="red">*</span></label>
+					<div class="form-group ">
+						<input type="text" class="groud-input" name="movePhone" required>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">邮箱或者qq</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" name="addressandpostcode" required>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">单位名称<span class="red">*</span></label>
+				<div class="col-sm-9">
+					<input type="text" class="groud-input" name="unitandduty" required >
+					<label class="col-sm-3 control-label">职务</label>
+					<div class="form-group ">
+						<input type="text" class="groud-input" name="duty" required >
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">企业所属行业<span class="red">*</span></label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" name="industry"  placeholder="请输入您的行业" required>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">居住地</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" name="home"  placeholder="请输入您的居住地" required>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">创业指导课程</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" name="courses"  placeholder="请输入您的创业就业指导课程" required>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">企业介绍</label>
+				<div class="col-sm-9">
+					<textarea placeholder="详细的介绍企业的规模、所属行业、市场方向以及发展阶段..." name="introduce" class="form-control"></textarea>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">个人简介<span class="red">*</span></label>
+				<div class="col-sm-9">
+					<textarea placeholder="介绍您的特点以及优势、工作经历、专长领域、成果与荣誉" name="resume" class="form-control"></textarea>
+				</div>
+			</div>
+
+			<div class="form-group form-login">
+				<div class="col-sm-offset-3 col-sm-10">
+					<button type="submit" class="btn btn-default btn-danger" onclick="savejoin()">申请</button>
+					<button type="reset" class="btn btn-default col-sm-offset-1 btn-info">取消</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<script>
+    function savejoin() {
+        var name = $('#joinrForm input[name=name]').val();
+        var phone = $('#joinrForm input[name=movePhone]').val();
+        var about = $('#joinrForm textarea[name=resume]').val();
+        var unitandduty=$('#joinrForm input[name=unitandduty]').val();
+        var industry=$('#joinrForm input[name=industry]').val();
+        var reg = /^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/;
+        if (!name) {
+            alert("请输入您的姓名！");
+            return;
+        }
+        if (!reg.test(phone)) {
+            alert("请输入正确的手机号码！");
+            return;
+        }
+        if(!unitandduty){
+            alert("请输入单位名称！");
+            return;
+        }
+        if(!industry){
+            alert("请输入所属金属行业！");
+            return;
+        }
+        if (!about) {
+            alert("请输入公司简介！");
+            return;
+        }
+
+        var form = $('#joinrForm');
+        $.ajax({
+            type: "POST",
+            url: "http://192.168.11.222:8888/front/neutron/join.do",
+            data: form.serialize(),
+            dataType: 'json',
+            success: function (data) {
+                if (data.status) {
+                    alert(data.message);
+                    form[0].reset();
+                }
+                $('.myModal').modal('hide');
+                location.reload(true);
+            },
+            error: function () {
+                alert("提交失败！")
+            }
+        });
+    }
+
+</script>
+<!--#include file="footer_neutron.html"-->

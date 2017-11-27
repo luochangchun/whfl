@@ -1,0 +1,71 @@
+	<div class="Application">
+		<h1>活动报名</h1>
+		<form class="form-horizontal" role="form" method="post" id="activityForm">
+			<div class="form-group">
+				<label for="firstname" class="col-sm-3 control-label">姓名 <span class="red">*</span></label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" id="firstname" name="name" placeholder="请输入您的姓名" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="lastname" class="col-sm-3 control-label">联系电话<span class="red">*</span></label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" id="lastname" name="phone" placeholder="请输入您的电话号码" required>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="lastname" class="col-sm-3 control-label">活动名称<span class="red">*</span></label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" id="appellation" name="appellation" placeholder="请输入您的公司名称" required>
+				</div>
+			</div>
+
+			<div class="form-group form-login">
+				<div class="col-sm-offset-3 col-sm-10">
+					<button type="submit" class="btn btn-default btn-danger" onclick="saveactivity()">申请</button>
+					<button type="reset" class="btn btn-default col-sm-offset-1 btn-info" data-dismiss="modal">取消</button>
+				</div>
+			</div>
+		</form>
+	</div>
+<script>
+    function saveactivity() {
+        var name = $('#activityForm input[name=name]').val();
+        var phone = $('#activityForm input[name=phone]').val();
+        var appellation = $('#activityForm input[name=appellation]').val();
+        var reg = /^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/;
+        if (!name) {
+            alert("请输入您的姓名！");
+            return;
+        }
+        if (!reg.test(phone)) {
+            alert("请输入正确的联系方式！");
+            return;
+        }
+        if (!appellation) {
+            alert("请输入活动名称！");
+            return;
+        }
+
+        var form = $('#activityForm');
+        $.ajax({
+            type: "POST",
+            url: "/front/neutron/activity/join.do",
+            data: form.serialize(),
+            dataType: 'json',
+            success: function (data) {
+                if (data.status) {
+                    alert(data.message);
+                    form[0].reset();
+                }
+                $('.myModal').modal('hide');
+                location.reload(true);
+            },
+            error: function () {
+                alert("提交失败！")
+            }
+        });
+    }
+
+</script>

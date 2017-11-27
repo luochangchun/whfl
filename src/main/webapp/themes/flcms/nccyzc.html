@@ -1,0 +1,39 @@
+
+<!--#include file="head_neutron.html"-->
+<style type="text/css">
+    body{
+        background:#f1f1f1;
+    }
+</style>
+<!-- 创业项目 -->
+<div class="container">
+    <div class="entrepreneurship">
+        <div class="title_common">
+            <h3>创业项目</h3>
+        </div>
+
+        <div class="entrepreneurship_con">
+            <@page model="article" size="8" cid="277" status="1" order="time desc">
+            <#list page.data as article>
+                <dl class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="item">
+                        <dt class="text-center">
+                            <b>${article.title}</b>
+                        </dt>
+                        <dd>
+                            <p>${article.description}</p>
+                            <a href="${article.url}" class="common_more">查看更多>></a>
+                        </dd>
+                    </div>
+                </dl>
+            </#list>
+        </@page>
+        <div class="clearfix"></div>
+        <!--#include file="common/page.html"-->
+        <@paginate currentPage=page.currentPageNo totalPage=page.totalPages actionUrl="/"  />
+    </div>
+</div>
+</div>
+<!--#include file="footer_neutron.html"-->
+</body>
+</html>

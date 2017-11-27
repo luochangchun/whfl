@@ -1,22 +1,40 @@
-<!doctype html>
-<html lang="${config['defaultlang']}">
-<head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="${current.description!}">
-  	<meta name="keywords" content="${current.keywords!}">
-    <meta name="author" content="marker">
-	<title><@message "website.title" /></title>
-	<link href="lib/bootstrap3/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="lib/bootstrap3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
-    <link href="css/main.css" rel="stylesheet" type="text/css">
-  	
-</head>
 
-<body>
-	<h1>${current.name!}</h1>
-	<p>this is a sample html tempate!</p>
-	<p>keywords: ${current.keywords!}</p>
-	<p>desc: ${current.description!}</p>
+<!--#include file="head_neutron.html"-->
+
+<style type="text/css">
+	body{
+		background:#f1f1f1;
+	}
+</style>
+
+<!--   女神时间 -->
+<div class="container">
+	<div class="venture_activity ">
+		<div class="title_common">
+			<h3>女神时间</h3>
+		</div>
+
+		<div class="activity_con" style="padding-left:0px;">
+			<div class="right col-lg-12 col-md-12 col-sm-12" >
+				<ul>
+					<@page model="article" size="8" cid="273" status="1" order="time desc">
+					<#list page.data as article>
+						<li class="col-lg-3 col-md-3 col-sm-6">
+							<a href="${article.url}">
+								<img src="${article.icon}" />
+								<p class="text-center">${article.title}</p>
+							</a>
+						</li>
+					</#list>
+				</@page>
+				</ul>
+				<div class="clearfix"></div>
+				<!--#include file="common/page.html"-->
+				<@paginate currentPage=page.currentPageNo totalPage=page.totalPages actionUrl="/"  />
+			</div>
+		</div>
+	</div>
+</div>
+<!--#include file="footer_neutron.html"-->
 </body>
 </html>

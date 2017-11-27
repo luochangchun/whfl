@@ -1,16 +1,5 @@
 package org.marker.mushroom.controller;
 
-import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.apache.commons.codec.binary.Base64;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.markdown4j.Markdown4jProcessor;
@@ -25,7 +14,11 @@ import org.marker.mushroom.dao.IArticleDao;
 import org.marker.mushroom.service.impl.ArticleService;
 import org.marker.mushroom.service.impl.CategoryService;
 import org.marker.mushroom.support.SupportController;
-import org.marker.mushroom.utils.*;
+import org.marker.mushroom.utils.DateStyle;
+import org.marker.mushroom.utils.DateUtils;
+import org.marker.mushroom.utils.ExcelUtils;
+import org.marker.mushroom.utils.GenerateUUID;
+import org.marker.mushroom.utils.HttpUtils;
 import org.marker.urlrewrite.URLRewriteEngine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,8 +26,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -367,7 +379,7 @@ public class ArticleController extends SupportController
 				//构建图片保存的目录
 				String webAppPath = request.getSession().getServletContext().getRealPath("");
 				//				System.out.println("webAppPath--old_" + webAppPath);
-				final int index = webAppPath.lastIndexOf("/") > 0 ? webAppPath.lastIndexOf("/") : 0;
+				final int index = webAppPath.lastIndexOf("/flcms") > 0 ? webAppPath.lastIndexOf("/flcms") : 0;
 				webAppPath = webAppPath.substring(0, index);
 				//				System.out.println("webAppPath--new_" + webAppPath);
 
