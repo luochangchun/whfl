@@ -1,16 +1,17 @@
 package org.marker.mushroom.beans;
 
+import org.marker.mushroom.dao.annotation.Entity;
+
 import java.io.Serializable;
 import java.util.Date;
 
-import org.marker.mushroom.dao.annotation.Entity;
 /**
  * 申请活动信息
- * @author Administrator
  *
+ * @author Administrator
  */
 @Entity("enrolactivity")
-public class EnrolActivity implements Serializable{
+public class EnrolActivity implements Serializable {
 
 	//id
 	private Integer id;
@@ -22,36 +23,45 @@ public class EnrolActivity implements Serializable{
 	private String appellation;
 	//申请时间
 	private Date time;
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getPhone() {
 		return phone;
 	}
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 	public String getAppellation() {
 		return appellation;
 	}
+
 	public void setAppellation(String appellation) {
 		this.appellation = appellation;
 	}
+
 	public Date getTime() {
 		return time;
 	}
+
 	public void setTime(Date time) {
 		this.time = time;
 	}
-	
-	
+
 }

@@ -1,9 +1,9 @@
 package org.marker.mushroom.beans;
 
+import org.marker.mushroom.dao.annotation.Entity;
+
 import java.io.Serializable;
 import java.util.Date;
-
-import org.marker.mushroom.dao.annotation.Entity;
 /**
  * 女性创业者登记表
  * @author Administrator
@@ -11,7 +11,6 @@ import org.marker.mushroom.dao.annotation.Entity;
  */
 @Entity("womanwork")
 public class Womanwork implements Serializable{
-
 
 	//id
 	private Integer id;
