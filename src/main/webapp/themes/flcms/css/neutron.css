@@ -1,0 +1,772 @@
+a{
+    text-decoration:none;
+}
+img{
+    max-width:100%;
+}
+ol,li,ul{
+    list-style: none;
+}
+.header{
+    height:80px;
+}
+.header .main-nav {
+    text-align: center;
+}
+.header .main-nav li:hover i{
+    border-top-color: #f14f81;
+}
+.header .main-nav i{
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #000;
+    margin-left: 3px;
+    vertical-align: middle
+}
+.m-n {
+    margin: 0 !important;
+}
+.text-base {
+    font-size: 14px;
+}
+.header .navbar-brand .main-nav li a {
+    color: #333;
+    display: block;
+    position: relative;
+}
+.h-full {
+    height: 100%;
+}
+.navbar-brand {
+    display: inline-block;
+    float: none;
+    height: auto;
+    padding: 0 20px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 50px;
+    /* text-align: center; */
+}
+
+.header .navbar-brand {
+    line-height: 80px;
+    padding: 0;
+    background-color: #fff;
+}
+.block {
+    display: block;
+}
+
+a{
+    text-decoration:none;
+}
+/*bg*/
+.banner {
+    height: 260px;
+}
+.bg-cover {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.m-b-md {
+    margin-bottom: 20px;
+}
+.m-b-lg .more{
+    font-size:12px;
+    color:#999999;
+    width: 60px;
+    height: 20px;
+    border:1px solid #ddd;
+    border-radius:3px;
+    line-height:20px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.m-b-lg .more:hover{
+    background:#f14f81;
+    color:#fff;
+}
+
+
+/*创业阵地*/
+.text-danger {
+    color: #f15081;
+    height:100px;
+}
+.m-b-lg {
+    margin-bottom: 10px;
+    padding:20px 0;
+}
+.m-b-lg img{
+    display: block;
+    margin:5px auto;
+}
+.text-2x {
+    font-size: 2em;
+}
+.main {
+    margin-top: -20px;
+    background-color: #f1f1f1;
+    padding-bottom: 18px;
+    margin-bottom: -20px;
+}
+.position{
+    text-align:center;
+}
+.position div img{
+    width:100%;
+}
+.position div{
+    margin-bottom: 20px;
+}
+.cyzd p{
+  height:40px;
+  line-height:40px;
+  background-color:rgba(232,100,137,.8);
+  color:#fff;
+  position: absolute;
+  bottom:5px;
+  left:0;
+  right:0;
+  margin:auto;
+  width:92.5%;
+  font-size:18px;
+}
+/*女创联盟*/
+.alliance{
+    padding-bottom:60px;
+}
+.alliance div{
+    text-align: right;
+}
+.alliance .alliance_pic{
+    width: 300px;
+    height:300px;
+    margin-left: 80px;
+    border:8px solid #f14f81;
+}
+.alliance .alliance_pic span{
+    display: block;
+    width:300px;
+    height: 300px;
+    border:1px solid #ddd;
+    margin:30px 0 0 30px;
+    background: #fff;
+    text-align:center;
+    line-height:300px;
+    position: relative;
+}
+.alliance .alliance_pic span img{
+    display: inline-block;
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    margin:auto;
+}
+.alliance div:last-child{
+    max-height:360px;
+    padding: 20px 100px;
+}
+.alliance div p{
+    line-height:30px;
+    max-height:502px;
+    overflow: hidden;
+}
+.alliance div button{
+    width:100px;
+    height:30px;
+    border-radius:5px;
+    border:none;
+    background-color:#f15081;
+    color:#fff;
+    font-size:14px;
+    text-align: center;
+    line-height:30px;
+    margin-top: 50px;
+}
+.container-p{
+    font-size:16px;
+    text-align: center;
+    margin-top: -30px;
+}
+@media (min-width: 1200px){
+    .alliance div p{
+        line-height:30px;
+        height:220px;
+        overflow: hidden;
+    }
+}
+@media (min-width: 992px){
+    .alliance div button{
+        margin-top: 30px;
+    }
+}
+@media (max-width: 768px){
+    .alliance div img{
+        width:100%;
+        margin: 0;
+    }
+}
+/*@media (min-width: 768px){*/
+    /*.alliance div {*/
+        /*text-align: center;*/
+    /*}*/
+    /*.alliance div img{*/
+        /*width:100%;*/
+        /*margin: 0;*/
+    /*}*/
+/*}*/
+/*创业政策*/
+.policy div img{
+    width:50%;
+}
+.policy div{
+    text-align: center;
+}
+.policy span{
+    display: inline-block;
+    width: 140px;
+    height: 140px;
+    background:#f14f81;
+    border-radius:100%;
+    text-align:center;
+    line-height:140px;
+    position: relative;
+}
+.policy span img{
+    display: inline-block;
+    position: absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    margin:auto;
+}
+.policy p{
+    background:none;
+    color:#666666;
+    font-size:14px;
+    position:static;
+    margin-top:15px;
+}
+/*创业项目*/
+.project img{
+    border:1px solid #f1f1f1;
+}
+.project .box{
+    border:1px solid #ddd;
+    height: 396px;
+    transition:all 0.5s;
+}
+.project .box:hover{
+    border-color:#f15081
+}
+.project .box:hover h2{
+    color:#f15081
+}
+.project .box h2{
+    font-size:16px;
+    color:#666666;
+    margin-top: 35px;
+    padding:0 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: bold;
+}
+.project .box span{
+    color:#999;
+    line-height:25px;
+    padding:10px 26px;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 9;
+    overflow: hidden;
+}
+.project button{
+    width:140px;
+    height:40px;
+    border-radius:5px;
+    border:none;
+    background-color:#f15081;
+    color:#fff;
+    font-size:14px;
+    text-align: center;
+    line-height:40px;
+    display: block;
+    margin:105px auto 0;
+}
+
+/*创业活动*/
+.active img{
+    /*border:1px solid #f1f1f1;*/
+    box-shadow:0 0 15px #f1f1f1;
+}
+.activity_title p{
+    font-size:12px;
+    text-align: center;
+    color:#4f6af1;
+}
+
+/*创业导师*/
+.enterprise_teache button{
+    width:140px;
+    height:40px;
+    border-radius:5px;
+    border:none;
+    background-color:#f15081;
+    color:#fff;
+    font-size:16px;
+    text-align: center;
+    line-height:40px;
+    margin-top:35px;
+}
+.enterprise_teache .box{
+    background:#faabc3;
+    padding:20px 30px 10px;
+    color:#fff
+}
+.enterprise_teache .box h2{
+    font-size:16px;
+    font-weight: bold;
+}
+.enterprise_teache .box p{
+    font-size:14px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    height: 60px;
+}
+/* .enterprise_teache div img {
+    width: 125px;
+    height: 125px;
+    border-radius:100%;
+} */
+.enterprise_teache .box .avatar{
+	width:125px;
+	height:125px;
+	border-radius:50%;
+	margin:5px auto;
+	overflow:hidden;
+	padding:0;
+	background-position:center;
+	background-size:cover
+}
+/*创业故事*/
+.story{
+    padding-bottom:50px;
+}
+.story div{
+    text-align: left;
+}
+.story .pic{
+    border:8px solid #f14f81;
+    height: 285px;
+    width: 292px;
+    padding:0!important;
+}
+.story .pic img{
+    width: 300px;
+    height: 300px;
+    margin:20px 0 0 -50px;
+}
+.story div:first-child{
+    max-height:360px;
+    padding: 20px 100px;;
+}
+.story div p{
+    line-height:30px;
+    max-height:502px;
+    overflow: hidden;
+}
+.story div button{
+    width:100px;
+    height:30px;
+    border-radius:5px;
+    border:none;
+    background-color:#f15081;
+    color:#fff;
+    font-size:14px;
+    text-align: center;
+    line-height:30px;
+    margin-top: 50px;
+}
+
+/* 创业活动 */
+.active h2{
+    font-size:16px;
+    color:#666666;
+    text-align:left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.active h2,.active span{
+    margin-left:10px;
+}
+.active span{
+    display: inline-block;
+    color:#666;
+    text-align:left;
+    border-top: 2px solid #f14f81;
+    float: left;
+    line-height:30px;
+}
+.active .position{
+    position:relative
+}
+.activity_title{
+   position: absolute;
+   top:60px;
+   left: 0;
+   right:0;
+   margin:auto;
+}
+.active .tag{
+    position:absolute;
+    width: 112px;
+    height: 26px;
+    background:#f14f81;
+    color:#fff;
+    display: block;
+    right:5%;
+    top:5px;
+    line-height:26px;
+}
+
+@media (min-width: 1200px){
+    .story div p{
+        line-height:30px;
+        height:240px;
+        overflow: hidden;
+    }
+}
+@media (min-width: 992px){
+    .story div button{
+        margin-top: 30px;
+    }
+    .story div p{
+        line-height:30px;
+        height:205px;
+        overflow: hidden;
+    }
+}
+@media (max-width: 768px){
+    .story div img{
+        width:100%;
+        margin: 0;
+    }
+}
+
+
+
+
+/*footer*/
+.footer{
+    background:#fafafa;
+    overflow: hidden;
+}
+.inline{
+    box-sizing: border-box;
+    color: rgb(88, 102, 110);
+    font-family: 'PingFang SC', 'Open Sans', Arial, 'Microsoft YaHei', 微软雅黑, STHeiti, SimSun, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    display: inline-block !important;
+}
+.m-t-md {
+    margin-top: 20px;
+}
+.m-b {
+    margin-bottom: 15px;
+}
+.w-full {
+    width: 100%;
+}
+.padder-v {
+    padding-top: 35px;
+    padding-bottom: 15px;
+}
+.text-xs {
+    font-size: 12px;
+}
+.text-muted {
+    color: #98a6ad;
+}
+.padder {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.inline {
+    display: inline-block !important;
+}
+.footer .text-danger{
+    height:auto;
+}
+
+
+.teacher div button{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom:58px;
+    margin:auto;
+}
+.header .navbar-brand .main-nav .curument{
+    color:#f15081;
+}
+
+
+/* 创业阵地 */
+.title_common{
+    margin-bottom:25px;
+    overflow: hidden;
+    margin-top:30px;
+}
+.title_common h3{
+    color:#f14f81;
+    height: 30px;
+    border-left:4px solid #f14f81;
+    padding-left:20px;
+}
+.possy{
+    overflow: hidden;
+    margin-bottom:100px;
+}
+.possy dl h3{
+    font-size:21px;
+}
+.possy dl p{
+    font-size:16px;
+    color:#666;
+    line-height:28px;
+}
+.possy .possy_item{
+    background:#fff;
+    overflow: hidden;
+    padding:16px;
+    margin-bottom:22px;
+    border:1px solid #ddd
+}
+.possy dl dt{
+    padding-left:0;
+}
+.possy dl dd{
+    padding-top:15px;
+    padding-left: 0;
+}
+.possy dl:hover h3{
+    color:#ff6699
+}
+.possy .common_more{
+    margin-top:60px;
+}
+.common_more{
+    width: 140px;
+    height: 40px;
+    line-height:40px;
+    background:#f14f81;
+    border-radius:5px;
+    display: block;
+    color:#fff;
+    font-size:16px;
+}
+
+/* 创业政策 */
+.entrepreneurship_con{
+    overflow: hidden;
+    margin-bottom:100px;
+}
+.entrepreneurship_con dl:first-child{
+    padding-left:0;
+}
+.entrepreneurship_con dl{
+    padding:0 10px;
+    position: relative
+}
+.entrepreneurship_con dl .item{
+    background:#fff;
+    border:1px solid #ddd;
+    padding:0;
+    text-align:center;
+    height: 398px;
+    overflow: hidden;
+}
+.entrepreneurship_con dt{
+    height:130px;
+    background:#ff6699;
+    line-height:130px;
+    color:#fff;
+    font-size:20px;
+    font-weight:normal;
+}
+.entrepreneurship_con dt b{
+    font-size:20px;
+    display: block;
+    padding:0 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.entrepreneurship_con dd{
+    padding:20px
+}
+.entrepreneurship_con dd p{
+    font-size:14px;
+    color:#666;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
+    height:100px;
+}
+.entrepreneurship_con .common_more{
+    position: absolute;
+    bottom:30px;
+    left: 0;
+    right:0;
+    margin:auto;
+}
+
+/* 创业活动 */
+.venture_activity{
+    overflow: hidden;
+    margin-bottom:100px;
+}
+.venture_activity .activity_con .left{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    height:440px;
+    background:#ff6699;
+    color:#fff;
+    margin-top:16px;
+}
+.activity_con{
+    background:#fff;
+    overflow: hidden;
+    padding:0 12px 22px 22px;
+    border:1px solid #ddd;
+    margin-bottom:20px;
+}
+.activity_con .left h3{
+    font-size:36px;
+    margin:150px 0 10px 0;
+    font-weight:bold;
+}
+.activity_con .left h2{
+    font-size:30px;
+}
+.activity_con .right{
+    padding:0px;
+}
+.activity_con .right ul{
+    overflow: hidden;
+    padding:0 0 0 10px;
+    margin-bottom:0
+}
+.activity_con .right ul li{
+    position:relative;
+    height: 210px;
+    margin-top:18px;
+}
+.activity_con .right ul li img{
+    height: 100%;
+}
+.activity_con .right ul li p{
+    background:rgba(209,208,204,.8);
+    position:absolute;
+    bottom:0;
+    left: 0;
+    right:0;
+    margin:auto;
+    width: 90%;
+    height: 30px;
+    line-height:30px;
+    color:#666;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.activity_con .right ul li a:hover p{
+    background-color: #f14f81;
+    color:#fff;
+}
+.activity_con .right ul li{
+    padding:0 10px;
+}
+
+/*表单申请*/
+.Application{
+    width:520px;
+    margin:10px auto 0px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    padding-bottom: 30px;
+}
+.Application .groud-input{
+    width:143px;
+    height:34px;
+    border:1px solid #ddd;
+    float: left;
+}
+.Application h1{
+    color:#f15081
+}
+.Application h3{
+    color:#f15081
+}
+.Application h1,.Application h3{
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 32px;
+}
+.Application label{
+    font-size: 15px;
+    font-weight:500;
+}
+.Application .red{
+    color:#ff0000;
+    margin-left:10px;
+}
+.Application input.form-control{
+    border:1px solid #ddd;
+    font-size: 15px;
+    height:36px;
+    border-radius: 3px;
+}
+.Application textarea.form-control{
+    height:100px;
+    border:1px solid #ddd;
+    font-size: 16px;
+    resize: none;
+}
+.Application .btn-default{
+    width: 140px;
+    height:40px;
+    border-radius: 5px;
+}
+.Application .btn-danger{
+    background-color: #ff6699;
+    border-color:#ff6699;
+}
+.Application .btn-info{
+    background: none;
+    color:#333;
+    border-color: #ddd;
+}
+.form-login{
+    margin-top:60px;
+}
