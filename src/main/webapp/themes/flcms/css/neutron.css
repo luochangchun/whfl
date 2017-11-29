@@ -103,7 +103,8 @@ a{
 }
 .m-b-lg img{
     display: block;
-    margin:5px auto;
+	margin:5px auto;
+	max-height: 400px;
 }
 .text-2x {
     font-size: 2em;

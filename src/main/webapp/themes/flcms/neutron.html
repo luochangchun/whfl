@@ -129,18 +129,30 @@
 <div class="main m-b-lg">
     <div class="container goods m-b-lg">
         <div class="text-center text-danger text-2x m-b-lg">线上课堂</div>
-        <div class="row position">
+        <div class="row position" id="xskc">
             <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6">
-                <img src="${themeurl!}/img/17.png" alt="">
+				<a href="http://xskc.hansap.cn/neutron/index">
+					<img src="http://xskc.hansap.cn/static/inxweb/img/default-img.gif" alt="">
+				</a>
+				<span>开始学习</span>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6">
-                <img src="${themeurl!}/img/18.png" alt="">
+				<a href="http://xskc.hansap.cn/neutron/index">
+					<img src="http://xskc.hansap.cn/static/inxweb/img/default-img.gif" alt="">
+				</a>
+				<span>开始学习</span>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6">
-                <img src="${themeurl!}/img/19.png" alt="">
+				<a href="http://xskc.hansap.cn/neutron/index">
+					<img src="http://xskc.hansap.cn/static/inxweb/img/default-img.gif" alt="">
+				</a>
+				<span>开始学习</span>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6">
-                <img src="${themeurl!}/img/20.png" alt="">
+				<a href="http://xskc.hansap.cn/neutron/index">
+					<img src="http://xskc.hansap.cn/static/inxweb/img/default-img.gif" alt="">
+				</a>
+				<span>开始学习</span>
             </div>
         </div>
     </div>
@@ -154,7 +166,7 @@
             <a href="${article.url}">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6">
                     <p class="tag">创业调研报告</p>
-                    <img src="${article.icon}" alt="">
+                    <img src="${article.icon!}" alt="">
                     <h2 title="${article.title!}">${article.title!}</h2>
                     <span>${article.time format=(yyyy-MM-dd)}</span>
                 </div>
@@ -165,7 +177,7 @@
             <a href="${article.url}">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6">
                     <p class="tag">女性创业大赛</p>
-                    <img src="${article.icon}" alt="">
+                    <img src="${article.icon!}" alt="">
                     <h2 title="${article.title!}">${article.title!}</h2>
                     <span>${article.time format=(yyyy-MM-dd)}</span>
                 </div>
@@ -176,7 +188,7 @@
             <a href="${article.url}">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6">
                     <p class="tag">女神时间</p>
-                    <img src="${article.icon}" alt="">
+                    <img src="${article.icon!}" alt="">
                     <h2 title="${article.title!}">${article.title!}</h2>
                     <span>${article.time format=(yyyy-MM-dd)}</span>
                 </div>
@@ -187,7 +199,7 @@
             <a href="${article.url}">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6">
                     <p class="tag">创业荟</p>
-                    <img src="${article.icon}" alt="">
+                    <img src="${article.icon!}" alt="">
                     <h2 title="${article.title!}">${article.title!}</h2>
                     <span>${article.time format=(yyyy-MM-dd)}</span>
                 </div>
@@ -218,5 +230,36 @@
 </div>
 
 <!--#include file="footer_neutron.html"-->
+<script>
+	function vdo() {
+		$.ajax({
+			url :"http://xskc.hansap.cn/neutron/index/ad",
+			type : 'post',
+			dataType : 'json',
+			success : function(result) {
+				var xskc = "http://xskc.hansap.cn";
+				var divs = $('#xskc > div');
+				if (result && result.course) {
+					for (var i in result.course) {
+						if (i == 4) break;
+						var c = result.course[i];
+						if (divs[i]) {
+							var dom = $(divs[i]);
+							if (c.logo) dom.find('img').attr("src", xskc + c.logo);
+							dom.find('span').empty().html(c.courseName);
+						}
+					}
+				}
+			},
+			error: function(result, e) {
+				console.log(result, e);
+			}
+		});
+	}
+
+	$(function() {
+		vdo();
+	});
+</script>
 </body>
 </html>
