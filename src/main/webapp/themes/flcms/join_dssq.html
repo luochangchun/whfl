@@ -169,7 +169,7 @@
         var form = $('#mentorForm');
         $.ajax({
             type: "POST",
-            url: "/front/neutron/mentor/join.do",
+            url: "/front/neutron/mentor.do",
             data: form.serialize(),
             dataType: 'json',
             success: function (data) {

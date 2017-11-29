@@ -89,7 +89,7 @@
         var form = $('#incubatorForm');
         $.ajax({
             type: "POST",
-            url: "/front/neutron/incubator/join.do",
+            url: "/front/neutron/incubator.do",
             data: form.serialize(),
             dataType: 'json',
             success: function (data) {
