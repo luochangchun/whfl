@@ -51,7 +51,7 @@
 							<th>职务：</th>
 							<td>${tenancy.duty!""}</td>
 						</tr>
-						<tr class="rowBgColor"> 
+						<tr class="rowBgColor">
 							<th>行业：</th>
 							<td>${tenancy.industry!""}</td>
 						</tr>
@@ -93,8 +93,9 @@
 						</tr>
 						<tr>
 							<td colspan="2">
-								<script type="text/plain" id="mushroomeditor3" name="introduce" style="height:350px;">${tenancy.photographs!}
-								</script>
+								<div class="input_for_img">
+									<div class="img-box" data-src=""><img src="${tenancy.photographs!}" style="display:block;width:100%;height:auto;"></img></div>
+								</div>
 							</td>
 						</tr>
 					</tbody>
@@ -104,7 +105,7 @@
 	</form>
 </div>
 <script type="text/javascript">
-	
+
 	$(function () {
 		if (window.editor != null) window.editor.destroy();
 		if (window.editor2 != null) window.editor2.destroy();
@@ -121,7 +122,7 @@
 		window.editor2.ready(function () {
 			editor2.setContent($("#mrcmsContent2").val());
 		});
-		
+
 		window.editor3 = UE.getEditor('mushroomeditor3');
 		window.editor3.ready(function () {
 			editor3.setContent($("#mrcmsContent2").val());

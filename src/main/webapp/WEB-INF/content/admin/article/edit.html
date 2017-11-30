@@ -5,18 +5,18 @@
 		</ul>
 			<button class="btn_tabbar submit_it" onclick="mySubmitForm(this);" return="article/list.do?currentPageNo=1">保 存</button>
 	</div>
-	
+
 	<form id="myForm" action="article/update.do" method="post">
 	<input name="id" type="hidden" value="${article.id?c}" />
 	<div class="tab_content">
-		<div class="tab_item tab_show"> 
+		<div class="tab_item tab_show">
 			<table class="table_for_add">
 				<tbody>
 					<tr class="rowBgColor">
 						<th width="140">所属类别：</th>
-						<td> 
+						<td>
 							<select id="categoryid" class="select_for_add" name="cid">
-					  			<@categoryTree id = 0 node = -1/> 
+					  			<@categoryTree id = 0 node = -1/>
 							</select>
 						</td>
 					</tr>
@@ -30,7 +30,7 @@
 							<input class="input_for_add" id="icon" name="icon" type="text" readonly="readonly" value="${article.icon!}" style="display:none;"/>
 							<div class="input_for_img">
 								<div class="img-box" data-src=""></div>
-								<button type="button" class="img-btn" onclick="frameDialogShow()">上传</button>	
+								<button type="button" class="img-btn" onclick="frameDialogShow()">上传</button>
 							</div>
 						</td>
 					</tr>
@@ -54,7 +54,7 @@
 					</tr>
 				    <tr>
 						<td colspan="2">
-							<script type="text/plain" id="mushroomeditor" name="content" style="height:350px;;"/>
+							<script type="text/plain" id="mushroomeditor" name="content" style="height:350px;"></script>
 							<textarea id="mrcmsContent" style="display:none"><#if article.type == 0>${article.content!}<#else>${article.orginal!}</#if></textarea>
 						</td>
 					</tr>
@@ -65,11 +65,11 @@
 					<tr>
 						<th>文章描述：</th>
 						<td><textarea class="textarea_for_add" name="description" oninput="textNumCal(this)" data-target="#num" data-max="255">${article.description!}</textarea> <span id="num"></span></td>
-					</tr> 
+					</tr>
 					<tr class="rowBgColor">
 						<th>文章作者：</th>
 						<td><input class="input_for_add" name="author" type="text" value="${article.author!}" /></td>
-					</tr> 
+					</tr>
 					<tr>
 						<th>文章状态：</th>
 						<td>
@@ -81,7 +81,7 @@
 								<input id="status_0" name="status" type="radio" value="0" checked="checked"/> <label for="status_0">草稿</label>
 							</#if>
 						</td>
-					</tr> 
+					</tr>
 				</tbody>
 			</table>
 		</div>
@@ -99,9 +99,9 @@
 				<div class="frame_margin markdown">
 					<form id="uploadForm" action="article/upload.do" method="post" enctype="multipart/form-data" onsubmit="return false;" style="margin-bottom:15px;">
 						<input type="file" onChange="inputImageChange(this)" name="file" style="position:absolute;width:70px;opacity:0;"/>
-						<button type="buttom" class="submit_it" style="float: inherit;">选择图片</button>					
+						<button type="buttom" class="submit_it" style="float: inherit;">选择图片</button>
 						<input id="imgSrc" name="imgSrc" type="text" style="display:none;"/>
-						<button type="submit" onclick="upload(this)" class=" submit_it" style="float: inherit;">上传</button>					
+						<button type="submit" onclick="upload(this)" class=" submit_it" style="float: inherit;">上传</button>
 					</form>
 					<div class="img-container" style="max-width:400px;max-height:300px;float:left;margin-right:15px;">
 			          <img id="image">
@@ -178,7 +178,7 @@ $("#categoryid").attr('value',cid);
 	  	<option value="${x.id?c}"><#list 0..temp as i> &nbsp; &nbsp; </#list>├ ${x.name!}</option>
 	    <@categoryTree id = x.id node=temp/>
       	</#if>
-	</#list> 
+	</#list>
 </#macro>
 
 <#macro articleTree id node>

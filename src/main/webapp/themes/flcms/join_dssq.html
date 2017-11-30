@@ -13,10 +13,10 @@
 				<label class="col-sm-3 control-label">性别<span class="red">*</span></label>
 				<div class="col-sm-9">
 					<label class="radio-inline">
-						<input type="radio" name="gender" value="option1" checked> 男
+						<input type="radio" name="gender" value="男" checked> 男
 					</label>
 					<label class="radio-inline">
-						<input type="radio" name="gender" value="option2"> 女
+						<input type="radio" name="gender" value="男"> 女
 					</label>
 				</div>
 			</div>
@@ -69,7 +69,7 @@
 				<div class="col-sm-9">
 					<input type="text" class="groud-input" name="unit" required>
 					<label class="col-sm-3 control-label">职务<span class="red">*</span></label>
-					<div class="form-group ">
+					<div class="form-group">
 						<input type="text" class="groud-input" name="duty" required>
 					</div>
 				</div>
@@ -155,7 +155,7 @@
             return;
         }
         if (!about) {
-            alert("请输入公司简介！");
+            alert("请输入个人简介！");
             return;
         }
         if (!photographs) {
@@ -164,11 +164,30 @@
         }
 
         var form = $('#mentorForm');
+		var data = {};
+		data.name = name;
+		data.unit = unit;
+		data.phone = phone;
+		data.industry = industry;
+		data.resume = about;
+		data.photographs = photographs;
+		data.gender = $('#mentorForm input[name=gender]').val();
+		data.birthday = $('#mentorForm input[name=birthday]').val();
+		data.university = $('#mentorForm input[name=university]').val();
+		data.majors = $('#mentorForm input[name=majors]').val();
+		data.educationalBackground = $('#mentorForm input[name=educationalBackground]').val();
+		data.officePhone = $('#mentorForm input[name=officePhone]').val();
+		data.mailorqq = $('#mentorForm input[name=mailorqq]').val();
+		data.duty = $('#mentorForm input[name=duty]').val();
+		data.address = $('#mentorForm input[name=address]').val();
+		data.courses = $('#mentorForm input[name=courses]').val();
+		data.introduce = $('#mentorForm textarea[name=introduce]').val();
         $.ajax({
             type: "POST",
             url: "/front/neutron/mentor.do",
-            data: form.serialize(),
+			data: JSON.stringify(data),
             dataType: 'json',
+			contentType: 'application/json; charset=UTF-8',
             success: function (data) {
                 if (data.status) {
                     alert(data.message);
@@ -198,8 +217,23 @@
 		var reader = new FileReader();
 		reader.readAsDataURL(file);
 		reader.onload=function(){
-			$("#productImageupload1").attr('src',this.result);
-			$('#mentorForm input[name=photographs]').val(this.result);
+			var b64 = this.result;
+			$("#productImageupload1").attr('src', b64);
+			$.ajax({
+				type: "POST",
+				url: "/front/neutron/upload.do",
+				data: b64,
+				dataType: 'json',
+				contentType: 'application/json; charset=UTF-8',
+				success: function (data) {
+					if (data.status) {
+						$('#mentorForm input[name=photographs]').val('${url}/' + data.param);
+					}
+				},
+				error: function () {
+					alert("提交失败！")
+				}
+			})
 		}
     }
 </script>
