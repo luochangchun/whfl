@@ -123,7 +123,6 @@ a{
 }
 .position div{
     margin-bottom: 20px;
-    height: 283px;
 }
 .cyzd p{
   height:40px;
@@ -137,6 +136,9 @@ a{
   margin:auto;
   width:92.5%;
   font-size:18px;
+}
+.cyzd div{
+	height: 283px;
 }
 /*女创联盟*/
 .alliance{
