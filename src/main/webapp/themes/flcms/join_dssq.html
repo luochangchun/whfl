@@ -2,34 +2,34 @@
 <div class="container">
 	<div class="Application">
 		<h3>导师申请表</h3>
-		<form class="form-horizontal" role="form" method="post" id="mentorForm">
+		<form class="form-horizontal" role="form" id="mentorForm">
 			<div class="form-group">
-				<label class="col-sm-3 control-label">姓名 <span class="red">*</span></label>
+				<label class="col-sm-3 control-label">姓名<span class="red">*</span></label>
 				<div class="col-sm-9">
 					<input type="text" class="form-control" name="name" placeholder="请输入您的姓名" required>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label">性别</label>
+				<label class="col-sm-3 control-label">性别<span class="red">*</span></label>
 				<div class="col-sm-9">
 					<label class="radio-inline">
-						<input type="radio" name="optionsRadiosinline" value="option1" checked> 男
+						<input type="radio" name="gender" value="option1" checked> 男
 					</label>
 					<label class="radio-inline">
-						<input type="radio" name="optionsRadiosinline" value="option2"> 女
+						<input type="radio" name="gender" value="option2"> 女
 					</label>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-3 control-label">出生日期</label>
+				<label class="col-sm-3 control-label">出生日期<span class="red">*</span></label>
 				<div class="col-sm-9">
 					<input type="text" class="Wdate form-control" id="d122" onclick="WdatePicker({isShowWeek:true,onpicked:function() {$dp.$('d122_1').value=$dp.cal.getP('W','W');$dp.$('d122_2').value=$dp.cal.getP('W','WW');}})"  name="birthday" placeholder="请输入您的出生日期" required>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-3 control-label">毕业院校</label>
+				<label class="col-sm-3 control-label">毕业院校<span class="red">*</span></label>
 				<div class="col-sm-9">
 					<input type="text" class="form-control" name="university" placeholder="请输入您的毕业院校" required>
 				</div>
@@ -38,12 +38,8 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">学历<span class="red">*</span></label>
 				<div class="col-sm-9">
-						<select name="educationalBackground" class="groud-input">
-							<option value="">本科</option>
-							<option value="">本科</option>
-							<option value="">本科</option>
-						</select>
-						<label class="col-sm-3 control-label">专业</label>
+						<input type="text" class="groud-input" name="educationalBackground" required>
+						<label class="col-sm-3 control-label">专业<span class="red">*</span></label>
 						<div class="form-group ">
 							<input type="text" class="groud-input" name="majors" required>
 						</div>
@@ -51,12 +47,12 @@
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-3 control-label">办公电话</label>
+				<label class="col-sm-3 control-label">办公电话<span class="red">*</span></label>
 				<div class="col-sm-9">
 					<input type="text" class="groud-input" name="officePhone" required>
 					<label class="col-sm-3 control-label">手机<span class="red">*</span></label>
 					<div class="form-group ">
-						<input type="text" class="groud-input" name="phone" required>
+						<input type="text" class="groud-input" name="phone">
 					</div>
 				</div>
 			</div>
@@ -64,7 +60,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">邮箱或者qq</label>
 				<div class="col-sm-9">
-					<input type="text" class="form-control" name="mailorqq" required>
+					<input type="text" class="form-control" name="mailorqq">
 				</div>
 			</div>
 
@@ -72,7 +68,7 @@
 				<label class="col-sm-3 control-label">单位名称<span class="red">*</span></label>
 				<div class="col-sm-9">
 					<input type="text" class="groud-input" name="unit" required>
-					<label class="col-sm-3 control-label">职务</label>
+					<label class="col-sm-3 control-label">职务<span class="red">*</span></label>
 					<div class="form-group ">
 						<input type="text" class="groud-input" name="duty" required>
 					</div>
@@ -82,35 +78,35 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">企业所属行业<span class="red">*</span></label>
 				<div class="col-sm-9">
-					<input type="text" class="form-control" name="industry"  placeholder="请输入您的行业" required>
+					<input type="text" class="form-control" name="industry" placeholder="请输入您的行业" required>
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label class="col-sm-3 control-label">居住地</label>
 				<div class="col-sm-9">
-					<input type="text" class="form-control" name="address"  placeholder="请输入您的居住地" required>
+					<input type="text" class="form-control" name="address"  placeholder="请输入您的居住地">
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label class="col-sm-3 control-label">创业指导课程</label>
 				<div class="col-sm-9">
-					<input type="text" class="form-control" name="courses"  placeholder="请输入您的创业就业指导课程" required>
+					<input type="text" class="form-control" name="courses"  placeholder="请输入您的创业就业指导课程">
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label class="col-sm-3 control-label">企业介绍</label>
 				<div class="col-sm-9">
-					<textarea placeholder="详细的介绍企业的规模、所属行业、市场方向以及发展阶段..." name="introduce" class="form-control"></textarea>
+					<textarea placeholder="详细的介绍企业的规模、所属行业、市场方向以及发展阶段..." name="introduce" class="form-control" ></textarea>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-3 control-label">个人简介<span class="red">*</span></label>
+				<label class="col-sm-3 control-label">个人介绍<span class="red">*</span></label>
 				<div class="col-sm-9">
-					<textarea placeholder="介绍您的特点以及优势、工作经历、专长领域、成果与荣誉" name="resume" class="form-control"></textarea>
+					<textarea placeholder="介绍您的特点以及优势、工作经历、专长领域、成果与荣誉" name="resume" class="form-control" required></textarea>
 				</div>
 			</div>
 
@@ -118,13 +114,14 @@
 				<label class="col-sm-3 control-label">照片<span class="red">*</span></label>
 				<div class="col-sm-9" style="position: relative">
 					<img src="${themeurl!}/img/index/productImage.jpg" width="100%" id="productImageupload1" style="border:1px dashed #ddd;"/>
-					<input type="file" id="productImagefile1" style="width:100%;height: 100%;position:absolute;left:0px;top:0px;opacity:0;" 					onchange="javascript:productImagePic1();" name="photographs" class="form-control">
+					<input type="file" id="productImagefile1" style="width:100%;height: 100%;position:absolute;left:0px;top:0px;opacity:0;" onchange="javascript:productImagePic1();" class="form-control">
+					<input type="hidden" name="photographs" class="form-control">
 				</div>
 			</div>
 
 			<div class="form-group form-login">
 				<div class="col-sm-offset-3 col-sm-10">
-					<button type="submit" class="btn btn-default btn-danger" onclick="savementor()">申请</button>
+					<button type="button" class="btn btn-default btn-danger" onclick="savementor()">申请</button>
 					<button type="reset" class="btn btn-default col-sm-offset-1 btn-info">取消</button>
 				</div>
 			</div>
@@ -136,7 +133,7 @@
     function savementor() {
         var name = $('#mentorForm input[name=name]').val();
         var phone = $('#mentorForm input[name=phone]').val();
-        var unit = $('#mentorForm input[name=unit	]').val();
+        var unit = $('#mentorForm input[name=unit]').val();
         var industry = $('#mentorForm input[name=industry]').val();
         var about = $('#mentorForm textarea[name=resume]').val();
         var photographs = $('#mentorForm input[name=photographs]').val();
@@ -176,9 +173,8 @@
                 if (data.status) {
                     alert(data.message);
                     form[0].reset();
+					location.reload(true);
                 }
-                $('.myModal').modal('hide');
-                location.reload(true);
             },
             error: function () {
                 alert("提交失败！")
@@ -194,7 +190,17 @@
             alert("请至少选择一张图片上传");
             return false;
         }
-        $("#productImageupload1").attr('src',window.URL.createObjectURL(document.getElementById("productImagefile1").files.item(0)));
+		var file = document.getElementById("productImagefile1").files.item(0);
+		if(!/image\/\w+/.test(file.type)){
+			alert("请确保文件为图像类型");
+			return false;
+		}
+		var reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onload=function(){
+			$("#productImageupload1").attr('src',this.result);
+			$('#mentorForm input[name=photographs]').val(this.result);
+		}
     }
 </script>
 

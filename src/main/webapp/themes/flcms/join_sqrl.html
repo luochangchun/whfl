@@ -1,6 +1,6 @@
 <div class="Application">
 	<h1>申请入孵</h1>
-	<form class="form-horizontal" role="form" method="post" id="incubatorForm">
+	<form class="form-horizontal" role="form" id="incubatorForm">
 		<div class="form-group">
 			<label class="col-sm-3 control-label">姓名 <span class="red">*</span></label>
 			<div class="col-sm-9">
@@ -17,21 +17,14 @@
 		<div class="form-group">
 			<label class="col-sm-3 control-label">公司名称<span class="red">*</span></label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="phone" name="company" placeholder="请输入您的公司名称" required>
+				<input type="text" class="form-control"  name="company" placeholder="请输入您的公司名称" required>
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label class="col-sm-3 control-label">申请时间<span class="red">*</span></label>
+			<label class="col-sm-3 control-label">团队人数<span class="red">*</span></label>
 			<div class="col-sm-9">
-				<input type="text" style="height: 36px" class="Wdate form-control" id="d122" onclick="WdatePicker({isShowWeek:true,										onpicked:function() {$dp.$('d122_1').value=$dp.cal.getP('W','W');$dp.$('d122_2').value=$dp.cal.getP('W','WW');}})"  									name="date"  placeholder="请输入您的申请时间" required>
-			</div>
-		</div>
-
-		<div class="form-group">
-			<label  class="col-sm-3 control-label">团队人数<span class="red">*</span></label>
-			<div class="col-sm-9">
-				<input type="text" class="form-control" name="team" placeholder="请输入您的团队人数" required>
+				<input type="text" class="form-control"  name="team" placeholder="请输入团队人数" required>
 			</div>
 		</div>
 
@@ -44,7 +37,7 @@
 
 		<div class="form-group form-login">
 			<div class="col-sm-offset-3 col-sm-10">
-				<button type="submit" onclick="saveincubator();" class="btn btn-default btn-danger">申请</button>
+				<button type="button" onclick="saveincubator();" class="btn btn-default btn-danger">申请</button>
 				<button type="reset" class="btn btn-default col-sm-offset-1 btn-info" data-dismiss="modal">取消</button>
 			</div>
 		</div>
@@ -58,7 +51,6 @@
         var phone = $('#incubatorForm input[name=phone]').val();
         var company = $('#incubatorForm input[name=company]').val();
         var team = $('#incubatorForm input[name=team]').val();
-        var date = $('#incubatorForm input[name=date]').val();
         var about = $('#incubatorForm textarea[name=text]').val();
         var reg = /^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/;
         if (!name) {
@@ -71,10 +63,6 @@
         }
         if (!company) {
             alert("请输入公司名称！");
-            return;
-        }
-        if (!date) {
-            alert("请输入申请时间！");
             return;
         }
         if (!team) {
@@ -96,12 +84,12 @@
                 if (data.status) {
                     alert(data.message);
                     form[0].reset();
+					$('.myModal').modal('hide');
+					location.reload(true);
                 }
-                $('.myModal').modal('hide');
-                location.reload(true);
             },
             error: function () {
-                alert("提交失败！")
+                confirm("提交失败！")
             }
         });
     }
