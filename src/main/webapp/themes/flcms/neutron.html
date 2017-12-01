@@ -42,7 +42,7 @@
 <!--创业政策-->
 <div class="main m-b-lg">
     <div class="container goods m-b-lg">
-        <div class="text-center text-danger text-2x m-b-lg">创业政策<img src="${themeurl!}/img/index/cyzd_icon.png" /><a href="/nccyzc.html" class="more pull-right text-center" style="margin-top:-25px;">MORE+</a></div>
+        <div class="text-center text-danger text-2x m-b-lg">创业政策<img src="${themeurl!}/img/index/cyzd_icon.png" /></div>
         <div class="row position policy">
             <a href="/article/3109.html">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6" style="text-align: center">
@@ -111,17 +111,20 @@
 <!--创业故事-->
 <div class="main m-b-lg" style="background-color: #fff">
     <div class="container goods m-b-lg">
-        <a href="/cyxm.html" style="text-decoration: none"><div class="text-center text-danger text-2x m-b-lg">创业故事<img src="${themeurl!}/img/index/cyzd_icon.png" /></div><a href="/cygs.html" class="more pull-right text-center" style="margin-top:-65px;">MORE+</a></a>
-        <div class="row position project teacher">
-            <!-- {article:list table=(article) cid=(270) status=(1) limit=(4) order=(top desc,time desc)} -->
-            <div class="col-lg-3 col-md-3 col-sm-6 col-sm-6 div1">
-                <div class="box">
-                    <h2 title="${article.title!}">${article.title!}</h2>
-                    <span>${article.description}</span>
-                    <a href="${article.url}"><button>查看详情>></button></a>
-                </div>
+        <div class="text-center text-danger text-2x m-b-lg">创业故事<img src="${themeurl!}/img/index/cyzd_icon.png" /><a href="/cygs.html" class="more pull-right text-center" style="margin-top:-65px;">MORE+</a></div>
+        <div class="row position story">
+            <!-- {article:list table=(article) cid=(270) status=(1) limit=(1) order=(top desc,time desc)} -->
+            <div class="col-lg-8 col-md-8 col-sm-12 col-sm-12">
+                <p>${article.description}
+                </p>
+                <a href="/cygs.html"><button>查看详情>></button></a>
             </div>
             <!-- {/list} -->
+            <div class="col-lg-4 col-lg-4 col-md-4 col-sm-12 col-sm-12">
+                <div class="pic">
+                    <img src="${themeurl!}/img/index/story_pic.jpg" />
+                </div>
+            </div>
         </div>
     </div>
 </div>

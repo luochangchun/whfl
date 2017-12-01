@@ -1,39 +1,31 @@
 
 <!--#include file="head_neutron.html"-->
-<style type="text/css">
-	body{
-		background:#f1f1f1;
-	}
-</style>
-<!-- 创业项目 -->
-<div class="container">
-	<div class="entrepreneurship">
-		<div class="title_common">
-			<h3>创业故事</h3>
-		</div>
-
-		<div class="entrepreneurship_con">
-			<@page model="article" size="8" cid="270" status="1" order="time desc">
-			<#list page.data as article>
-			<dl class="col-lg-3 col-md-3 col-sm-6">
-				<div class="item">
-					<dt class="text-center">
-						<b>${article.title}</b>
-					</dt>
-					<dd>
-						<p>${article.description}</p>
-						<a href="${article.url}" class="common_more">查看更多>></a>
-					</dd>
+<div class="main m-b-lg">
+	<div class="container">
+		<div class="leftbar">
+			<div class="list no-img m-b-md">
+				<div class="box pos-rlt wrapper-lg bg-white b clear">
+					<div class="title-list bg-white text-md flex-center">
+						<div class="w-full">创业故事</div>
+					</div>
+					<@page model="article" size="10" cid="270" status="1" order="time desc">
+					<#list page.data as article>
+					<div class="text-box padder-v">
+						<div class="font-bold text-md text-ellipsis m-b-sm">
+							<a href="${article.url}" class="h-main tras-01">${article.title}</a>
+							<span class="inline pull-right">发布时间：<span>${article.time?string("yyyy-MM-dd")}</span></span>
+						</div>
+					</div>
+					</#list>
+					</@page>
+					<div class="clearfix"></div>
+					<!--#include file="common/page.html"-->
+					<@paginate currentPage=page.currentPageNo totalPage=page.totalPages actionUrl="/"  />
 				</div>
-			</dl>
-			</#list>
-		</@page>
-		<div class="clearfix"></div>
-		<!--#include file="common/page.html"-->
-		<@paginate currentPage=page.currentPageNo totalPage=page.totalPages actionUrl="/"  />
-	</div>
+			</div>
+		</div>
+		<!--#include file="sidebar_info.html"-->
 	</div>
 </div>
+
 <!--#include file="footer_neutron.html"-->
-</body>
-</html>
