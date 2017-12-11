@@ -98,8 +98,8 @@ a{
     height:100px;
 }
 .m-b-lg {
-    margin-bottom: 10px;
-    padding:20px 0;
+    /*margin-bottom: 10px;*/
+    padding:10px 0;
 }
 .m-b-lg img{
     display: block;
@@ -117,6 +117,9 @@ a{
 }
 .position{
     text-align:center;
+}
+.height img{
+    height:222px;
 }
 .position div img{
     width:100%;
@@ -145,18 +148,18 @@ a{
     padding-bottom:60px;
 }
 .alliance div{
-    text-align: right;
+    text-align:left;
 }
 .alliance .alliance_pic{
-    width: 300px;
-    height:300px;
+    width: 200px;
+    height:200px;
     margin-left: 80px;
     border:8px solid #f14f81;
 }
 .alliance .alliance_pic span{
     display: block;
-    width:300px;
-    height: 300px;
+    width:200px;
+    height: 200px;
     border:1px solid #ddd;
     margin:30px 0 0 30px;
     background: #fff;
@@ -175,7 +178,7 @@ a{
 }
 .alliance div:last-child{
     max-height:360px;
-    padding: 20px 100px;
+    padding:0 10px 0 100px;
 }
 .alliance div p{
     line-height:30px;
@@ -192,7 +195,8 @@ a{
     font-size:14px;
     text-align: center;
     line-height:30px;
-    margin-top: 50px;
+    margin-top: 0;
+    float:right;
 }
 .container-p{
     font-size:16px;
@@ -202,13 +206,13 @@ a{
 @media (min-width: 1200px){
     .alliance div p{
         line-height:30px;
-        height:220px;
+        height:170px;
         overflow: hidden;
     }
 }
 @media (min-width: 992px){
     .alliance div button{
-        margin-top: 30px;
+        margin-top:8px;
     }
 }
 @media (max-width: 768px){
@@ -265,7 +269,7 @@ a{
 }
 .project .box{
     border:1px solid #ddd;
-    height: 396px;
+    height: 350px;
     transition:all 0.5s;
 }
 .project .box:hover{
@@ -286,13 +290,16 @@ a{
 }
 .project .box span{
     color:#999;
+    height:162px;
+    font-size: 14px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:6;
+    overflow: hidden;
     line-height:25px;
     padding:10px 26px;
     display: block;
     display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 9;
-    overflow: hidden;
 }
 .project button{
     width:140px;
@@ -366,25 +373,25 @@ a{
 }
 /*创业故事*/
 .story{
-    padding-bottom:50px;
+    padding-bottom:20px;
 }
 .story div{
     text-align: left;
 }
 .story .pic{
     border:8px solid #f14f81;
-    height: 285px;
-    width: 292px;
+    height: 200px;
+    width: 200px;
     padding:0!important;
 }
 .story .pic img{
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     margin:20px 0 0 -50px;
 }
 .story div:first-child{
     max-height:360px;
-    padding: 20px 100px;;
+    padding: 0 100px;
 }
 .story div p{
     line-height:30px;
@@ -449,17 +456,17 @@ a{
 @media (min-width: 1200px){
     .story div p{
         line-height:30px;
-        height:240px;
+        height:190px;
         overflow: hidden;
     }
 }
 @media (min-width: 992px){
     .story div button{
-        margin-top: 30px;
+        margin-top:25px;
     }
     .story div p{
         line-height:30px;
-        height:205px;
+        height:155px;
         overflow: hidden;
     }
 }
