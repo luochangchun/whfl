@@ -369,7 +369,11 @@ a{
 	overflow:hidden;
 	padding:0;
 	background-position:center;
-	background-size:cover
+	background-size:cover;
+    /*border: 0;*/
+    /*border-bottom: 10px solid transparent;*/
+    /*position: relative;*/
+    behavior: url(PIE.htc);
 }
 
 /*创业故事*/
