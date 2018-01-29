@@ -363,12 +363,15 @@ a{
 	width:125px;
 	height:125px;
 	border-radius:50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
 	margin:5px auto;
 	overflow:hidden;
 	padding:0;
 	background-position:center;
 	background-size:cover
 }
+
 /*创业故事*/
 .story{
     padding-bottom:20px;
