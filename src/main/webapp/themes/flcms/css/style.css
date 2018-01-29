@@ -564,10 +564,13 @@ body,html{
     left: 0;
 }
 .sidebar .ad.ad1{
-	margin-top: -150px;
+	margin-top: -220px;
 }
 .sidebar .ad.ad2{
-	margin-top: 0;
+	margin-top: -70px;
+}
+.sidebar .ad.ad3{
+	margin-top: 80px;
 }
 .sidebar button.code::after{
 	content: '';
